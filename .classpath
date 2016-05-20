@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/servlet-api-3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/json/json-simple-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/json/jackson-dataformat-msgpack-0.7.0-p9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/json/msgpack-core-0.7.0-p9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/json/postgresql-9.4-1201.jdbc4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-continuation-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-http-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-io-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-server-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-util-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/jetty/jetty-distribution-8.1.17.v20150415/lib/jetty-websocket-8.1.17.v20150415.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/inal/javax.mail.jar" sourcepath="/home/inal/javax.mail.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
