@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jackson-dataformat-msgpack-0.7.0-p9">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../serverLibs/jackson-dataformat-msgpack-0.7.0-p9.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

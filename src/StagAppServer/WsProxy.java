@@ -8,6 +8,8 @@ import org.eclipse.jetty.server.Server;
 
 
 public class WsProxy {
+	private static final int WEBSOCKET_PORT = 8087;
+
 	private static final String STEGAPP_IMG_DIR = "StegApp/media/img/";
 	private static final String STEGAPP_IMG_T_DIR = "StegApp/media/img/thumbs/";
 	private static final String STEGAPP_VIDEO_DIR = "StegApp/media/video/";
@@ -16,7 +18,6 @@ public class WsProxy {
 	private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
 	
  public static void main(String[] args) throws Exception {
-	int port = 8087;
 	File path = new File(STEGAPP_IMG_DIR);
 	if (!path.exists()) {
 		path.mkdirs();
@@ -30,20 +31,22 @@ public class WsProxy {
 		path.mkdirs();
 		path = new File(STEGAPP_IMG_T_DIR);
 		path.mkdirs();
-		path = null;
 	}
 	Class.forName("org.postgresql.Driver");
 	Connection dbConnection = null;
 	try{
-		dbConnection = DriverManager.getConnection("jdbc:postgresql://188.225.77.207:5432/stegdatabase", "stegserver", "revresgets");
+		dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/stegdatabase", "stegserver", "revresgets");
 	} catch (SQLException e) {
 		e.printStackTrace();
 		System.out.println("not connected to DB!");
 	}
 
-	Server jetty = new Server(port);
-	jetty.setHandler(new WsHandler(dbConnection));
-	jetty.start();
-	FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
+     Server jetty = new Server(WEBSOCKET_PORT);
+     jetty.setHandler(new WsHandler(dbConnection));
+     jetty.start();
+	 System.out.println("jetty threadPool size: "+jetty.getThreadPool().getThreads());
+	 System.out.println("jetty idleThreadPool size: "+jetty.getThreadPool().getIdleThreads());
+     FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
+     fileTransferHandler.start();
  }
 }

@@ -3,10 +3,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.sql.Connection;
 
@@ -20,49 +18,68 @@ import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
-public class WsHandler extends WebSocketHandler {
+class WsHandler extends WebSocketHandler {
 	private static final String STEGAPP_IMG_DIR = "StegApp/media/img/";
 	private static final String STEGAPP_IMG_T_DIR = "StegApp/media/img/thumbs/";
 	private static final String STEGAPP_VIDEO_DIR = "StegApp/media/video/";
 	private static final String STEGAPP_AUDIO_DIR = "StegApp/media/audio/";
 	private static final String STEGAPP_PROFILE_PHOTO_DIR = "StegApp/avatars/";
 	private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
-	
-	public static final int NOTIFICATION_FRIEND = 0;
-	public static final int NOTIFICATION_COMMENT = 1;
-	public static final int NOTIFICATION_LIKE = 2;
-	public static final int NOTIFICATION_GET = 3;
-	public static final int NOTIFICATION_SAVE = 4;
+
+    private static final int NOTIFICATION_FRIEND = 0;
+    private static final int NOTIFICATION_COMMENT = 1;
+    private static final int NOTIFICATION_LIKE = 2;
+    private static final int NOTIFICATION_GET = 3;
+    private static final int NOTIFICATION_SAVE = 4;
 	public static final int NOTIFICATION_PRIVATE_STEG = 5;
 	
-	private volatile HashSet<ChatWebSocket> clientSockets = new HashSet<ChatWebSocket>();
+	private volatile CopyOnWriteArraySet<ChatWebSocket> clientSockets = new CopyOnWriteArraySet<>();
+    volatile ChatDispatcher chatDispatcher;
 	private Connection dbConnection;
-	
-	public WsHandler(Connection dbConnection) {
+	private static volatile WsHandler instance;
+
+    WsHandler(Connection dbConnection) {
+        chatDispatcher = new ChatDispatcher();
 		this.dbConnection = dbConnection;
 		sendingStegs(dbConnection);
+		instance = this;
+    }
+
+	static WsHandler getInstance(){
+			return instance;
 	}
 	
-	private class ChatWebSocket implements OnBinaryMessage, OnTextMessage {
-			
-		public String userId;
-		public Connection connection;
-		public UserProfile profile;
+	class ChatWebSocket implements OnBinaryMessage, OnTextMessage {
+
+       	volatile private String userId;
+        volatile private Connection connection;
+        volatile private UserProfile profile;
+		volatile private Integer chatId = null;
 			 
 		@Override
 		public void onOpen(Connection arg0) {
 			this.connection = arg0;
 			this.connection.setMaxIdleTime(300000);
-			clientSockets.add(this);
 			System.out.println("connected: " + this.connection.toString());
 		}
  
 		@Override
 		public void onClose(int arg0, String arg1) {
 			clientSockets.remove(this);
-			System.out.println("disconnected: " + this.connection.toString());
+			if(chatId != null){
+				chatDispatcher.removeListener(chatId, ChatWebSocket.this);
+			}
+			System.out.println("@" + (this.userId != null ? this.userId : "null") + " disconnected");
 		}
 
+        @Override
+        public void onMessage(String arg0) {
+            switch (arg0){
+                case "checkConnection":
+                    checkConnection();
+                    break;
+            }
+        }
 	
 		@Override
 		public void onMessage(byte[] arg0, int arg1, int arg2) {
@@ -86,6 +103,7 @@ public class WsHandler extends WebSocketHandler {
 					if(DBHandler.newUser(newUserId, newPaswd, dbConnection)){
 						this.userId = newUserId;
 						this.connection.sendMessage("registration_ok");
+						clientSockets.add(this);
 					} else {
 						this.connection.sendMessage("same_name");
 					}
@@ -97,11 +115,9 @@ public class WsHandler extends WebSocketHandler {
 					String oldUserId = DBHandler.checkUserSocialId(newSocId, dbConnection);
 					if(oldUserId == null){
 						packer.packString("newSocialId");
-						System.out.println("newSocialId: " + newSocId + " | userId: " + this.userId);
 					} else {
 						packer.packString("oldSocialId");
 						packer.packString(oldUserId);
-						System.out.println("oldSocialId: " + newSocId + " | userId: " + this.userId + " | old: " + oldUserId);
 					}
 					packer.close();
 					this.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
@@ -134,12 +150,6 @@ public class WsHandler extends WebSocketHandler {
 				case "stag":
 					stagData = unpackMe(unpacker, mesType);
 					DBHandler.addSteg(stagData, dbConnection);
-					break;
-				case "profileFromServer":
-					String profileId = unpacker.unpackString();
-					unpacker.close();
-					UserProfile sendProfile = DBHandler.getUserProfile(profileId, dbConnection);
-					sendProfile(sendProfile, this);
 					break;
 				case "addStegToWall":
 					addStegToWall(unpacker);
@@ -216,14 +226,20 @@ public class WsHandler extends WebSocketHandler {
 				case "stegRequest":
 					stegRequest(unpacker);
 					break;
+                    case "addChatListener":
+                        addListenerToChat(unpacker);
+                        break;
+                    case "removeChatListener":
+                        removeListenerFromChat(unpacker);
+                        break;
 				}
 			unpacker.close();
 			} catch (IOException e){
 				e.printStackTrace();
 			}
 		}
-		
-		public StagData unpackMe (MessageUnpacker unpacker, String mesType) throws IOException {
+
+        private StagData unpackMe (MessageUnpacker unpacker, String mesType) throws IOException {
 			StagData stagData = new StagData();
 			stagData.mesType = mesType;
 			switch (stagData.mesType) {
@@ -249,7 +265,7 @@ public class WsHandler extends WebSocketHandler {
 			return stagData;
 		}
 
-		public void addStegToWall(MessageUnpacker unpacker) throws IOException{
+        private void addStegToWall(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.stegToWall(stegId, profileId, dbConnection);
@@ -257,15 +273,15 @@ public class WsHandler extends WebSocketHandler {
 			String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
 			sendNotification(NOTIFICATION_SAVE, toUserId, profileId);
 		}
-		
-		public void stegRequest(MessageUnpacker unpacker) throws IOException{
+
+        private void stegRequest(MessageUnpacker unpacker) throws IOException{
 			String profileId = unpacker.unpackString();
 			StegRequestItem srItem = DBHandler.stegRequset(profileId, dbConnection);
 			
 			sendStegItem(srItem, this);
 		}
-		
-		public void addLike(MessageUnpacker unpacker) throws IOException{
+
+        private void addLike(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			if(DBHandler.addLike(stegId, profileId, dbConnection)){
@@ -275,19 +291,21 @@ public class WsHandler extends WebSocketHandler {
 				}
 			}
 		}
-		
-		public void addComment(MessageUnpacker unpacker) throws IOException{
+
+        private void addComment(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			String text = unpacker.unpackString();
-			DBHandler.addComment(stegId, profileId, text, dbConnection);
+			Integer msgId = DBHandler.addComment(stegId, profileId, text, dbConnection);
 			String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
 			if(!toUserId.equals(profileId)){
 				sendNotification(NOTIFICATION_COMMENT, toUserId, profileId);
 			}
+			System.out.println("send mes to chat: " + stegId);
+            chatDispatcher.sendMessage(stegId, msgId, profileId);
 		}
-		
-		public void addTextComment(MessageUnpacker unpacker) throws IOException{
+
+        private void addTextComment(MessageUnpacker unpacker) throws IOException{
 			CommentData comment = new CommentData();
 			comment.stegId = unpacker.unpackInt();
 			comment.profileId = unpacker.unpackString();
@@ -306,13 +324,13 @@ public class WsHandler extends WebSocketHandler {
 				sendNotification(NOTIFICATION_COMMENT, toUserId, comment.profileId);
 			}
 		}
-		
-		public void setStegUnsended(MessageUnpacker unpacker) throws IOException{
+
+        private void setStegUnsended(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.setStegUnrecieved(stegId, dbConnection);
 		}
-		
-		public void addGeter(MessageUnpacker unpacker) throws IOException{
+
+        private void addGeter(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.addGeter(stegId, profileId, dbConnection);
@@ -320,85 +338,85 @@ public class WsHandler extends WebSocketHandler {
 			String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
 			sendNotification(NOTIFICATION_GET, toUserId, profileId);
 		}
-		
-		public void addFriend(MessageUnpacker unpacker) throws IOException{
+
+        private void addFriend(MessageUnpacker unpacker) throws IOException{
 			String friendId = unpacker.unpackString();
 			DBHandler.addFriend(userId, friendId, dbConnection);
 
 			sendNotification(NOTIFICATION_FRIEND, friendId, userId);
 		}
-		
-		public void removeFriend(MessageUnpacker unpacker) throws IOException{
+
+        private void removeFriend(MessageUnpacker unpacker) throws IOException{
 			String friendId = unpacker.unpackString();
 			DBHandler.removeFriend(userId, friendId, dbConnection);
 		}
-		
-		public void addToBlackList(MessageUnpacker unpacker) throws IOException{
+
+        private void addToBlackList(MessageUnpacker unpacker) throws IOException{
 			String blackProfileId = unpacker.unpackString();
 			DBHandler.addToBlackList(userId, blackProfileId, dbConnection);
 		}
-		
-		public void removeFromBlackList(MessageUnpacker unpacker) throws IOException{
+
+        private void removeFromBlackList(MessageUnpacker unpacker) throws IOException{
 			String blackProfileId = unpacker.unpackString();
 			DBHandler.removeFromBlackList(userId, blackProfileId, dbConnection);
 		}
-		
-		public void setCoordinates(MessageUnpacker unpacker) throws IOException{
+
+        private void setCoordinates(MessageUnpacker unpacker) throws IOException{
 			DBHandler.setUserCoordinates(unpacker.unpackString(), unpacker.unpackString(), 
 										unpacker.unpackDouble(), unpacker.unpackDouble(), dbConnection);
 		}
-		
-		public void markNewsSended(MessageUnpacker unpacker) throws IOException{
+
+        private void markNewsSended(MessageUnpacker unpacker) throws IOException{
 			Integer newsId = unpacker.unpackInt();
 			DBHandler.markNewsSended(newsId, dbConnection);
 		}
-		
-		public void markAllStegNoificationsSended(MessageUnpacker unpacker) throws IOException{
+
+        private void markAllStegNoificationsSended(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String ownerId = unpacker.unpackString();
 			DBHandler.markAllStegNotificationsSended(ownerId, stegId, dbConnection);
 		}
-		
-		public void markPrivateStegSended(MessageUnpacker unpacker) throws IOException{
+
+        private void markPrivateStegSended(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.markPrivetStegSended(stegId, dbConnection);
 		}
-		
-		public void rejectCommonSteg(MessageUnpacker unpacker) throws IOException{
+
+        private void rejectCommonSteg(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.markUnrecievedSteg(stegId, dbConnection);
 		}
-		
-		public void deleteSteg(MessageUnpacker unpacker) throws IOException{
+
+        private void deleteSteg(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.deleteSteg(stegId, profileId, dbConnection);
 		}
-		
-		public void deleteIncomeSteg(MessageUnpacker unpacker) throws IOException{
+
+        private void deleteIncomeSteg(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.deleteIncomeSteg(stegId, profileId, dbConnection);
 		}
-		
-		public void deleteStegAdm(MessageUnpacker unpacker) throws IOException{
+
+        private void deleteStegAdm(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.deleteStegAdm(stegId, dbConnection);
 		}
-		
-		public void removeStegFromWall(MessageUnpacker unpacker) throws IOException{
+
+        private void removeStegFromWall(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String ownerId = unpacker.unpackString();
 			DBHandler.removeStegFromWall(stegId, ownerId, dbConnection);
 		}
-		
-		public void removeLikes(MessageUnpacker unpacker) throws IOException{
+
+        private void removeLikes(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.removeLike(stegId, profileId, dbConnection);
 		}
-		
-		public void stegPlea(MessageUnpacker unpacker) throws IOException{
+
+        private void stegPlea(MessageUnpacker unpacker) throws IOException{
 			String text;
 			String eMail;
 			String pleaer = unpacker.unpackString();
@@ -420,10 +438,9 @@ public class WsHandler extends WebSocketHandler {
 			String pleaText;
 			pleaText = "From: " + pleaer + "\n\nSteg: " + stegId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
 			emailSender.send("Plea", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
-			System.out.println("plea: " + pleaText);
 		}
-		
-		public void profileSearch(MessageUnpacker unpacker) throws IOException{
+
+        private void profileSearch(MessageUnpacker unpacker) throws IOException{
 			String searchString = unpacker.unpackString();
 			String myCity = unpacker.unpackString();
 			ArrayList<String> searchResult = DBHandler.getProfileSearchResult(searchString, myCity, dbConnection);
@@ -439,10 +456,9 @@ public class WsHandler extends WebSocketHandler {
 			packer.close();
 			connection.sendMessage(searchResultBaos.toByteArray(), 0, searchResultBaos.toByteArray().length);
 		}
-		
-		public void getSubscribers(MessageUnpacker unpacker) throws IOException{
+
+        private void getSubscribers(MessageUnpacker unpacker) throws IOException{
 			String profileId = unpacker.unpackString();
-			System.out.println("geSubscribers: " + profileId);
 			ArrayList<String> subscribers = DBHandler.getSubscribers(profileId, dbConnection);
 			
 			ByteArrayOutputStream  subscribersStream = new ByteArrayOutputStream();
@@ -459,7 +475,6 @@ public class WsHandler extends WebSocketHandler {
 		
 		private void getFriends(MessageUnpacker unpacker) throws IOException{
 			String profileId = unpacker.unpackString();
-			System.out.println("getFriends: " + profileId);
 			ArrayList<String> subscribers = DBHandler.getFriendsList(profileId, dbConnection);
 			
 			ByteArrayOutputStream  subscribersStream = new ByteArrayOutputStream();
@@ -473,16 +488,38 @@ public class WsHandler extends WebSocketHandler {
 			packer.close();
 			connection.sendMessage(subscribersStream.toByteArray(), 0, subscribersStream.toByteArray().length);
 		}
-		
-		@Override
-		public void onMessage(String arg0) {		
-		}
+
+        private void addListenerToChat(MessageUnpacker unpacker) throws IOException{
+            Integer chatId = unpacker.unpackInt();
+            chatDispatcher.addListener(chatId, ChatWebSocket.this);
+			this.chatId = chatId;
+        }
+
+        private void removeListenerFromChat(MessageUnpacker unpacker) throws IOException{
+            Integer chatId = unpacker.unpackInt();
+            chatDispatcher.removeListener(chatId, ChatWebSocket.this);
+			this.chatId = null;
+        }
+
+        private void checkConnection(){
+            try {
+                this.connection.sendMessage("checkConnection");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String getUserId(){
+            return this.userId;
+        }
+
+        Connection getConnection(){
+            return this.connection;
+        }
 	}
-	
-	public void sendNotification(Integer type, String toUserId, String fromUserId){
-		new Thread(new Runnable(){
-			@Override
-			public void run() {
+
+    private void sendNotification(Integer type, String toUserId, String fromUserId){
+		new Thread(() -> {
 				try {
 					for(ChatWebSocket socket: clientSockets){
 						if(socket.userId != null){
@@ -503,20 +540,18 @@ public class WsHandler extends WebSocketHandler {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
 		}).start();
 	}
-	
-	public void sendingStegs(Connection dbConnection){
+
+    private void sendingStegs(Connection dbConnection){
 		
 		Thread sendingThread = new Thread() {
 			public void run(){
 				while(!isInterrupted()){
 					ArrayList<StagData> stegList = DBHandler.getUnrecievedStegs(dbConnection);
-					System.out.println("stegList: " + stegList.size());
-					
+
 					for (StagData steg: stegList){
-						HashSet<ChatWebSocket> sendSockets = checkWebSockets(clientSockets, steg.mesSender, steg.filter);			
+						CopyOnWriteArraySet<ChatWebSocket> sendSockets = checkWebSockets(clientSockets, steg.mesSender, steg.filter);
 						sendToSomeBody(sendSockets, steg.stegId);
 					}
 					try {
@@ -529,34 +564,8 @@ public class WsHandler extends WebSocketHandler {
 		};
 		sendingThread.start();
 	}
-
-	public void sendProfile(UserProfile profile, ChatWebSocket webSocket) throws IOException{
-		ByteArrayOutputStream profileBaos = new ByteArrayOutputStream();
-		MessagePacker profilePacker = MessagePack.newDefaultPacker(profileBaos);
-		profilePacker
-		    .packString("profileFromServer")
-		    .packString(profile.getId())
-			.packString(profile.getName())
-			.packString(profile.getSex())
-			.packString(profile.getState())
-			.packString(profile.getCity())
-			.packInt(profile.getAge());
-		if(!profile.getPhoto().equals("clear")){
-			profilePacker.packString("photo");
-			File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + profile.getPhoto());
-			profilePacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
-			byte[] photoBytes = new byte[(int) sendFile.length()];
-			FileInputStream fis = new FileInputStream(sendFile);
-			fis.read(photoBytes, 0, photoBytes.length);
-			fis.close();
-			profilePacker.packBinaryHeader(photoBytes.length);
-			profilePacker.writePayload(photoBytes, 0, photoBytes.length);							
-		} else profilePacker.packString("clear");
-		profilePacker.close();
-		webSocket.connection.sendMessage(profileBaos.toByteArray(), 0, profileBaos.toByteArray().length);
-	}
 	
-	public void sendStegItem(StegRequestItem srItem, ChatWebSocket webSocket) throws IOException{
+	private void sendStegItem(StegRequestItem srItem, ChatWebSocket webSocket) throws IOException{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		MessagePacker packer = MessagePack.newDefaultPacker(baos);
 		packer.packString("stegRequestResult");
@@ -567,41 +576,37 @@ public class WsHandler extends WebSocketHandler {
 		webSocket.connection.sendMessage(baos.toByteArray(),  0, baos.toByteArray().length);
 	}
 
-	public void sendToSomeBody(HashSet<ChatWebSocket> sendSockets, Integer stegId){
+	private void sendToSomeBody(CopyOnWriteArraySet<ChatWebSocket> sendSockets, Integer stegId){
 		Random rand = new Random(System.currentTimeMillis());
-		System.out.println("sendsockets count: " + sendSockets.size());
 		if(sendSockets.size() > 0){
-		Integer i = rand.nextInt(sendSockets.size());
+		    Integer i = rand.nextInt(sendSockets.size());
 	
-		for(ChatWebSocket con: sendSockets){
-			if(i == 0){
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				MessagePacker packer = MessagePack.newDefaultPacker(baos);
-				try {
-					packer
-						.packString("stegFromServer")
-						.packInt(stegId);
-					packer.close();
+		    for(ChatWebSocket con: sendSockets){
+			    if(i == 0){
+				    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				    MessagePacker packer = MessagePack.newDefaultPacker(baos);
+    				try {
+	    				packer
+		    				.packString("stegFromServer")
+			    			.packInt(stegId);
+				    	packer.close();
 					
-					con.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
-					DBHandler.markRecievedSteg(stegId, dbConnection);
-					System.out.println("Send steg: " + stegId + " to: " + con.profile.getId() + " sex: " + con.profile.getSex());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}	
-				break;
-			}
-			i--;
-		}
+					    con.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+    					DBHandler.markRecievedSteg(stegId, dbConnection);
+	    			} catch (IOException e) {
+		    			e.printStackTrace();
+			    	}
+				    break;
+			    }
+			    i--;
+		    }
 		}
 	}
 	
-	public HashSet<ChatWebSocket> checkWebSockets(HashSet<ChatWebSocket> clientSockets, String ownerId, int filter){
-		HashSet<ChatWebSocket> sendSockets = new HashSet<>();
-		for(Iterator<ChatWebSocket> iterator = clientSockets.iterator(); iterator.hasNext();){
-			ChatWebSocket con = iterator.next();
+	private CopyOnWriteArraySet<ChatWebSocket> checkWebSockets(CopyOnWriteArraySet<ChatWebSocket> clientSockets, String ownerId, int filter){
+        CopyOnWriteArraySet<ChatWebSocket> sendSockets = new CopyOnWriteArraySet<>();
+		for(ChatWebSocket con : clientSockets){
 			if(con.profile != null){
-				System.out.println("id: " + con.profile.getId() + " sex: " +con.profile.getSex());
 				if (!con.profile.getId().equals(ownerId)){
 					switch (filter & StagData.STEG_SEX_MASK){
 					case StagData.STEG_SEX_MASK_MAN:

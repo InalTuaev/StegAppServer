@@ -74,17 +74,16 @@ public class DBHandler {
 	}
 	
 	public static UserProfile getUserProfile(String userId, Connection dbConnection){
-		UserProfile user = null;
+		UserProfile user = new UserProfile();
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT user_id, user_name, user_sex, " + 
 										"user_state, user_city, user_age, latitude, longitude, user_photo FROM users " + 
-										"WHERE user_id = ?");
+										"WHERE user_id = ?;");
 			statement.setString(1, userId);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()){
-				user = new UserProfile();
-				user.setId(userId);
+				user = new UserProfile(resultSet.getString("user_id"));
 				String name = resultSet.getString("user_name");
 				if(name != null) user.setName(name);
 				String sex = resultSet.getString("user_sex");
@@ -103,10 +102,12 @@ public class DBHandler {
 				String photo = resultSet.getString("user_photo");
 				if(photo != null) user.setPhoto(photo);
 			}
+
 			statement.close();
 			resultSet.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return user;
 		}
 		
 		return user;
@@ -170,7 +171,7 @@ public class DBHandler {
 
 	public static Boolean checkPassword(String profileId, String passwd, Connection dbConnection){
 		Boolean res = false;
-		System.out.println("userId: " + profileId + " paswd: " + passwd);
+		System.out.println("check password_ userId: " + profileId + " paswd: " + passwd);
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_id = ? AND user_paswd = ?");
 			statement.setString(1, profileId);
@@ -226,7 +227,7 @@ public class DBHandler {
 
 	public static Boolean signIn(String userId, String paswd, Connection dbConnection){
 		Boolean res = false;
-		System.out.println("userId: " + userId + " paswd: " + paswd);
+		System.out.println("sign in_ userId: " + userId + " paswd: " + paswd);
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_id = ? AND user_paswd = ?");
 			statement.setString(1, userId);
@@ -303,7 +304,6 @@ public class DBHandler {
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE users SET user_photo = ? WHERE user_id = ?");
 			statement.setString(1, photo);
 			statement.setString(2, userId);
-			System.out.println("aadUserPhoto: " + statement.executeUpdate());
 			res = true;
 			statement.close();
 		}catch (Exception e) {
@@ -317,7 +317,6 @@ public class DBHandler {
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE users SET user_valid = 'true' WHERE user_id = ?");
 			statement.setString(1, userId);
-			System.out.println("setUserValid: " + statement.executeUpdate());
 			statement.close();
 		} catch (Exception e){
 			e.printStackTrace();
@@ -581,7 +580,7 @@ public class DBHandler {
 		return stegItems;
 	}
 
-	public static ArrayList<StagData> getOutcomePrivateStegs(String profileId, Connection dbConnection){
+	static ArrayList<StagData> getOutcomePrivateStegs(String profileId, Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.reciever, stegs.type, stegs.life_time,"
@@ -1216,25 +1215,27 @@ public class DBHandler {
 		return stegItems;
 	}
 
-	public static Boolean addComment(Integer stegId, String profileId, String text, Connection dbConnection){
-		Boolean res = false;
+	public static Integer addComment(Integer stegId, String profileId, String text, Connection dbConnection){
+		Integer res = null;
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO comments " +
 						"(steg_id, profile_id, text) " +
-						"VALUES (?, ?, ?)");
+						"VALUES (?, ?, ?) RETURNING comments.id");
 			statement.setInt(1, stegId);
 			statement.setString(2, profileId);
 			statement.setString(3, text);
 			
-			statement.executeUpdate();
+			ResultSet rs = statement.executeQuery();
+			while(rs.next())
+				res = rs.getInt(1);
+			rs.close();
 			statement.close();
 			
 			DBHandler.addNews("comment", profileId, null, stegId, dbConnection);
-			res = true;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			res= false;
+			res = null;
 		}
 		return res;
 	}
@@ -1784,8 +1785,7 @@ public class DBHandler {
 			statement.setString(1, profileId);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()){
-				UserProfile friend = new UserProfile();
-				friend.setId(rs.getString(1));
+				UserProfile friend = new UserProfile(rs.getString(1));
 				friend.setName(rs.getString(2));
 				String img = rs.getString(3);
 				if(img!=null){
