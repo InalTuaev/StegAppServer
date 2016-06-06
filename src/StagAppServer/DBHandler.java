@@ -9,9 +9,9 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class DBHandler {
+class DBHandler {
 	
-	public static Boolean newUser(String userId, String paswd, Connection dbConnection){
+	static Boolean newUser(String userId, String paswd, Connection dbConnection){
 		Boolean res = false;
 		try {
 			if(!checkUser(userId, dbConnection)){
@@ -32,7 +32,7 @@ public class DBHandler {
 		return res;
 	}
 	
-	public static Boolean newUserSocial(String userId, String passwd, String socId, Connection dbConnection){
+	static Boolean newUserSocial(String userId, String passwd, String socId, Connection dbConnection){
 		Boolean res = false;
 		try{
 			if(!checkUser(userId, dbConnection)){
@@ -53,7 +53,7 @@ public class DBHandler {
 		return res;
 	}
 	
-	public static String checkUserSocialId(String userSocId, Connection dbConnection){
+	static String checkUserSocialId(String userSocId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT user_id FROM users WHERE user_soc_id = ?;");
 			statement.setString(1, userSocId);
@@ -73,7 +73,7 @@ public class DBHandler {
 		return null;
 	}
 	
-	public static UserProfile getUserProfile(String userId, Connection dbConnection){
+	static UserProfile getUserProfile(String userId, Connection dbConnection){
 		UserProfile user = new UserProfile();
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT user_id, user_name, user_sex, " + 
@@ -113,7 +113,7 @@ public class DBHandler {
 		return user;
 	}
 
-	public static String getStegSenderId(Integer stegId, Connection dbConnection){
+	static String getStegSenderId(Integer stegId, Connection dbConnection){
 		String id = null;
 		PreparedStatement statement = null;
 		try{
@@ -131,7 +131,7 @@ public class DBHandler {
 		return id;
 	}
 	
-	public static String getUserNameFromId(String userId, Connection dbConnection){
+	static String getUserNameFromId(String userId, Connection dbConnection){
 		String name = null;
 		PreparedStatement statement = null;
 		try{
@@ -149,7 +149,7 @@ public class DBHandler {
 		return name;
 	}
 
-	public static Boolean checkUser(String userId, Connection dbConnection){
+	static Boolean checkUser(String userId, Connection dbConnection){
 		Boolean res = false;
 		ResultSet rs = null;
 		PreparedStatement statement = null;
@@ -169,7 +169,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static Boolean checkPassword(String profileId, String passwd, Connection dbConnection){
+	static Boolean checkPassword(String profileId, String passwd, Connection dbConnection){
 		Boolean res = false;
 		System.out.println("check password_ userId: " + profileId + " paswd: " + passwd);
 		try{
@@ -188,10 +188,10 @@ public class DBHandler {
 		return res;
 	}
 
-	public static Boolean deleteProfile(String profileId, Connection dbConnection){
+	static Boolean deleteProfile(String profileId, Connection dbConnection){
 		Boolean res = false;
 		try{
-			String delString = 
+			String delString =
 					"DELETE FROM comments " +
 							"WHERE (comments.steg_id IN (SELECT stegs.steg_id FROM stegs WHERE stegs.sender = ? OR stegs.reciever = ?)) " +
 							"OR comments.profile_id = ?; " +
@@ -212,7 +212,7 @@ public class DBHandler {
 					"DELETE  FROM friends WHERE profile_id = ? OR friend_id = ?; " +
 					"DELETE  FROM blacklist WHERE my_profile_id = ? OR black_profile_id = ?; " +
 					"DELETE  FROM users WHERE user_id = ?;";
-				
+
 			PreparedStatement statement = dbConnection.prepareStatement(delString);
 			for(int i = 1; i < 24; i++)
 				statement.setString(i, profileId);
@@ -225,7 +225,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static Boolean signIn(String userId, String paswd, Connection dbConnection){
+	static Boolean signIn(String userId, String paswd, Connection dbConnection){
 		Boolean res = false;
 		System.out.println("sign in_ userId: " + userId + " paswd: " + paswd);
 		try{
@@ -244,7 +244,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static Boolean addUserInfo(UserProfile user, Connection dbConnection){
+	static Boolean addUserInfo(UserProfile user, Connection dbConnection){
 		Boolean res = false;
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE users SET " + 
@@ -272,7 +272,7 @@ public class DBHandler {
 		return res;
 	}
 	
-	public static void setUserCoordinates(String userId, String city, Double longitude, Double latitude, Connection dbConnection){
+	static void setUserCoordinates(String userId, String city, Double longitude, Double latitude, Connection dbConnection){
 		String query;
 		if(!city.equals("clear")){
 			query = "UPDATE users SET " +
@@ -298,7 +298,7 @@ public class DBHandler {
 		}
 	}
 
-	public static Boolean addUserPhoto(String userId, String photo, Connection dbConnection){
+	static Boolean addUserPhoto(String userId, String photo, Connection dbConnection){
 		Boolean res = false;
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE users SET user_photo = ? WHERE user_id = ?");
@@ -324,7 +324,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static Integer addSteg(StagData stagData, Connection dbConnection){
+	static Integer addSteg(StagData stagData, Connection dbConnection){
 		Integer res = null;
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO stegs " +
@@ -354,7 +354,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static StagData getSteg(int stagId, String userId, Connection dbConnection){
+	static StagData getSteg(int stagId, String userId, Connection dbConnection){
 		StagData stag = null;
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement(" SELECT stegs.steg_id, stegs.sender," + 
@@ -432,7 +432,7 @@ public class DBHandler {
 		return stag;
 	}
 
-	public static ArrayList<StagData> getIncomePrivateStegs(String profileId, Connection dbConnection){
+	static ArrayList<StagData> getIncomePrivateStegs(String profileId, Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, reciever, type, life_time,"
@@ -479,12 +479,12 @@ public class DBHandler {
 		return stegList;
 	}
 	
-	public static ArrayList<StegItem> getIncomeCommonItems(String profileId, Connection dbConnection){
+	static ArrayList<StegItem> getIncomeCommonItems(String profileId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.anonym"
 					+ " FROM stegs JOIN gets ON stegs.steg_id = gets.steg_id"
-					+ " WHERE stegs.reciever = ? AND gets.profile_id = ? ORDER BY stegs.steg_id DESC;");
+					+ " WHERE stegs.reciever = ? AND gets.profile_id = ? ORDER BY gets.id DESC;");
 			statement.setString(1, "common");
 			statement.setString(2, profileId);
 			ResultSet rs = statement.executeQuery();
@@ -530,7 +530,7 @@ public class DBHandler {
 		return stegItems;
 	}
 	
-	public static ArrayList<StegItem> getIncomePrivateItems(String profileId, Connection dbConnection){
+	static ArrayList<StegItem> getIncomePrivateItems(String profileId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, anonym"
@@ -654,7 +654,7 @@ public class DBHandler {
 		return stegList;
 	}
 
-	public static ArrayList<StegItem> getOutcomePrivateItems(String profileId, Connection dbConnection){
+	static ArrayList<StegItem> getOutcomePrivateItems(String profileId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.anonym"
@@ -710,7 +710,7 @@ public class DBHandler {
 		return stegItems;
 	}
 
-	public static ArrayList<StagData> getOutcomeCommonStegs(String profileId, Connection dbConnection){
+	static ArrayList<StagData> getOutcomeCommonStegs(String profileId, Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, reciever, type, life_time,"
@@ -782,7 +782,7 @@ public class DBHandler {
 		return stegList;
 	}
 	
-	public static ArrayList<StegItem> getOutcomeCommonItems(String profileId, Connection dbConnection){
+	static ArrayList<StegItem> getOutcomeCommonItems(String profileId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, anonym"
@@ -863,7 +863,7 @@ public class DBHandler {
 		return null;
 	}
 	
-	public static ArrayList<StagData> getUnrecievedStegs(Connection dbConnection){
+	static ArrayList<StagData> getUnrecievedStegs(Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<StagData>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, filter, sender" +
@@ -884,7 +884,7 @@ public class DBHandler {
 		return stegList;
 	}
 
-	public static void setStegUnrecieved(Integer stegId, Connection dbConnection){
+	static void setStegUnrecieved(Integer stegId, Connection dbConnection){
 		PreparedStatement statement;
 		try {
 			statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = 0 WHERE steg_id = ?");
@@ -896,7 +896,7 @@ public class DBHandler {
 		
 	}
 	
-	public static void deleteIncomeSteg(Integer stegId, String profileId, Connection dbConnection){
+	static void deleteIncomeSteg(Integer stegId, String profileId, Connection dbConnection){
 		PreparedStatement statement;
 		String sqlQuery;
 		try{
@@ -913,7 +913,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static void deleteSteg(Integer stegId, String profileId, Connection dbConnection){
+	static void deleteSteg(Integer stegId, String profileId, Connection dbConnection){
 		try {
 			Boolean check = false;
 			PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT * FROM stegs WHERE steg_id = ? AND sender = ?;");
@@ -950,7 +950,7 @@ public class DBHandler {
 		
 	}
 	
-	public static void deleteStegAdm(Integer stegId, Connection dbConnection){
+	static void deleteStegAdm(Integer stegId, Connection dbConnection){
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement(
 				"BEGIN;"
@@ -977,7 +977,7 @@ public class DBHandler {
 		
 	}
 
-	public static void markUnrecievedSteg(Integer stegId, Connection dbConnection){
+	static void markUnrecievedSteg(Integer stegId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = recieved - 1 WHERE steg_id = ?;");
 			statement.setInt(1, stegId);
@@ -988,7 +988,7 @@ public class DBHandler {
 		}
 	}
 
-	public static void markRecievedSteg(Integer stegId, Connection dbConnection){
+	static void markRecievedSteg(Integer stegId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = recieved + 1 WHERE steg_id = ?;");
 			statement.setInt(1, stegId);
@@ -999,7 +999,7 @@ public class DBHandler {
 		}
 	}
 
-	public static void markPrivetStegSended(Integer stegId, Connection dbConnection) {
+	static void markPrivetStegSended(Integer stegId, Connection dbConnection) {
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET sended = true WHERE steg_id = ?;");
 			statement.setInt(1, stegId);
@@ -1025,7 +1025,7 @@ public class DBHandler {
 		return null;
 	}
 	
-	public static void stegToWall(Integer stegId, String userId, Connection dbConnection){
+	static void stegToWall(Integer stegId, String userId, Connection dbConnection){
 		try{
 			Boolean check = true;
 			PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT * FROM wall WHERE steg_id = ? AND owner = ?;");
@@ -1053,7 +1053,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static StegRequestItem stegRequset(String reqProfileId, Connection dbConnection){
+	static StegRequestItem stegRequset(String reqProfileId, Connection dbConnection){
 		StegRequestItem srItem = new StegRequestItem();
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM "
@@ -1083,7 +1083,7 @@ public class DBHandler {
 		return srItem;
 	}
 	
-	public static void removeStegFromWall(Integer stegId, String ownerId, Connection dbConnection){
+	static void removeStegFromWall(Integer stegId, String ownerId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("DELETE FROM wall WHERE steg_id = ? AND owner = ?");
 			statement.setInt(1, stegId);
@@ -1095,7 +1095,7 @@ public class DBHandler {
 		}
 	}
 
-	public static ArrayList<StagData> getWall(String userId, Connection dbConnection){
+	static ArrayList<StagData> getWall(String userId, Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.reciever, stegs.type, stegs.life_time,"
@@ -1165,12 +1165,12 @@ public class DBHandler {
 		return stegList;
 	}
 	
-	public static ArrayList<StegItem> getWallItems(String userId, Connection dbConnection){
+	static ArrayList<StegItem> getWallItems(String userId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
 	+ " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
-	+ " WHERE wall.owner = ? ORDER BY wall.steg_id DESC;");
+	+ " WHERE wall.owner = ? ORDER BY wall.id DESC;");
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()){
@@ -1215,7 +1215,7 @@ public class DBHandler {
 		return stegItems;
 	}
 
-	public static Integer addComment(Integer stegId, String profileId, String text, Connection dbConnection){
+	static Integer addComment(Integer stegId, String profileId, String text, Connection dbConnection){
 		Integer res = null;
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO comments " +
@@ -1240,7 +1240,7 @@ public class DBHandler {
 		return res;
 	}
 	
-	public static void addComment(CommentData comment, Connection dbConnection){
+	static void addComment(CommentData comment, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO comments " +
 						"(steg_id, profile_id, data_type, text, camera_data, voice_data) " +
@@ -1278,7 +1278,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static Boolean addLike(Integer stegId, String profileId, Connection dbConnection){
+	static Boolean addLike(Integer stegId, String profileId, Connection dbConnection){
 		Boolean res = false;
 		try{
 			Boolean check = true;
@@ -1310,7 +1310,7 @@ public class DBHandler {
 		return res;
 	}
 
-	public static void addGeter(Integer stegId, String profileId, Connection dbConnection){
+	static void addGeter(Integer stegId, String profileId, Connection dbConnection){
 		try{
 			Boolean check = true;
 			PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT profile_id FROM gets WHERE steg_id = ? AND profile_id = ?");
@@ -1335,7 +1335,7 @@ public class DBHandler {
 		}
 	}
 
-	public static ArrayList<CommentData> getComments(Integer stegId, Connection dbConnection){
+	static ArrayList<CommentData> getComments(Integer stegId, Connection dbConnection){
 		ArrayList<CommentData> commentList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT comments.id, comments.steg_id, " + 
@@ -1365,7 +1365,7 @@ public class DBHandler {
 		return commentList;
 	}
 
-	public static CommentData getComment(Integer commentId, Connection dbConnection){
+	static CommentData getComment(Integer commentId, Connection dbConnection){
 		CommentData comment = new CommentData();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT id, steg_id, profile_id, data_type, " + 
@@ -1400,7 +1400,7 @@ public class DBHandler {
 		return null;
 	}
 	
-	public static ArrayList<CommentItem> getCommentsItems(Integer stegId, Connection dbConnection){
+	static ArrayList<CommentItem> getCommentsItems(Integer stegId, Connection dbConnection){
 		ArrayList<CommentItem> items = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT comments.id, comments.steg_id, comments.data_type,  " + 
@@ -1427,7 +1427,7 @@ public class DBHandler {
 		return items;
 	}
 	
-	public static ArrayList<LikeData> getLikes(Integer stegId, Connection dbConnection){
+	static ArrayList<LikeData> getLikes(Integer stegId, Connection dbConnection){
 		ArrayList<LikeData> likeList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT likes.id, likes.steg_id, " + 
@@ -1458,7 +1458,7 @@ public class DBHandler {
 		return likeList;
 	}
 
-	public static ArrayList<LikeData> getSavers(Integer stegId, Connection dbConnection){
+	static ArrayList<LikeData> getSavers(Integer stegId, Connection dbConnection){
 		ArrayList<LikeData> saversList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.id, wall.steg_id, " + 
@@ -1486,7 +1486,7 @@ public class DBHandler {
 		return saversList;
 	}
 
-	public static ArrayList<LikeData> getGeters(Integer stegId, Connection dbConnection){
+	static ArrayList<LikeData> getGeters(Integer stegId, Connection dbConnection){
 		ArrayList<LikeData> getersList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT gets.id, gets.steg_id, " + 
@@ -1514,7 +1514,7 @@ public class DBHandler {
 		return getersList;
 	}
 	
-	public static void addNews(String type, String profileId, String ownerId, Integer stegId, Connection dbConnection){
+	static void addNews(String type, String profileId, String ownerId, Integer stegId, Connection dbConnection){
 		try{
 			PreparedStatement statement;
 			if(ownerId == null){
@@ -1545,7 +1545,7 @@ public class DBHandler {
 		}
 	}
 
-	public static ArrayList<NewsData> getNews(String owner, Connection dbConnection){
+	static ArrayList<NewsData> getNews(String owner, Connection dbConnection){
 		ArrayList<NewsData> news = new ArrayList<>();
 		String sql = "SELECT news.type, news.profile_id, users.user_name, " +
 					"users.user_photo, news.steg_id, stegs.camera_path, " +
@@ -1587,7 +1587,7 @@ public class DBHandler {
 		return news;
 	}
 
-	public static void markNewsSended(Integer newsId, Connection dbConnection) {
+	static void markNewsSended(Integer newsId, Connection dbConnection) {
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE news SET sended = true WHERE id = ?;");
 			statement.setInt(1, newsId);
@@ -1598,7 +1598,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static void markAllStegNotificationsSended(String ownerId, Integer stegId, Connection dbConnection){
+	static void markAllStegNotificationsSended(String ownerId, Integer stegId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE news SET sended =  true WHERE owner_id = ? AND steg_id = ?;");
 			statement.setString(1, ownerId);
@@ -1610,7 +1610,7 @@ public class DBHandler {
 		}
 	}
 
-	public static void addFriend(String profileId, String friendId, Connection dbConnection){
+	static void addFriend(String profileId, String friendId, Connection dbConnection){
 		if(!profileId.equals(friendId)){
 			try{
 				Boolean isFriend = false;
@@ -1641,7 +1641,7 @@ public class DBHandler {
 	}
 	
 
-	public static void removeFriend(String profileId, String friendId, Connection dbConnection){
+	static void removeFriend(String profileId, String friendId, Connection dbConnection){
 		try{
 			PreparedStatement statement;
 			statement = dbConnection.prepareStatement("DELETE FROM friends WHERE profile_id = ? AND friend_id = ?;");
@@ -1655,7 +1655,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static void addToBlackList(String myProfileId, String blackProfileId, Connection dbConnection){
+	static void addToBlackList(String myProfileId, String blackProfileId, Connection dbConnection){
 		if(!myProfileId.equals(blackProfileId)){
 			try{
 				Boolean isBlack = false;
@@ -1683,7 +1683,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static void removeFromBlackList(String myProfileId, String blackProfileId, Connection dbConnection){
+	static void removeFromBlackList(String myProfileId, String blackProfileId, Connection dbConnection){
 		try{
 			PreparedStatement statement;
 			statement = dbConnection.prepareStatement("DELETE FROM blacklist WHERE my_profile_id = ? AND black_profile_id = ?;");
@@ -1697,7 +1697,7 @@ public class DBHandler {
 		}
 	}
 	
-	public static void removeLike(Integer stegId, String profileId, Connection dbConnection){
+	static void removeLike(Integer stegId, String profileId, Connection dbConnection){
 		try{
 			Boolean check = false;
 			PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT profile_id FROM likes WHERE steg_id = ? AND profile_id = ?");
@@ -1721,7 +1721,7 @@ public class DBHandler {
 		}
 	}
 
-	public static boolean isFriend(String profileId, String friendId, Connection dbConnection){
+	static boolean isFriend(String profileId, String friendId, Connection dbConnection){
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT friend_id FROM friends WHERE profile_id = ? AND friend_id = ?");
 			statement.setString(1, profileId);
@@ -1741,7 +1741,7 @@ public class DBHandler {
 		return false;
 	}
 	
-	public static boolean isBlack(String myProfileId, String blackProfileId, Connection dbConnection){
+	static boolean isBlack(String myProfileId, String blackProfileId, Connection dbConnection){
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT black_profile_id FROM blacklist WHERE my_profile_id = ? AND black_profile_id = ?");
 			statement.setString(1, myProfileId);
@@ -1759,7 +1759,7 @@ public class DBHandler {
 		return false;
 	}
 	
-	public static Boolean isMeInBlackList(String myProfileId, String otherProfileId, Connection dbConnection){
+	static Boolean isMeInBlackList(String myProfileId, String otherProfileId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT black_profile_id FROM blacklist WHERE my_profile_id = ? AND black_profile_id = ?;");
 			statement.setString(1, otherProfileId);
@@ -1777,7 +1777,7 @@ public class DBHandler {
 		return false;
 	}
 
-	public static ArrayList<UserProfile> getFriends (String profileId, Connection dbConnection){
+	static ArrayList<UserProfile> getFriends (String profileId, Connection dbConnection){
 		ArrayList<UserProfile> friendsList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT friends.friend_id, users.user_name, users.user_photo, users.user_sex, users.user_city, users.user_state, users.user_age " + 
@@ -1821,7 +1821,7 @@ public class DBHandler {
 		return friendsList;
 	}
 	
-	public static ArrayList<String> getProfileSearchResult(String searchString, String myCity, Connection dbConnection){
+	static ArrayList<String> getProfileSearchResult(String searchString, String myCity, Connection dbConnection){
 		ArrayList<String> result = new ArrayList<>();
 		try{
 			PreparedStatement statement;
@@ -1869,7 +1869,7 @@ public class DBHandler {
 		return result;
 	}
 	
-	public static ArrayList<String> getSubscribers(String profileId, Connection dbConnection){
+	static ArrayList<String> getSubscribers(String profileId, Connection dbConnection){
 		ArrayList<String> result = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT profile_id FROM friends " + 
@@ -1889,7 +1889,7 @@ public class DBHandler {
 		return result;
 	}
 	
-	public static ArrayList<String> getFriendsList(String profileId, Connection dbConnection){
+	static ArrayList<String> getFriendsList(String profileId, Connection dbConnection){
 		ArrayList<String> result = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT friend_id FROM friends " + 
@@ -1907,5 +1907,18 @@ public class DBHandler {
 			return result;
 		}
 		return result;
+	}
+
+	static void deleteGeter(Integer stegId, String profileId, Connection dbConnection){
+		try{
+			PreparedStatement statement = dbConnection.prepareStatement("DELETE FROM gets WHERE steg_id = ? AND profile_id = ?;");
+			statement.setInt(1, stegId);
+			statement.setString(2, profileId);
+
+			statement.executeUpdate();
+			statement.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }

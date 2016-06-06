@@ -7,48 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57cb3e1e-87db-47f5-87a2-880adb5e7129" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/StagAppServer_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/StagAppServer.eml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jackson_dataformat_msgpack_0_7_0_p9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/javax_mail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_continuation_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_http_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_io_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_server_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_util_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/jetty_websocket_8_1_17_v20150415.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/json_simple_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/msgpack_core_0_7_0_p9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/postgresql_9_4_1201_jdbc4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/servlet_api_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagHandler$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid18688.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid19847.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid28508.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid31850.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid32397.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/FileTransferHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/FileTransferHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/UserProfile.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/UserProfile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsProxy.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsProxy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" afterPath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StagAppServer.iml" afterPath="$PROJECT_DIR$/StagAppServer.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/UserProfile.java" afterPath="$PROJECT_DIR$/src/StagAppServer/UserProfile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" afterPath="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" />
     </list>
     <ignored path="StegAppServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,23 +47,24 @@
       <file leaf-file-name="WsProxy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
+            <state relative-caret-position="646">
               <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="431" column="48" selection-start-line="431" selection-start-column="48" selection-end-line="431" selection-end-column="48" />
+            <state relative-caret-position="2377">
+              <caret line="506" column="77" selection-start-line="506" selection-start-column="77" selection-end-line="506" selection-end-column="77" />
               <folding>
                 <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-                <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -117,10 +84,13 @@
                 <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -132,14 +102,229 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DBHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="312" column="5" selection-start-line="312" selection-start-column="5" selection-end-line="312" selection-end-column="5" />
+              <folding>
+                <element signature="method#newUser#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#newUserSocial#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#checkUserSocialId#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUserProfile#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegSenderId#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUserNameFromId#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#checkUser#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#checkPassword#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteProfile#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#signIn#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addUserInfo#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#setUserCoordinates#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addUserPhoto#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="e#29160#29169#0" expanded="true" />
+                <element signature="method#getUnrecievedStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="e#29857#29867#0" expanded="true" />
+                <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteStegAdm#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markRecievedSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#stegRequset#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+                <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeLike#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getProfileSearchResult#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteGeter#0;class#DBHandler#0" expanded="false" />
+                <marker date="1465235392265" expanded="true" signature="489:566" ph="INSERT INTO users... " />
+                <marker date="1465235392265" expanded="true" signature="1114:1207" ph="INSERT INTO users... " />
+                <marker date="1465235392265" expanded="true" signature="1699:1746" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="2266:2428" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="3710:3752" ph="SELECT sende... stegs" />
+                <marker date="1465235392265" expanded="true" signature="4178:4223" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="4676:4713" ph="SELECT * FRO... users" />
+                <marker date="1465235392265" expanded="true" signature="5206:5262" ph="SELECT * FRO... users" />
+                <marker date="1465235392265" expanded="true" signature="5665:5843" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="5726:5802" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="5855:6020" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="5908:5984" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="6032:6199" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6087:6163" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="6211:6371" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6264:6340" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="6383:6580" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6436:6512" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="6592:6655" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6667:6725" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6737:6807" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="6819:6855" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="7385:7441" ph="SELECT * FRO... users" />
+                <marker date="1465235392265" expanded="true" signature="7874:8037" ph="UPDATE users... " />
+                <marker date="1465235392265" expanded="true" signature="8841:8928" ph="UPDATE users... " />
+                <marker date="1465235392265" expanded="true" signature="8955:9027" ph="UPDATE users... " />
+                <marker date="1465235392265" expanded="true" signature="9575:9624" ph="UPDATE users... " />
+                <marker date="1465235392265" expanded="true" signature="9976:10030" ph="UPDATE users... " />
+                <marker date="1465235392265" expanded="true" signature="10324:10499" ph="INSERT INTO stegs... " />
+                <marker date="1465235392265" expanded="true" signature="11308:11664" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="12321:12371" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="12615:12668" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="12928:12977" ph="SELECT COUNT... gets" />
+                <marker date="1465235392265" expanded="true" signature="13266:13315" ph="SELECT COUNT... wall" />
+                <marker date="1465235392265" expanded="true" signature="13612:13674" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="14280:14515" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="15202:15252" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="15496:15549" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="16058:16250" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="16660:16710" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="17005:17067" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="17401:17454" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="18024:18141" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="18507:18557" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="18848:18910" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="19240:19293" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="19862:20159" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="20846:20896" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="21187:21240" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="21546:21595" ph="SELECT COUNT... gets" />
+                <marker date="1465235392265" expanded="true" signature="21884:21933" ph="SELECT COUNT... wall" />
+                <marker date="1465235392265" expanded="true" signature="22527:22696" ph="SELECT stegs... stegs" />
+                <marker date="1465235392265" expanded="true" signature="23103:23153" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="23444:23506" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="23836:23889" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="24505:24724" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="25411:25461" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="25752:25805" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="26118:26167" ph="SELECT COUNT... gets" />
+                <marker date="1465235392265" expanded="true" signature="26456:26505" ph="SELECT COUNT... wall" />
+                <marker date="1465235392265" expanded="true" signature="27093:27220" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="27630:27680" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="27971:28033" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="28363:28416" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="29245:29314" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="29942:30033" ph="SELECT steg_... stegs" />
+                <marker date="1465235392265" expanded="true" signature="30547:30594" ph="UPDATE stegs... " />
+                <marker date="1465235392265" expanded="true" signature="30905:30975" ph="UPDATE stegs... " />
+                <marker date="1465235392265" expanded="true" signature="30988:31021" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31429:31481" ph="SELECT * FRO... stegs" />
+                <marker date="1465235392265" expanded="true" signature="31763:31798" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31810:31848" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31860:31894" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31906:31940" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31952:31986" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="31998:32033" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32580:32615" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32627:32665" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32677:32711" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32723:32757" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32769:32803" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="32815:32850" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="33346:33404" ph="UPDATE stegs... " />
+                <marker date="1465235392265" expanded="true" signature="33694:33752" ph="UPDATE stegs... " />
+                <marker date="1465235392265" expanded="true" signature="34047:34095" ph="UPDATE stegs... " />
+                <marker date="1465235392265" expanded="true" signature="34390:34431" ph="SELECT sende... stegs" />
+                <marker date="1465235392265" expanded="true" signature="34842:34892" ph="SELECT * FRO... wall" />
+                <marker date="1465235392265" expanded="true" signature="35205:35251" ph="INSERT INTO wall... " />
+                <marker date="1465235392265" expanded="true" signature="35765:36252" ph="SELECT * FRO... steg_id" />
+                <marker date="1465235392265" expanded="true" signature="35790:36211" ph="SELECT DISTI... stegs" />
+                <marker date="1465235392265" expanded="true" signature="36836:36884" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="37265:37571" ph="SELECT wall.... wall" />
+                <marker date="1465235392265" expanded="true" signature="38218:38268" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="38558:38620" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="38946:38999" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="39312:39357" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="39935:40090" ph="SELECT wall.... wall" />
+                <marker date="1465235392265" expanded="true" signature="40450:40500" ph="SELECT COUNT... likes" />
+                <marker date="1465235392265" expanded="true" signature="40791:40853" ph="SELECT steg_... likes" />
+                <marker date="1465235392265" expanded="true" signature="41180:41233" ph="SELECT COUNT... comments" />
+                <marker date="1465235392265" expanded="true" signature="41782:41869" ph="INSERT INTO comments... " />
+                <marker date="1465235392265" expanded="true" signature="41782:41891" ph="INSERT INTO comments... " />
+                <marker date="1465235392265" expanded="true" signature="42437:42582" ph="INSERT INTO comments... " />
+                <marker date="1465235392265" expanded="true" signature="43763:43828" ph="SELECT profi... likes" />
+                <marker date="1465235392265" expanded="true" signature="44085:44160" ph="INSERT INTO likes... " />
+                <marker date="1465235392265" expanded="true" signature="44668:44732" ph="SELECT profi... gets" />
+                <marker date="1465235392265" expanded="true" signature="44989:45063" ph="INSERT INTO gets... " />
+                <marker date="1465235392265" expanded="true" signature="45477:45786" ph="SELECT comme... comments" />
+                <marker date="1465235392265" expanded="true" signature="46577:46717" ph="SELECT id, s... comments" />
+                <marker date="1465235392265" expanded="true" signature="47736:47981" ph="SELECT comme... comments" />
+                <marker date="1465235392265" expanded="true" signature="48669:48925" ph="SELECT likes... likes" />
+                <marker date="1465235392265" expanded="true" signature="49739:49942" ph="SELECT wall.... wall" />
+                <marker date="1465235392265" expanded="true" signature="50705:50918" ph="SELECT gets.... gets" />
+                <marker date="1465235392265" expanded="true" signature="51697:51739" ph="SELECT sende... stegs" />
+                <marker date="1465235392265" expanded="true" signature="51954:52038" ph="INSERT INTO news... " />
+                <marker date="1465235392265" expanded="true" signature="52506:52924" ph="SELECT news.... news" />
+                <marker date="1465235392265" expanded="true" signature="53925:53967" ph="UPDATE news " />
+                <marker date="1465235392265" expanded="true" signature="54288:54353" ph="UPDATE news " />
+                <marker date="1465235392265" expanded="true" signature="54772:54840" ph="SELECT frien... friends" />
+                <marker date="1465235392265" expanded="true" signature="55100:55167" ph="INSERT INTO friends... " />
+                <marker date="1465235392265" expanded="true" signature="55653:55711" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="56163:56250" ph="SELECT black... blacklist" />
+                <marker date="1465235392265" expanded="true" signature="56504:56583" ph="INSERT INTO blacklist... " />
+                <marker date="1465235392265" expanded="true" signature="57005:57075" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="57464:57529" ph="SELECT profi... likes" />
+                <marker date="1465235392265" expanded="true" signature="57785:57850" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="58209:58277" ph="SELECT frien... friends" />
+                <marker date="1465235392265" expanded="true" signature="58780:58867" ph="SELECT black... blacklist" />
+                <marker date="1465235392265" expanded="true" signature="59348:59435" ph="SELECT black... blacklist" />
+                <marker date="1465235392265" expanded="true" signature="59958:60185" ph="SELECT frien... friends" />
+                <marker date="1465235392265" expanded="true" signature="61359:61431" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="61534:61586" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="61690:61891" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="62166:62347" ph="SELECT user_... users" />
+                <marker date="1465235392265" expanded="true" signature="63014:63088" ph="SELECT profi... friends" />
+                <marker date="1465235392265" expanded="true" signature="63604:63678" ph="SELECT frien... friends" />
+                <marker date="1465235392265" expanded="true" signature="64145:64167" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="64145:64183" ph="DELETE FROM " />
+                <marker date="1465235392265" expanded="true" signature="64145:64198" ph="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="StagHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="344" column="84" selection-start-line="344" selection-start-column="84" selection-end-line="344" selection-end-column="84" />
+            <state relative-caret-position="323">
+              <caret line="502" column="55" selection-start-line="502" selection-start-column="55" selection-end-line="502" selection-end-column="55" />
               <folding>
                 <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-                <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
                 <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
                 <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
                 <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -170,7 +355,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="748">
               <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#450#451#0" expanded="false" />
+                <element signature="e#507#508#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -199,10 +388,10 @@
         <option value="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/org/eclipse/jetty/util/component/AbstractLifeCycle.class" />
         <option value="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/UserProfile.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
       </list>
     </option>
   </component>
@@ -253,7 +442,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
@@ -312,6 +500,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -731,11 +920,14 @@
       <workItem from="1464115689557" duration="8061000" />
       <workItem from="1464428191130" duration="18740000" />
       <workItem from="1464550975977" duration="3907000" />
+      <workItem from="1464969306064" duration="1692000" />
+      <workItem from="1464974752734" duration="1033000" />
+      <workItem from="1465217329826" duration="4973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50459000" />
+    <option name="totallyTimeSpent" value="58157000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -756,6 +948,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.50289494" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22236842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11247335" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -763,14 +956,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.086021505" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -785,7 +977,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -793,23 +987,66 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomeCommonFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#commentsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#likesFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#saversFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#getersFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#notificationItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#newsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#getIsBlack#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#checkPassword#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#delProfile#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#resizeImg#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#readImgFile#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#readFile#0;class#StagHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#450#451#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="47" column="94" selection-start-line="46" selection-start-column="5" selection-end-line="47" selection-end-column="94" />
-          <folding />
+        <state relative-caret-position="646">
+          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -829,10 +1066,109 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5525">
+          <caret line="344" column="84" selection-start-line="344" selection-start-column="84" selection-end-line="344" selection-end-column="84" />
+          <folding>
+            <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomeCommonFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#outcomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#commentsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#likesFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#saversFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#getersFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#notificationItemsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#newsFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#getIsBlack#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#checkPassword#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#delProfile#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#resizeImg#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#readImgFile#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#readFile#0;class#StagHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#450#451#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="47" column="94" selection-start-line="46" selection-start-column="5" selection-end-line="47" selection-end-column="94" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+          <folding>
+            <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#setStegUnsended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#setCoordinates#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markAllStegNoificationsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markPrivateStegSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#rejectCommonSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteIncomeSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -848,144 +1184,211 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#29325#29334#0" expanded="true" />
-            <element signature="e#30029#30039#0" expanded="true" />
-            <marker date="1464474500343" expanded="true" signature="503:580" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1135:1228" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1727:1774" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="2301:2463" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="3752:3794" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="4227:4272" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="4732:4769" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5269:5325" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5736:5914" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5797:5873" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="5926:6091" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5979:6055" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6103:6270" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6158:6234" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6282:6442" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6335:6411" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6454:6651" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6507:6583" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6663:6726" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6738:6796" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6808:6878" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6890:6926" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="7467:7523" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="7963:8126" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="8937:9024" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9051:9123" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9678:9727" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10079:10133" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10434:10609" ph="INSERT INTO stegs... " />
-            <marker date="1464474500343" expanded="true" signature="11425:11781" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="12438:12488" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="12732:12785" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="13045:13094" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="13383:13432" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="13729:13791" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="14404:14639" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="15326:15376" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="15620:15673" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="16189:16387" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="16797:16847" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="17142:17204" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="17538:17591" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="18168:18285" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="18651:18701" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="18992:19054" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="19384:19437" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="20006:20303" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="20990:21040" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="21331:21384" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="21690:21739" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="22028:22077" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="22678:22847" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="23254:23304" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="23595:23657" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="23987:24040" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="24663:24882" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="25569:25619" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="25910:25963" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="26276:26325" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="26614:26663" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="27258:27385" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="27795:27845" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="28136:28198" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="28528:28581" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="29410:29479" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30114:30205" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30726:30773" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31091:31161" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31174:31207" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="31622:31674" ph="SELECT * FRO... stegs" />
-            <marker date="1464474500343" expanded="true" signature="31956:31991" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32003:32041" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32053:32087" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32099:32133" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32145:32179" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32191:32226" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32780:32815" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32827:32865" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32877:32911" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32923:32957" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32969:33003" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33015:33050" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33553:33611" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="33908:33966" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34268:34316" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34611:34652" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="35070:35120" ph="SELECT * FRO... wall" />
-            <marker date="1464474500343" expanded="true" signature="35433:35479" ph="INSERT INTO wall... " />
-            <marker date="1464474500343" expanded="true" signature="36000:36487" ph="SELECT * FRO... steg_id" />
-            <marker date="1464474500343" expanded="true" signature="36025:36446" ph="SELECT DISTI... stegs" />
-            <marker date="1464474500343" expanded="true" signature="37078:37126" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="37514:37820" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="38467:38517" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="38807:38869" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="39195:39248" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="39561:39606" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="40191:40351" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="40711:40761" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="41052:41114" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="41441:41494" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="42050:42137" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42050:42159" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42712:42857" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="44045:44110" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="44367:44442" ph="INSERT INTO likes... " />
-            <marker date="1464474500343" expanded="true" signature="44957:45021" ph="SELECT profi... gets" />
-            <marker date="1464474500343" expanded="true" signature="45278:45352" ph="INSERT INTO gets... " />
-            <marker date="1464474500343" expanded="true" signature="45773:46082" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="46880:47020" ph="SELECT id, s... comments" />
-            <marker date="1464474500343" expanded="true" signature="48046:48291" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="48986:49242" ph="SELECT likes... likes" />
-            <marker date="1464474500343" expanded="true" signature="50063:50266" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="51036:51249" ph="SELECT gets.... gets" />
-            <marker date="1464474500343" expanded="true" signature="52035:52077" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="52292:52376" ph="INSERT INTO news... " />
-            <marker date="1464474500343" expanded="true" signature="52851:53269" ph="SELECT news.... news" />
-            <marker date="1464474500343" expanded="true" signature="54277:54319" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="54647:54712" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="55138:55206" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="55466:55533" ph="INSERT INTO friends... " />
-            <marker date="1464474500343" expanded="true" signature="56026:56084" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="56543:56630" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="56884:56963" ph="INSERT INTO blacklist... " />
-            <marker date="1464474500343" expanded="true" signature="57392:57462" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="57858:57923" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="58179:58244" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="58610:58678" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="59188:59275" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="59763:59850" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="60380:60607" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="61788:61860" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="61963:62015" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62119:62320" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62595:62776" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="63450:63524" ph="SELECT profi... friends" />
-            <marker date="1464474500343" expanded="true" signature="64047:64121" ph="SELECT frien... friends" />
+            <element signature="method#newUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#newUserSocial#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUserSocialId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegSenderId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserNameFromId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkPassword#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#signIn#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserInfo#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserCoordinates#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserPhoto#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29160#29169#0" expanded="true" />
+            <element signature="method#getUnrecievedStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29857#29867#0" expanded="true" />
+            <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteStegAdm#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markRecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegRequset#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getProfileSearchResult#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#DBHandler#0" expanded="false" />
+            <marker date="1465235392265" expanded="true" signature="489:566" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1114:1207" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1699:1746" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="2266:2428" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="3710:3752" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="4178:4223" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="4676:4713" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5206:5262" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5665:5843" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5726:5802" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="5855:6020" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5908:5984" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6032:6199" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6087:6163" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6211:6371" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6264:6340" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6383:6580" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6436:6512" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6592:6655" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6667:6725" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6737:6807" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6819:6855" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="7385:7441" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="7874:8037" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8841:8928" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8955:9027" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9575:9624" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9976:10030" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="10324:10499" ph="INSERT INTO stegs... " />
+            <marker date="1465235392265" expanded="true" signature="11308:11664" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="12321:12371" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="12615:12668" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="12928:12977" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="13266:13315" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="13612:13674" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="14280:14515" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="15202:15252" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="15496:15549" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="16058:16250" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="16660:16710" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="17005:17067" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="17401:17454" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="18024:18141" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="18507:18557" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="18848:18910" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="19240:19293" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="19862:20159" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="20846:20896" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="21187:21240" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="21546:21595" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="21884:21933" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="22527:22696" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="23103:23153" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="23444:23506" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="23836:23889" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="24505:24724" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="25411:25461" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="25752:25805" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="26118:26167" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="26456:26505" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="27093:27220" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="27630:27680" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="27971:28033" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="28363:28416" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="29245:29314" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="29942:30033" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="30547:30594" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30905:30975" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30988:31021" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31429:31481" ph="SELECT * FRO... stegs" />
+            <marker date="1465235392265" expanded="true" signature="31763:31798" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31810:31848" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31860:31894" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31906:31940" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31952:31986" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31998:32033" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32580:32615" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32627:32665" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32677:32711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32723:32757" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32769:32803" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32815:32850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="33346:33404" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="33694:33752" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34047:34095" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34390:34431" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="34842:34892" ph="SELECT * FRO... wall" />
+            <marker date="1465235392265" expanded="true" signature="35205:35251" ph="INSERT INTO wall... " />
+            <marker date="1465235392265" expanded="true" signature="35765:36252" ph="SELECT * FRO... steg_id" />
+            <marker date="1465235392265" expanded="true" signature="35790:36211" ph="SELECT DISTI... stegs" />
+            <marker date="1465235392265" expanded="true" signature="36836:36884" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="37265:37571" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="38218:38268" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="38558:38620" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="38946:38999" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="39312:39357" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="39935:40090" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="40450:40500" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="40791:40853" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="41180:41233" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="41782:41869" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="41782:41891" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="42437:42582" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="43763:43828" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="44085:44160" ph="INSERT INTO likes... " />
+            <marker date="1465235392265" expanded="true" signature="44668:44732" ph="SELECT profi... gets" />
+            <marker date="1465235392265" expanded="true" signature="44989:45063" ph="INSERT INTO gets... " />
+            <marker date="1465235392265" expanded="true" signature="45477:45786" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="46577:46717" ph="SELECT id, s... comments" />
+            <marker date="1465235392265" expanded="true" signature="47736:47981" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="48669:48925" ph="SELECT likes... likes" />
+            <marker date="1465235392265" expanded="true" signature="49739:49942" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="50705:50918" ph="SELECT gets.... gets" />
+            <marker date="1465235392265" expanded="true" signature="51697:51739" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="51954:52038" ph="INSERT INTO news... " />
+            <marker date="1465235392265" expanded="true" signature="52506:52924" ph="SELECT news.... news" />
+            <marker date="1465235392265" expanded="true" signature="53925:53967" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54288:54353" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54772:54840" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="55100:55167" ph="INSERT INTO friends... " />
+            <marker date="1465235392265" expanded="true" signature="55653:55711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="56163:56250" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="56504:56583" ph="INSERT INTO blacklist... " />
+            <marker date="1465235392265" expanded="true" signature="57005:57075" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="57464:57529" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="57785:57850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="58209:58277" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="58780:58867" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59348:59435" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59958:60185" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="61359:61431" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61534:61586" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61690:61891" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="62166:62347" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="63014:63088" ph="SELECT profi... friends" />
+            <marker date="1465235392265" expanded="true" signature="63604:63678" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="64145:64167" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64183" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64198" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1005,7 +1408,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
           <caret line="82" column="83" selection-start-line="82" selection-start-column="83" selection-end-line="82" selection-end-column="83" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#450#451#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,7 +1422,6 @@
           <caret line="886" column="47" selection-start-line="886" selection-start-column="47" selection-end-line="886" selection-end-column="47" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1044,7 +1450,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="47" column="94" selection-start-line="46" selection-start-column="5" selection-end-line="47" selection-end-column="94" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1056,7 +1464,6 @@
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -1076,10 +1483,13 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -1095,144 +1505,211 @@
         <state relative-caret-position="9945">
           <caret line="592" column="45" selection-start-line="592" selection-start-column="45" selection-end-line="592" selection-end-column="45" />
           <folding>
-            <element signature="e#29325#29334#0" expanded="true" />
-            <element signature="e#30029#30039#0" expanded="true" />
-            <marker date="1464474500343" expanded="true" signature="503:580" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1135:1228" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1727:1774" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="2301:2463" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="3752:3794" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="4227:4272" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="4732:4769" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5269:5325" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5736:5914" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5797:5873" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="5926:6091" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5979:6055" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6103:6270" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6158:6234" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6282:6442" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6335:6411" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6454:6651" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6507:6583" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6663:6726" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6738:6796" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6808:6878" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6890:6926" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="7467:7523" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="7963:8126" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="8937:9024" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9051:9123" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9678:9727" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10079:10133" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10434:10609" ph="INSERT INTO stegs... " />
-            <marker date="1464474500343" expanded="true" signature="11425:11781" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="12438:12488" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="12732:12785" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="13045:13094" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="13383:13432" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="13729:13791" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="14404:14639" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="15326:15376" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="15620:15673" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="16189:16387" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="16797:16847" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="17142:17204" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="17538:17591" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="18168:18285" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="18651:18701" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="18992:19054" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="19384:19437" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="20006:20303" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="20990:21040" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="21331:21384" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="21690:21739" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="22028:22077" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="22678:22847" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="23254:23304" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="23595:23657" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="23987:24040" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="24663:24882" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="25569:25619" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="25910:25963" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="26276:26325" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="26614:26663" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="27258:27385" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="27795:27845" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="28136:28198" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="28528:28581" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="29410:29479" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30114:30205" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30726:30773" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31091:31161" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31174:31207" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="31622:31674" ph="SELECT * FRO... stegs" />
-            <marker date="1464474500343" expanded="true" signature="31956:31991" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32003:32041" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32053:32087" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32099:32133" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32145:32179" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32191:32226" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32780:32815" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32827:32865" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32877:32911" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32923:32957" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32969:33003" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33015:33050" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33553:33611" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="33908:33966" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34268:34316" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34611:34652" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="35070:35120" ph="SELECT * FRO... wall" />
-            <marker date="1464474500343" expanded="true" signature="35433:35479" ph="INSERT INTO wall... " />
-            <marker date="1464474500343" expanded="true" signature="36000:36487" ph="SELECT * FRO... steg_id" />
-            <marker date="1464474500343" expanded="true" signature="36025:36446" ph="SELECT DISTI... stegs" />
-            <marker date="1464474500343" expanded="true" signature="37078:37126" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="37514:37820" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="38467:38517" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="38807:38869" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="39195:39248" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="39561:39606" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="40191:40351" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="40711:40761" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="41052:41114" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="41441:41494" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="42050:42137" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42050:42159" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42712:42857" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="44045:44110" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="44367:44442" ph="INSERT INTO likes... " />
-            <marker date="1464474500343" expanded="true" signature="44957:45021" ph="SELECT profi... gets" />
-            <marker date="1464474500343" expanded="true" signature="45278:45352" ph="INSERT INTO gets... " />
-            <marker date="1464474500343" expanded="true" signature="45773:46082" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="46880:47020" ph="SELECT id, s... comments" />
-            <marker date="1464474500343" expanded="true" signature="48046:48291" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="48986:49242" ph="SELECT likes... likes" />
-            <marker date="1464474500343" expanded="true" signature="50063:50266" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="51036:51249" ph="SELECT gets.... gets" />
-            <marker date="1464474500343" expanded="true" signature="52035:52077" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="52292:52376" ph="INSERT INTO news... " />
-            <marker date="1464474500343" expanded="true" signature="52851:53269" ph="SELECT news.... news" />
-            <marker date="1464474500343" expanded="true" signature="54277:54319" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="54647:54712" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="55138:55206" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="55466:55533" ph="INSERT INTO friends... " />
-            <marker date="1464474500343" expanded="true" signature="56026:56084" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="56543:56630" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="56884:56963" ph="INSERT INTO blacklist... " />
-            <marker date="1464474500343" expanded="true" signature="57392:57462" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="57858:57923" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="58179:58244" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="58610:58678" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="59188:59275" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="59763:59850" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="60380:60607" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="61788:61860" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="61963:62015" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62119:62320" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62595:62776" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="63450:63524" ph="SELECT profi... friends" />
-            <marker date="1464474500343" expanded="true" signature="64047:64121" ph="SELECT frien... friends" />
+            <element signature="method#newUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#newUserSocial#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUserSocialId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegSenderId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserNameFromId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkPassword#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#signIn#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserInfo#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserCoordinates#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserPhoto#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29160#29169#0" expanded="true" />
+            <element signature="method#getUnrecievedStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29857#29867#0" expanded="true" />
+            <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteStegAdm#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markRecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegRequset#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getProfileSearchResult#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#DBHandler#0" expanded="false" />
+            <marker date="1465235392265" expanded="true" signature="489:566" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1114:1207" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1699:1746" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="2266:2428" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="3710:3752" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="4178:4223" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="4676:4713" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5206:5262" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5665:5843" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5726:5802" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="5855:6020" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5908:5984" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6032:6199" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6087:6163" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6211:6371" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6264:6340" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6383:6580" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6436:6512" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6592:6655" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6667:6725" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6737:6807" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6819:6855" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="7385:7441" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="7874:8037" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8841:8928" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8955:9027" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9575:9624" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9976:10030" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="10324:10499" ph="INSERT INTO stegs... " />
+            <marker date="1465235392265" expanded="true" signature="11308:11664" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="12321:12371" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="12615:12668" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="12928:12977" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="13266:13315" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="13612:13674" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="14280:14515" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="15202:15252" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="15496:15549" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="16058:16250" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="16660:16710" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="17005:17067" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="17401:17454" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="18024:18141" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="18507:18557" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="18848:18910" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="19240:19293" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="19862:20159" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="20846:20896" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="21187:21240" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="21546:21595" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="21884:21933" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="22527:22696" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="23103:23153" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="23444:23506" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="23836:23889" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="24505:24724" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="25411:25461" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="25752:25805" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="26118:26167" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="26456:26505" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="27093:27220" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="27630:27680" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="27971:28033" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="28363:28416" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="29245:29314" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="29942:30033" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="30547:30594" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30905:30975" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30988:31021" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31429:31481" ph="SELECT * FRO... stegs" />
+            <marker date="1465235392265" expanded="true" signature="31763:31798" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31810:31848" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31860:31894" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31906:31940" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31952:31986" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31998:32033" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32580:32615" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32627:32665" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32677:32711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32723:32757" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32769:32803" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32815:32850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="33346:33404" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="33694:33752" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34047:34095" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34390:34431" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="34842:34892" ph="SELECT * FRO... wall" />
+            <marker date="1465235392265" expanded="true" signature="35205:35251" ph="INSERT INTO wall... " />
+            <marker date="1465235392265" expanded="true" signature="35765:36252" ph="SELECT * FRO... steg_id" />
+            <marker date="1465235392265" expanded="true" signature="35790:36211" ph="SELECT DISTI... stegs" />
+            <marker date="1465235392265" expanded="true" signature="36836:36884" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="37265:37571" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="38218:38268" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="38558:38620" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="38946:38999" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="39312:39357" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="39935:40090" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="40450:40500" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="40791:40853" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="41180:41233" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="41782:41869" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="41782:41891" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="42437:42582" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="43763:43828" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="44085:44160" ph="INSERT INTO likes... " />
+            <marker date="1465235392265" expanded="true" signature="44668:44732" ph="SELECT profi... gets" />
+            <marker date="1465235392265" expanded="true" signature="44989:45063" ph="INSERT INTO gets... " />
+            <marker date="1465235392265" expanded="true" signature="45477:45786" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="46577:46717" ph="SELECT id, s... comments" />
+            <marker date="1465235392265" expanded="true" signature="47736:47981" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="48669:48925" ph="SELECT likes... likes" />
+            <marker date="1465235392265" expanded="true" signature="49739:49942" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="50705:50918" ph="SELECT gets.... gets" />
+            <marker date="1465235392265" expanded="true" signature="51697:51739" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="51954:52038" ph="INSERT INTO news... " />
+            <marker date="1465235392265" expanded="true" signature="52506:52924" ph="SELECT news.... news" />
+            <marker date="1465235392265" expanded="true" signature="53925:53967" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54288:54353" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54772:54840" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="55100:55167" ph="INSERT INTO friends... " />
+            <marker date="1465235392265" expanded="true" signature="55653:55711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="56163:56250" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="56504:56583" ph="INSERT INTO blacklist... " />
+            <marker date="1465235392265" expanded="true" signature="57005:57075" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="57464:57529" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="57785:57850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="58209:58277" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="58780:58867" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59348:59435" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59958:60185" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="61359:61431" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61534:61586" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61690:61891" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="62166:62347" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="63014:63088" ph="SELECT profi... friends" />
+            <marker date="1465235392265" expanded="true" signature="63604:63678" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="64145:64167" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64183" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64198" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1241,7 +1718,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="58" column="41" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#450#451#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1251,7 +1732,6 @@
           <caret line="220" column="93" selection-start-line="220" selection-start-column="93" selection-end-line="220" selection-end-column="93" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1280,7 +1760,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="47" column="94" selection-start-line="47" selection-start-column="94" selection-end-line="47" selection-end-column="94" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1292,7 +1774,6 @@
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -1312,10 +1793,13 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -1332,7 +1816,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1361,7 +1844,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="47" column="94" selection-start-line="47" selection-start-column="94" selection-end-line="47" selection-end-column="94" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1373,7 +1858,6 @@
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -1393,10 +1877,13 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -1413,7 +1900,6 @@
           <caret line="121" column="39" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="39" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1442,7 +1928,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="47" column="94" selection-start-line="47" selection-start-column="94" selection-end-line="47" selection-end-column="94" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1454,7 +1942,6 @@
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -1474,10 +1961,13 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -1494,7 +1984,6 @@
           <caret line="121" column="39" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="39" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1523,7 +2012,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="47" column="94" selection-start-line="47" selection-start-column="94" selection-end-line="47" selection-end-column="94" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1535,7 +2026,6 @@
             <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -1555,10 +2045,13 @@
             <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
             <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
@@ -1575,7 +2068,6 @@
           <caret line="121" column="39" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="39" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1604,7 +2096,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1724,158 +2218,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2677">
-          <caret line="1379" column="29" selection-start-line="1379" selection-start-column="29" selection-end-line="1379" selection-end-column="29" />
-          <folding>
-            <element signature="e#29325#29334#0" expanded="true" />
-            <element signature="e#30029#30039#0" expanded="true" />
-            <marker date="1464474500343" expanded="true" signature="503:580" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1135:1228" ph="INSERT INTO users... " />
-            <marker date="1464474500343" expanded="true" signature="1727:1774" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="2301:2463" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="3752:3794" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="4227:4272" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="4732:4769" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5269:5325" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="5736:5914" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5797:5873" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="5926:6091" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="5979:6055" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6103:6270" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6158:6234" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6282:6442" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6335:6411" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6454:6651" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6507:6583" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="6663:6726" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6738:6796" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6808:6878" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="6890:6926" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="7467:7523" ph="SELECT * FRO... users" />
-            <marker date="1464474500343" expanded="true" signature="7963:8126" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="8937:9024" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9051:9123" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="9678:9727" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10079:10133" ph="UPDATE users... " />
-            <marker date="1464474500343" expanded="true" signature="10434:10609" ph="INSERT INTO stegs... " />
-            <marker date="1464474500343" expanded="true" signature="11425:11781" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="12438:12488" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="12732:12785" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="13045:13094" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="13383:13432" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="13729:13791" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="14404:14639" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="15326:15376" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="15620:15673" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="16189:16387" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="16797:16847" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="17142:17204" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="17538:17591" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="18168:18285" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="18651:18701" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="18992:19054" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="19384:19437" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="20006:20303" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="20990:21040" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="21331:21384" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="21690:21739" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="22028:22077" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="22678:22847" ph="SELECT stegs... stegs" />
-            <marker date="1464474500343" expanded="true" signature="23254:23304" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="23595:23657" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="23987:24040" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="24663:24882" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="25569:25619" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="25910:25963" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="26276:26325" ph="SELECT COUNT... gets" />
-            <marker date="1464474500343" expanded="true" signature="26614:26663" ph="SELECT COUNT... wall" />
-            <marker date="1464474500343" expanded="true" signature="27258:27385" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="27795:27845" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="28136:28198" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="28528:28581" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="29410:29479" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30114:30205" ph="SELECT steg_... stegs" />
-            <marker date="1464474500343" expanded="true" signature="30726:30773" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31091:31161" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="31174:31207" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="31622:31674" ph="SELECT * FRO... stegs" />
-            <marker date="1464474500343" expanded="true" signature="31956:31991" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32003:32041" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32053:32087" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32099:32133" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32145:32179" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32191:32226" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32780:32815" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32827:32865" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32877:32911" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32923:32957" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="32969:33003" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33015:33050" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="33553:33611" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="33908:33966" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34268:34316" ph="UPDATE stegs... " />
-            <marker date="1464474500343" expanded="true" signature="34611:34652" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="35070:35120" ph="SELECT * FRO... wall" />
-            <marker date="1464474500343" expanded="true" signature="35433:35479" ph="INSERT INTO wall... " />
-            <marker date="1464474500343" expanded="true" signature="36000:36487" ph="SELECT * FRO... steg_id" />
-            <marker date="1464474500343" expanded="true" signature="36025:36446" ph="SELECT DISTI... stegs" />
-            <marker date="1464474500343" expanded="true" signature="37078:37126" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="37514:37820" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="38467:38517" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="38807:38869" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="39195:39248" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="39561:39606" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="40191:40351" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="40711:40761" ph="SELECT COUNT... likes" />
-            <marker date="1464474500343" expanded="true" signature="41052:41114" ph="SELECT steg_... likes" />
-            <marker date="1464474500343" expanded="true" signature="41441:41494" ph="SELECT COUNT... comments" />
-            <marker date="1464474500343" expanded="true" signature="42050:42137" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42050:42159" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="42712:42857" ph="INSERT INTO comments... " />
-            <marker date="1464474500343" expanded="true" signature="44045:44110" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="44367:44442" ph="INSERT INTO likes... " />
-            <marker date="1464474500343" expanded="true" signature="44957:45021" ph="SELECT profi... gets" />
-            <marker date="1464474500343" expanded="true" signature="45278:45352" ph="INSERT INTO gets... " />
-            <marker date="1464474500343" expanded="true" signature="45773:46082" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="46880:47020" ph="SELECT id, s... comments" />
-            <marker date="1464474500343" expanded="true" signature="48046:48291" ph="SELECT comme... comments" />
-            <marker date="1464474500343" expanded="true" signature="48986:49242" ph="SELECT likes... likes" />
-            <marker date="1464474500343" expanded="true" signature="50063:50266" ph="SELECT wall.... wall" />
-            <marker date="1464474500343" expanded="true" signature="51036:51249" ph="SELECT gets.... gets" />
-            <marker date="1464474500343" expanded="true" signature="52035:52077" ph="SELECT sende... stegs" />
-            <marker date="1464474500343" expanded="true" signature="52292:52376" ph="INSERT INTO news... " />
-            <marker date="1464474500343" expanded="true" signature="52851:53269" ph="SELECT news.... news" />
-            <marker date="1464474500343" expanded="true" signature="54277:54319" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="54647:54712" ph="UPDATE news " />
-            <marker date="1464474500343" expanded="true" signature="55138:55206" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="55466:55533" ph="INSERT INTO friends... " />
-            <marker date="1464474500343" expanded="true" signature="56026:56084" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="56543:56630" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="56884:56963" ph="INSERT INTO blacklist... " />
-            <marker date="1464474500343" expanded="true" signature="57392:57462" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="57858:57923" ph="SELECT profi... likes" />
-            <marker date="1464474500343" expanded="true" signature="58179:58244" ph="DELETE FROM " />
-            <marker date="1464474500343" expanded="true" signature="58610:58678" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="59188:59275" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="59763:59850" ph="SELECT black... blacklist" />
-            <marker date="1464474500343" expanded="true" signature="60380:60607" ph="SELECT frien... friends" />
-            <marker date="1464474500343" expanded="true" signature="61788:61860" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="61963:62015" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62119:62320" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="62595:62776" ph="SELECT user_... users" />
-            <marker date="1464474500343" expanded="true" signature="63450:63524" ph="SELECT profi... friends" />
-            <marker date="1464474500343" expanded="true" signature="64047:64121" ph="SELECT frien... friends" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
+        <state relative-caret-position="646">
           <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1883,17 +2232,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#450#451#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2377">
+          <caret line="506" column="77" selection-start-line="506" selection-start-column="77" selection-end-line="506" selection-end-column="77" />
+          <folding>
+            <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#setStegUnsended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#setCoordinates#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markAllStegNoificationsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#markPrivateStegSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#rejectCommonSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteIncomeSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegPlea#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#removeListenerFromChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="344" column="84" selection-start-line="344" selection-start-column="84" selection-end-line="344" selection-end-column="84" />
+        <state relative-caret-position="323">
+          <caret line="502" column="55" selection-start-line="502" selection-start-column="55" selection-end-line="502" selection-end-column="55" />
           <folding>
             <element signature="method#wallFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#wallItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomeCommonItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
@@ -1918,44 +2314,216 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="431" column="48" selection-start-line="431" selection-start-column="48" selection-end-line="431" selection-end-column="48" />
+        <state relative-caret-position="109">
+          <caret line="312" column="5" selection-start-line="312" selection-start-column="5" selection-end-line="312" selection-end-column="5" />
           <folding>
-            <element signature="method#onMessage#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#setStegUnsended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addGeter#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#removeFriend#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addToBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#removeFromBlackList#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#setCoordinates#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#markNewsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#markAllStegNoificationsSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#markPrivateStegSended#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#rejectCommonSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#deleteSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#deleteIncomeSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#deleteStegAdm#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#removeStegFromWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#removeLikes#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#profileSearch#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#getSubscribers#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#getFriends#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addListenerToChat#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#checkConnection#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#sendingStegs#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#newUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#newUserSocial#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUserSocialId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegSenderId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserNameFromId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkUser#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#checkPassword#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#signIn#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserInfo#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserCoordinates#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addUserPhoto#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29160#29169#0" expanded="true" />
+            <element signature="method#getUnrecievedStegs#0;class#DBHandler#0" expanded="false" />
+            <element signature="e#29857#29867#0" expanded="true" />
+            <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteStegAdm#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markRecievedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegRequset#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getProfileSearchResult#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteGeter#0;class#DBHandler#0" expanded="false" />
+            <marker date="1465235392265" expanded="true" signature="489:566" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1114:1207" ph="INSERT INTO users... " />
+            <marker date="1465235392265" expanded="true" signature="1699:1746" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="2266:2428" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="3710:3752" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="4178:4223" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="4676:4713" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5206:5262" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="5665:5843" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5726:5802" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="5855:6020" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="5908:5984" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6032:6199" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6087:6163" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6211:6371" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6264:6340" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6383:6580" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6436:6512" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="6592:6655" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6667:6725" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6737:6807" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="6819:6855" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="7385:7441" ph="SELECT * FRO... users" />
+            <marker date="1465235392265" expanded="true" signature="7874:8037" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8841:8928" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="8955:9027" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9575:9624" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="9976:10030" ph="UPDATE users... " />
+            <marker date="1465235392265" expanded="true" signature="10324:10499" ph="INSERT INTO stegs... " />
+            <marker date="1465235392265" expanded="true" signature="11308:11664" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="12321:12371" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="12615:12668" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="12928:12977" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="13266:13315" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="13612:13674" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="14280:14515" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="15202:15252" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="15496:15549" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="16058:16250" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="16660:16710" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="17005:17067" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="17401:17454" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="18024:18141" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="18507:18557" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="18848:18910" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="19240:19293" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="19862:20159" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="20846:20896" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="21187:21240" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="21546:21595" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="21884:21933" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="22527:22696" ph="SELECT stegs... stegs" />
+            <marker date="1465235392265" expanded="true" signature="23103:23153" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="23444:23506" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="23836:23889" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="24505:24724" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="25411:25461" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="25752:25805" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="26118:26167" ph="SELECT COUNT... gets" />
+            <marker date="1465235392265" expanded="true" signature="26456:26505" ph="SELECT COUNT... wall" />
+            <marker date="1465235392265" expanded="true" signature="27093:27220" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="27630:27680" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="27971:28033" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="28363:28416" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="29245:29314" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="29942:30033" ph="SELECT steg_... stegs" />
+            <marker date="1465235392265" expanded="true" signature="30547:30594" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30905:30975" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="30988:31021" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31429:31481" ph="SELECT * FRO... stegs" />
+            <marker date="1465235392265" expanded="true" signature="31763:31798" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31810:31848" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31860:31894" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31906:31940" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31952:31986" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="31998:32033" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32580:32615" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32627:32665" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32677:32711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32723:32757" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32769:32803" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="32815:32850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="33346:33404" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="33694:33752" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34047:34095" ph="UPDATE stegs... " />
+            <marker date="1465235392265" expanded="true" signature="34390:34431" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="34842:34892" ph="SELECT * FRO... wall" />
+            <marker date="1465235392265" expanded="true" signature="35205:35251" ph="INSERT INTO wall... " />
+            <marker date="1465235392265" expanded="true" signature="35765:36252" ph="SELECT * FRO... steg_id" />
+            <marker date="1465235392265" expanded="true" signature="35790:36211" ph="SELECT DISTI... stegs" />
+            <marker date="1465235392265" expanded="true" signature="36836:36884" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="37265:37571" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="38218:38268" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="38558:38620" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="38946:38999" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="39312:39357" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="39935:40090" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="40450:40500" ph="SELECT COUNT... likes" />
+            <marker date="1465235392265" expanded="true" signature="40791:40853" ph="SELECT steg_... likes" />
+            <marker date="1465235392265" expanded="true" signature="41180:41233" ph="SELECT COUNT... comments" />
+            <marker date="1465235392265" expanded="true" signature="41782:41869" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="41782:41891" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="42437:42582" ph="INSERT INTO comments... " />
+            <marker date="1465235392265" expanded="true" signature="43763:43828" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="44085:44160" ph="INSERT INTO likes... " />
+            <marker date="1465235392265" expanded="true" signature="44668:44732" ph="SELECT profi... gets" />
+            <marker date="1465235392265" expanded="true" signature="44989:45063" ph="INSERT INTO gets... " />
+            <marker date="1465235392265" expanded="true" signature="45477:45786" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="46577:46717" ph="SELECT id, s... comments" />
+            <marker date="1465235392265" expanded="true" signature="47736:47981" ph="SELECT comme... comments" />
+            <marker date="1465235392265" expanded="true" signature="48669:48925" ph="SELECT likes... likes" />
+            <marker date="1465235392265" expanded="true" signature="49739:49942" ph="SELECT wall.... wall" />
+            <marker date="1465235392265" expanded="true" signature="50705:50918" ph="SELECT gets.... gets" />
+            <marker date="1465235392265" expanded="true" signature="51697:51739" ph="SELECT sende... stegs" />
+            <marker date="1465235392265" expanded="true" signature="51954:52038" ph="INSERT INTO news... " />
+            <marker date="1465235392265" expanded="true" signature="52506:52924" ph="SELECT news.... news" />
+            <marker date="1465235392265" expanded="true" signature="53925:53967" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54288:54353" ph="UPDATE news " />
+            <marker date="1465235392265" expanded="true" signature="54772:54840" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="55100:55167" ph="INSERT INTO friends... " />
+            <marker date="1465235392265" expanded="true" signature="55653:55711" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="56163:56250" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="56504:56583" ph="INSERT INTO blacklist... " />
+            <marker date="1465235392265" expanded="true" signature="57005:57075" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="57464:57529" ph="SELECT profi... likes" />
+            <marker date="1465235392265" expanded="true" signature="57785:57850" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="58209:58277" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="58780:58867" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59348:59435" ph="SELECT black... blacklist" />
+            <marker date="1465235392265" expanded="true" signature="59958:60185" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="61359:61431" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61534:61586" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="61690:61891" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="62166:62347" ph="SELECT user_... users" />
+            <marker date="1465235392265" expanded="true" signature="63014:63088" ph="SELECT profi... friends" />
+            <marker date="1465235392265" expanded="true" signature="63604:63678" ph="SELECT frien... friends" />
+            <marker date="1465235392265" expanded="true" signature="64145:64167" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64183" ph="DELETE FROM " />
+            <marker date="1465235392265" expanded="true" signature="64145:64198" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>

@@ -232,6 +232,9 @@ class WsHandler extends WebSocketHandler {
                     case "removeChatListener":
                         removeListenerFromChat(unpacker);
                         break;
+					case "deleteGeter":
+						deleteGeter(unpacker);
+						break;
 				}
 			unpacker.close();
 			} catch (IOException e){
@@ -500,6 +503,12 @@ class WsHandler extends WebSocketHandler {
             chatDispatcher.removeListener(chatId, ChatWebSocket.this);
 			this.chatId = null;
         }
+
+		private void deleteGeter(MessageUnpacker unpacker) throws IOException{
+			Integer stegId = unpacker.unpackInt();
+			String profileId = unpacker.unpackString();
+			DBHandler.deleteGeter(stegId, profileId, dbConnection);
+		}
 
         private void checkConnection(){
             try {
