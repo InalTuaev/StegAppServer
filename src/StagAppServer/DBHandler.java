@@ -361,7 +361,7 @@ class DBHandler {
 					" stegs.reciever, stegs.type, stegs.life_time," + 
 					" stegs.filter, stegs.text, stegs.voice_path," + 
 					" stegs.camera_path, stegs.anonym, stegs.date_," +
-					" stegs.time_, users.user_name" +  
+					" stegs.time_, stegs.active, users.user_name" +
 					" FROM stegs RIGHT OUTER JOIN users ON (stegs.sender = users.user_id)" + 
 					" WHERE stegs.steg_id = " + stagId + ";");
 			ResultSet rs = statement.executeQuery();
@@ -379,7 +379,8 @@ class DBHandler {
 				stag.anonym = rs.getBoolean(10);
 				stag.date = rs.getDate(11);
 				stag.time = rs.getTime(12);
-				stag.senderName = rs.getString(13);
+				stag.setIsActive(rs.getBoolean(13));
+				stag.senderName = rs.getString(14);
 				
 				PreparedStatement likeStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM likes WHERE steg_id = ?;");
 				likeStatement.setInt(1, stag.stegId);
@@ -533,17 +534,19 @@ class DBHandler {
 	static ArrayList<StegItem> getIncomePrivateItems(String profileId, Connection dbConnection){
 		ArrayList<StegItem> stegItems = new ArrayList<>();
 		try{
-			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, anonym"
+			PreparedStatement statement = dbConnection.prepareStatement("SELECT steg_id, sender, anonym, sended"
 	+ " FROM stegs"
-	+ " WHERE reciever = ? AND reciever != sender ORDER BY steg_id DESC;");
+	+ " WHERE deleted != TRUE AND reciever = ? AND reciever != sender ORDER BY steg_id DESC;");
 			statement.setString(1, profileId);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()){
 				Integer stegId = rs.getInt(1);
 				String mesSender = rs.getString(2);
 				Boolean anonym = rs.getBoolean(3);
+				Boolean isSended = rs.getBoolean(4);
 				
 				StegItem stegItem = new StegItem(stegId, mesSender, anonym);
+				stegItem.setIsSended(isSended);
 				
 				PreparedStatement likeStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM likes WHERE steg_id = ?;");
 				likeStatement.setInt(1, stegId);
@@ -895,15 +898,24 @@ class DBHandler {
 		}
 		
 	}
+
+	static void setStegActive(Integer stegId, Boolean value, Connection dbConnection){
+		PreparedStatement statement;
+		try{
+			statement = dbConnection.prepareStatement("UPDATE stegs SET active = ? WHERE steg_id = ?;");
+			statement.setBoolean(1, value);
+			statement.setInt(2, stegId);
+			statement.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 	
 	static void deleteIncomeSteg(Integer stegId, String profileId, Connection dbConnection){
 		PreparedStatement statement;
 		String sqlQuery;
 		try{
-			sqlQuery = 	"BEGIN;"+
-						" UPDATE stegs SET reciever = 'clear' WHERE steg_ig = ? AND reciever = ?;" +
-						" DELETE FROM wall "+
-						"COMMIT;";
+			sqlQuery = 	" UPDATE stegs SET deleted = TRUE WHERE steg_id = ? AND reciever = ?;";
 			statement = dbConnection.prepareStatement(sqlQuery);
 			statement.setInt(1, stegId);
 			statement.setString(2, profileId);
@@ -977,6 +989,19 @@ class DBHandler {
 		
 	}
 
+	static void deleteComment(Integer commentId, Connection dbConnection){
+		PreparedStatement statement;
+		String sqlQuery;
+		try{
+			sqlQuery = 	" DELETE FROM comments WHERE id = ?;";
+			statement = dbConnection.prepareStatement(sqlQuery);
+			statement.setInt(1, commentId);
+			statement.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+
 	static void markUnrecievedSteg(Integer stegId, Connection dbConnection){
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = recieved - 1 WHERE steg_id = ?;");
@@ -1043,8 +1068,6 @@ class DBHandler {
 				statement.setString(2, userId);
 				statement.executeUpdate();
 				statement.close();
-			
-				DBHandler.addNews("save", userId, null, stegId, dbConnection);
 			}
 			checkRs.close();
 			checkStatement.close();
@@ -1170,7 +1193,7 @@ class DBHandler {
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
 	+ " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
-	+ " WHERE wall.owner = ? ORDER BY wall.id DESC;");
+	+ " WHERE wall.owner = ? ORDER BY stegs.steg_id DESC;");
 			statement.setString(1, userId);
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()){
@@ -1921,4 +1944,6 @@ class DBHandler {
 			e.printStackTrace();
 		}
 	}
+
+
 }

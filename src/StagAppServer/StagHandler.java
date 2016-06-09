@@ -297,7 +297,8 @@ class StagHandler implements Runnable{
 				.packInt(stagData.likes)
 				.packLong(stagData.date.getTime())
 				.packLong(stagData.time.getTime())
-				.packBoolean(stagData.liked);
+				.packBoolean(stagData.liked)
+				.packBoolean(stagData.isActive());
 		packer.close();
 		out.writeInt(baos.toByteArray().length);
 		out.flush();
@@ -618,6 +619,7 @@ class StagHandler implements Runnable{
 			out.writeInt(stegItem.getLikes());
 			out.writeInt(stegItem.getComments());
 			out.writeBoolean(stegItem.isLiked());
+			out.writeBoolean(stegItem.isSended());
 			out.flush();
 		}
 	}

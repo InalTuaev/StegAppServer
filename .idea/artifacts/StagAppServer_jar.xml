@@ -2,19 +2,22 @@
   <artifact type="jar" name="StagAppServer:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/StagAppServer_jar</output-path>
     <root id="archive" name="StagAppServer.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="StagAppServer" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/json-simple-1.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/javax.mail.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jackson-dataformat-msgpack-0.7.0-p9.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/msgpack-core-0.7.0-p9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jackson-dataformat-msgpack-0.7.0-p9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/postgresql-9.4-1201.jdbc4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/msgpack-core-0.7.0-p9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/javax.mail.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

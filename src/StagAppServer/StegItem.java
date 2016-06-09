@@ -11,6 +11,7 @@ public class StegItem {
 	private Integer likes;
 	private Integer comments;
 	private Boolean liked;
+	private Boolean sended;
 	public HashMap <String, UserProfile> recieverIds;
 	private Integer recieverCount;
 	
@@ -102,5 +103,13 @@ public class StegItem {
 	
 	public Boolean isLiked(){
 		return this.liked;
+	}
+
+	public void setIsSended(Boolean sended){
+		this.sended = sended;
+	}
+
+	public Boolean isSended(){
+		return sended;
 	}
 }

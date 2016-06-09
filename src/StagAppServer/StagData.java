@@ -35,6 +35,7 @@ public class StagData {
 	    public Time time;
 	    public Boolean sended;
 	    public Boolean liked;
+	private Boolean isActive;
 
 	    public  StagData(){
 	    	stegId = -1;
@@ -89,5 +90,13 @@ public class StagData {
 	    public void setFilter(Integer filter){
 	        this.filter = filter;
 	    }
+
+	void setIsActive(Boolean value){
+		isActive = value;
+	}
+
+	Boolean isActive(){
+		return isActive;
+	}
 }
        

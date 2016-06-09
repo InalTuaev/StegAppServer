@@ -60,7 +60,13 @@ class WsHandler extends WebSocketHandler {
 		public void onOpen(Connection arg0) {
 			this.connection = arg0;
 			this.connection.setMaxIdleTime(300000);
-			System.out.println("connected: " + this.connection.toString());
+			clientSockets.add(this);
+
+			int i = 0;
+			for (ChatWebSocket socket : clientSockets){
+				i++;
+				System.out.println(i + ": " + (socket.userId != null ? socket.userId : "null" + socket.connection.toString()));
+			}
 		}
  
 		@Override
@@ -166,6 +172,9 @@ class WsHandler extends WebSocketHandler {
 				case "setStegUnsended":
 					setStegUnsended(unpacker);
 					break;
+					case "setStegActive":
+						setStegActive(unpacker);
+						break;
 				case "addGeter":
 					addGeter(unpacker);
 					break;
@@ -196,6 +205,9 @@ class WsHandler extends WebSocketHandler {
 				case "deleteStegAdm":
 					deleteStegAdm(unpacker);
 					break;
+					case "deleteComment":
+						deleteComment(unpacker);
+						break;
 				case "removeStegFromWall":
 					removeStegFromWall(unpacker);
 					break;
@@ -205,6 +217,9 @@ class WsHandler extends WebSocketHandler {
 				case "stegPlea":
 					stegPlea(unpacker);
 					break;
+					case "commentPlea":
+						commentPlea(unpacker);
+						break;
 				case "profileSearch":
 					profileSearch(unpacker);
 					break;
@@ -272,9 +287,6 @@ class WsHandler extends WebSocketHandler {
 			Integer stegId = unpacker.unpackInt();
 			String profileId = unpacker.unpackString();
 			DBHandler.stegToWall(stegId, profileId, dbConnection);
-			
-			String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
-			sendNotification(NOTIFICATION_SAVE, toUserId, profileId);
 		}
 
         private void stegRequest(MessageUnpacker unpacker) throws IOException{
@@ -331,6 +343,12 @@ class WsHandler extends WebSocketHandler {
         private void setStegUnsended(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.setStegUnrecieved(stegId, dbConnection);
+		}
+
+		private void setStegActive(MessageUnpacker unpacker) throws IOException{
+			Integer stegId = unpacker.unpackInt();
+			Boolean value = unpacker.unpackBoolean();
+			DBHandler.setStegActive(stegId, value, dbConnection);
 		}
 
         private void addGeter(MessageUnpacker unpacker) throws IOException{
@@ -402,6 +420,11 @@ class WsHandler extends WebSocketHandler {
 			DBHandler.deleteIncomeSteg(stegId, profileId, dbConnection);
 		}
 
+		private void deleteComment(MessageUnpacker unpacker) throws IOException{
+			Integer commentId = unpacker.unpackInt();
+			DBHandler.deleteComment(commentId, dbConnection);
+		}
+
         private void deleteStegAdm(MessageUnpacker unpacker) throws IOException{
 			Integer stegId = unpacker.unpackInt();
 			DBHandler.deleteStegAdm(stegId, dbConnection);
@@ -440,7 +463,31 @@ class WsHandler extends WebSocketHandler {
 			EmailSender emailSender = new EmailSender();
 			String pleaText;
 			pleaText = "From: " + pleaer + "\n\nSteg: " + stegId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
-			emailSender.send("Plea", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
+			emailSender.send("PleaSteg", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
+		}
+
+		private void commentPlea(MessageUnpacker unpacker) throws IOException{
+			String text;
+			String eMail;
+			String pleaer = unpacker.unpackString();
+			Integer commentId = unpacker.unpackInt();
+			Boolean isText = unpacker.unpackBoolean();
+			if(isText){
+				text = unpacker.unpackString();
+			} else {
+				text = "no plea text";
+			}
+			Boolean isEMail = unpacker.unpackBoolean();
+			if(isEMail){
+				eMail = unpacker.unpackString();
+			} else {
+				eMail = "no e-mail";
+			}
+
+			EmailSender emailSender = new EmailSender();
+			String pleaText;
+			pleaText = "From: " + pleaer + "\n\nSteg: " + commentId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
+			emailSender.send("PleaComment", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
 		}
 
         private void profileSearch(MessageUnpacker unpacker) throws IOException{
