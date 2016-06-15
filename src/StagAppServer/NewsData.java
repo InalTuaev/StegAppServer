@@ -3,7 +3,15 @@ package StagAppServer;
 import java.sql.Date;
 import java.sql.Time;
 
-public class NewsData {
+class NewsData {
+
+	public static final String NOTIFICATION_TYPE_COMMENT = "comment";
+	public static final String NOTIFICATION_TYPE_LIKE = "like";
+	public static final String NOTIFICATION_TYPE_GET = "get";
+	public static final String NOTIFICATION_TYPE_SAVE = "save";
+	public static final String NOTIFICATION_TYPE_FRIEND = "friend";
+	public static final String NOTIFICATION_TYPE_PRIVATE_STEG = "privateSteg";
+
 	Integer id;
 	String type;
 	String ownerId;

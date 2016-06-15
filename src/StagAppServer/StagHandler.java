@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
@@ -64,6 +65,12 @@ class StagHandler implements Runnable{
 					break;
 				case "profileToServer":
 					profileToServer(in);
+					break;
+				case "profileToSrvrNoImgNoGeo":
+					profileToServerNoImg(in, dbConnection);
+					break;
+				case "profileImgToServer":
+					profileImgToServer(in, dbConnection);
 					break;
 				case "wallFromServer":
 					wallFromServer(in, out);
@@ -204,16 +211,18 @@ class StagHandler implements Runnable{
 					} else {
 						if(!stagData.mesReciever.equals("common")){
 							if(stagData.anonym){
-								DBHandler.addNews("privateSteg", "clear", stagData.mesReciever, newStegId, dbConnection);
+								DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, "clear", stagData.mesReciever, newStegId, dbConnection);
 							} else {
-								DBHandler.addNews("privateSteg", stagData.mesSender, stagData.mesReciever, newStegId, dbConnection);
+								DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, stagData.mesSender, stagData.mesReciever, newStegId, dbConnection);
 							}
+							WsHandler.getInstance().sendNotification(WsHandler.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, stagData.mesSender);
 						}
 					}
 					notStopped = false;
 					break;
 			}
 		}
+
 	}
 
 
@@ -351,6 +360,46 @@ class StagHandler implements Runnable{
 					ImageIO.write(resizeImg(newFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + recUserId + fileExt));
 				}
 				break;
+		}
+	}
+
+	private void profileToServerNoImg(DataInputStream in, Connection dbConnection) throws IOException{
+		UserProfile recProfile = new UserProfile();
+
+		Integer len = in.readInt();
+		byte[] profileBytes = new byte[len];
+		in.read(profileBytes, 0, len);
+		MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(profileBytes);
+		recProfile.setId(unpacker.unpackString());
+		recProfile.setName(unpacker.unpackString());
+		recProfile.setSex(unpacker.unpackString());
+		recProfile.setAge(unpacker.unpackInt());
+		unpacker.close();
+
+		DBHandler.addUserInfoNoImgNoGeo(recProfile, dbConnection);
+	}
+
+	private void profileImgToServer(DataInputStream in, Connection dbConnection){
+		try {
+			String profileId = in.readUTF();
+			String fileExt = in.readUTF();
+			Integer fileSize = in.readInt();
+
+			File imgFile = new File(STEGAPP_PROFILE_PHOTO_DIR + profileId + fileExt);
+			FileOutputStream fos = new FileOutputStream(imgFile);
+
+			try{
+				readFile(fos, in, fileSize);
+			} catch (EOFException e){
+				e.printStackTrace();
+			}
+			// Write in DB
+			DBHandler.addUserPhoto(profileId, profileId + fileExt, dbConnection);
+
+			// Creating Thumbnail image
+			ImageIO.write(resizeImg(imgFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + profileId + fileExt));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -712,6 +761,7 @@ class StagHandler implements Runnable{
 			out.writeInt(stegItem.getLikes());
 			out.writeInt(stegItem.getComments());
 			out.writeBoolean(stegItem.isLiked());
+			out.writeBoolean(stegItem.isSended());
 			out.flush();
 		}
 	}
@@ -835,18 +885,6 @@ class StagHandler implements Runnable{
 					.packString(comment.getText())
 					.packLong(comment.date.getTime())
 					.packLong(comment.time.getTime());
-
-//					if(!comment.profileImg.equals("clear")){
-//						commentPacker.packString("photo");
-//						File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + comment.profileImg);
-//						commentPacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
-//						byte[] photoBytes = new byte[(int) sendFile.length()];
-//						FileInputStream fis = new FileInputStream(sendFile);
-//						fis.read(photoBytes, 0, photoBytes.length);
-//						fis.close();
-//						commentPacker.packBinaryHeader(photoBytes.length);
-//						commentPacker.writePayload(photoBytes, 0, photoBytes.length);
-//					} else commentPacker.packString("clear");
 			commentPacker.close();
 
 			int len = commentBaos.toByteArray().length;

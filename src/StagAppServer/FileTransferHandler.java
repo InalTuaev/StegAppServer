@@ -33,7 +33,6 @@ public class FileTransferHandler extends Thread {
 			try {
 				Socket socket = serverSocket.accept();
 				executorService.submit(new StagHandler(socket, dbConnection));
-//				StagHandler.handleStag(socket, dbConnection);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

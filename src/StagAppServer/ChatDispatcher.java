@@ -4,6 +4,8 @@ import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessagePacker;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -40,19 +42,27 @@ class ChatDispatcher {
     }
 
     void sendMessage(Integer chatId, Integer msgId, String senderId){
+        StagData steg = DBHandler.getSteg(chatId, senderId, WsHandler.getInstance().dbConnection);
+
+        ArrayList<String> notificationList = new ArrayList<>();
+
+        notificationList.add(steg.mesSender);
+        notificationList.add(steg.mesReciever);
+
         if(chatContainer.containsKey(chatId)){
             try {
                 ByteArrayOutputStream message = createMessage(chatId, msgId, senderId);
                 Iterator<String> iter = chatContainer.get(chatId).keySet().iterator();
                 while (iter.hasNext()) {
                     String chatProfile = iter.next();
-                    System.out.print("chat: " + chatId);
+                    notificationList.remove(chatProfile);  // unsubscribe profile from push notification
+
                     WsHandler.ChatWebSocket socket = chatContainer.get(chatId).get(chatProfile);
-                    if (!socket.getUserId().equals(senderId)) {
-                        socket.getConnection().sendMessage(message.toByteArray(), 0, message.toByteArray().length);
-                        System.out.println(" +");
-                    } else {
-                        System.out.println(" -");
+                    socket.getConnection().sendMessage(message.toByteArray(), 0, message.toByteArray().length);
+                }
+                for (String profileId : notificationList){
+                    if (!profileId.equals("common") && !profileId.equals(senderId)){
+                        WsHandler.getInstance().sendNotification(WsHandler.NOTIFICATION_COMMENT, profileId, senderId);
                     }
                 }
             } catch (IOException e){

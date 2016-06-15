@@ -26,16 +26,16 @@ class WsHandler extends WebSocketHandler {
 	private static final String STEGAPP_PROFILE_PHOTO_DIR = "StegApp/avatars/";
 	private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
 
-    private static final int NOTIFICATION_FRIEND = 0;
-    private static final int NOTIFICATION_COMMENT = 1;
-    private static final int NOTIFICATION_LIKE = 2;
-    private static final int NOTIFICATION_GET = 3;
-    private static final int NOTIFICATION_SAVE = 4;
+    public static final int NOTIFICATION_FRIEND = 0;
+	public static final int NOTIFICATION_COMMENT = 1;
+	public static final int NOTIFICATION_LIKE = 2;
+	public static final int NOTIFICATION_GET = 3;
+	public static final int NOTIFICATION_SAVE = 4;
 	public static final int NOTIFICATION_PRIVATE_STEG = 5;
 	
 	private volatile CopyOnWriteArraySet<ChatWebSocket> clientSockets = new CopyOnWriteArraySet<>();
     volatile ChatDispatcher chatDispatcher;
-	private Connection dbConnection;
+	public Connection dbConnection;
 	private static volatile WsHandler instance;
 
     WsHandler(Connection dbConnection) {
@@ -51,7 +51,7 @@ class WsHandler extends WebSocketHandler {
 	
 	class ChatWebSocket implements OnBinaryMessage, OnTextMessage {
 
-       	volatile private String userId;
+		volatile private String userId;
         volatile private Connection connection;
         volatile private UserProfile profile;
 		volatile private Integer chatId = null;
@@ -60,13 +60,8 @@ class WsHandler extends WebSocketHandler {
 		public void onOpen(Connection arg0) {
 			this.connection = arg0;
 			this.connection.setMaxIdleTime(300000);
-			clientSockets.add(this);
-
-			int i = 0;
-			for (ChatWebSocket socket : clientSockets){
-				i++;
-				System.out.println(i + ": " + (socket.userId != null ? socket.userId : "null" + socket.connection.toString()));
-			}
+			this.connection.setMaxTextMessageSize(2*1024);
+			this.connection.setMaxBinaryMessageSize(64*1024);
 		}
  
 		@Override
@@ -78,14 +73,10 @@ class WsHandler extends WebSocketHandler {
 			System.out.println("@" + (this.userId != null ? this.userId : "null") + " disconnected");
 		}
 
-        @Override
-        public void onMessage(String arg0) {
-            switch (arg0){
-                case "checkConnection":
-                    checkConnection();
-                    break;
-            }
-        }
+		@Override
+		public void onMessage(String s) {
+
+		}
 	
 		@Override
 		public void onMessage(byte[] arg0, int arg1, int arg2) {
@@ -95,11 +86,13 @@ class WsHandler extends WebSocketHandler {
 			try {
 				mesType = unpacker.unpackString();
 				switch (mesType){
+					case "check":
+						checkConnection();
+						break;
 				case "to":
 					stagData = unpackMe(unpacker, mesType);
-					for(ChatWebSocket con: clientSockets) {
-						if(con.userId.equals(stagData.mesReciever))
-							con.connection.sendMessage(arg0, arg1, arg2);
+					if (!stagData.mesReciever.equals("common")){
+						sendNotification(NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, stagData.mesSender);
 					}
 					break;
 				case "registration":
@@ -149,6 +142,7 @@ class WsHandler extends WebSocketHandler {
 						this.userId = userId;
 						this.connection.sendMessage("enter");
 						this.profile = DBHandler.getUserProfile(userId, dbConnection);
+						clientSockets.add(this);
 					} else {
 						this.connection.sendMessage("not_registered");
 					}
@@ -178,6 +172,8 @@ class WsHandler extends WebSocketHandler {
 				case "addGeter":
 					addGeter(unpacker);
 					break;
+					case "addReceiver":
+						addReceiver(unpacker);
 				case "addFriend":
 					addFriend(unpacker);
 					break;
@@ -232,6 +228,9 @@ class WsHandler extends WebSocketHandler {
 				case "addToBL":
 					addToBlackList(unpacker);
 					break;
+					case "addToBLbyStegId":
+						addToBlackListByStegId(unpacker);
+						break;
 				case "removeFromBL":
 					removeFromBlackList(unpacker);
 					break;
@@ -261,24 +260,25 @@ class WsHandler extends WebSocketHandler {
 			StagData stagData = new StagData();
 			stagData.mesType = mesType;
 			switch (stagData.mesType) {
-			case "stag":
-				stagData.mesSender = unpacker.unpackString();
-				stagData.mesReciever = unpacker.unpackString();
-				stagData.stagType = unpacker.unpackInt();
-				stagData.lifeTime = unpacker.unpackInt();
-				stagData.anonym = unpacker.unpackBoolean();
-				stagData.filter = unpacker.unpackInt();
-				if ((stagData.stagType & 1) != 0) { // Text
-					stagData.mesText = unpacker.unpackString();
-				}
-				if((stagData.stagType & 8) != 0) {
-					stagData.voiceDataFile = unpacker.unpackString();
-				}
-				if (((stagData.stagType & 2) != 0) || ((stagData.stagType & 4) != 0)) { //photo or video
-					stagData.cameraDataFile = unpacker.unpackString();
-				}
-				unpacker.close();
-				break;
+				case "stag":
+				case "to":
+					stagData.mesSender = unpacker.unpackString();
+					stagData.mesReciever = unpacker.unpackString();
+					stagData.stagType = unpacker.unpackInt();
+					stagData.lifeTime = unpacker.unpackInt();
+					stagData.anonym = unpacker.unpackBoolean();
+					stagData.filter = unpacker.unpackInt();
+					if ((stagData.stagType & 1) != 0) { // Text
+						stagData.mesText = unpacker.unpackString();
+					}
+					if((stagData.stagType & 8) != 0) {
+						stagData.voiceDataFile = unpacker.unpackString();
+					}
+					if (((stagData.stagType & 2) != 0) || ((stagData.stagType & 4) != 0)) { //photo or video
+						stagData.cameraDataFile = unpacker.unpackString();
+					}
+					unpacker.close();
+					break;
 			}
 			return stagData;
 		}
@@ -315,8 +315,9 @@ class WsHandler extends WebSocketHandler {
 			String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
 			if(!toUserId.equals(profileId)){
 				sendNotification(NOTIFICATION_COMMENT, toUserId, profileId);
+			} else {
+
 			}
-			System.out.println("send mes to chat: " + stegId);
             chatDispatcher.sendMessage(stegId, msgId, profileId);
 		}
 
@@ -360,6 +361,12 @@ class WsHandler extends WebSocketHandler {
 			sendNotification(NOTIFICATION_GET, toUserId, profileId);
 		}
 
+		private void addReceiver(MessageUnpacker unpacker) throws IOException{
+			Integer stegId = unpacker.unpackInt();
+			String profileId = unpacker.unpackString();
+			DBHandler.addReceiver(stegId, profileId, dbConnection);
+		}
+
         private void addFriend(MessageUnpacker unpacker) throws IOException{
 			String friendId = unpacker.unpackString();
 			DBHandler.addFriend(userId, friendId, dbConnection);
@@ -375,6 +382,11 @@ class WsHandler extends WebSocketHandler {
         private void addToBlackList(MessageUnpacker unpacker) throws IOException{
 			String blackProfileId = unpacker.unpackString();
 			DBHandler.addToBlackList(userId, blackProfileId, dbConnection);
+		}
+
+		private void addToBlackListByStegId(MessageUnpacker unpacker) throws IOException{
+			Integer stegId = unpacker.unpackInt();
+			DBHandler.addToBlackListByStegId(userId, stegId, dbConnection);
 		}
 
         private void removeFromBlackList(MessageUnpacker unpacker) throws IOException{
@@ -558,8 +570,13 @@ class WsHandler extends WebSocketHandler {
 		}
 
         private void checkConnection(){
-            try {
-                this.connection.sendMessage("checkConnection");
+            try {ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				MessagePacker packer = MessagePack.newDefaultPacker(baos);
+				packer.packString("check");
+				packer.close();
+                this.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+				packer = null;
+				baos = null;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -574,29 +591,26 @@ class WsHandler extends WebSocketHandler {
         }
 	}
 
-    private void sendNotification(Integer type, String toUserId, String fromUserId){
-		new Thread(() -> {
-				try {
-					for(ChatWebSocket socket: clientSockets){
-						if(socket.userId != null){
-						if(socket.userId.equals(toUserId)){
-							String fromUserName = DBHandler.getUserNameFromId(fromUserId, dbConnection);
-							ByteArrayOutputStream profileNameBaos = new ByteArrayOutputStream();
-							MessagePacker packer = MessagePack.newDefaultPacker(profileNameBaos);
-							packer
+	void sendNotification(Integer type, String toUserId, String fromUserId){
+		try {
+			for(ChatWebSocket socket: clientSockets){
+				if(socket.userId != null){
+					if(socket.userId.equals(toUserId)){
+						ByteArrayOutputStream profileNameBaos = new ByteArrayOutputStream();
+						MessagePacker packer = MessagePack.newDefaultPacker(profileNameBaos);
+						packer
 								.packString("newsFromServer")
 								.packInt(type)
-								.packString(fromUserName);
-							packer.close();
-							socket.connection.sendMessage(profileNameBaos.toByteArray(), 0, profileNameBaos.toByteArray().length);
-							break;
-						}
-						}
+								.packString(fromUserId);
+						packer.close();
+						socket.connection.sendMessage(profileNameBaos.toByteArray(), 0, profileNameBaos.toByteArray().length);
+						break;
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
 				}
-		}).start();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
     private void sendingStegs(Connection dbConnection){
@@ -648,7 +662,6 @@ class WsHandler extends WebSocketHandler {
 				    	packer.close();
 					
 					    con.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
-    					DBHandler.markRecievedSteg(stegId, dbConnection);
 	    			} catch (IOException e) {
 		    			e.printStackTrace();
 			    	}

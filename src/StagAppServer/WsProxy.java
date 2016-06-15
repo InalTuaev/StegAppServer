@@ -41,8 +41,9 @@ public class WsProxy {
 		System.out.println("not connected to DB!");
 	}
 
+	 WsHandler wsHandler = new WsHandler(dbConnection);
      Server jetty = new Server(WEBSOCKET_PORT);
-     jetty.setHandler(new WsHandler(dbConnection));
+     jetty.setHandler(wsHandler);
      jetty.start();
 	 System.out.println("jetty threadPool size: "+jetty.getThreadPool().getThreads());
 	 System.out.println("jetty idleThreadPool size: "+jetty.getThreadPool().getIdleThreads());
