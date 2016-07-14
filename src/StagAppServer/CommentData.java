@@ -18,8 +18,10 @@ class CommentData {
 	private Integer commentType;
 	private String cameraData;
 	private String voiceData;
+	private Integer likesCount;
+	private Boolean isLiked;
 	
-	public CommentData(){
+	CommentData(){
 		id = -1;
 		stegId = -1;
 		profileId = "clear";
@@ -27,59 +29,77 @@ class CommentData {
 		cameraData = "clear";
 		voiceData = "clear";
 		commentType = 0;
+		likesCount = 0;
+		isLiked = false;
 	}
 	
-	public String getText() {
+	String getText() {
 		return text;
 	}
 	
-	public void setText(String text){
+	void setText(String text){
 		if (text != null){
 			this.text = text;
 		}
 	}
 	
-	public String getImgData(){
+	String getImgData(){
 		if ((commentType & COMMENT_IMAGE_MASK) != 0)
 			return cameraData;
 		return null;
 	}
 	
-	public void setImgData(String imagePath){
+	void setImgData(String imagePath){
 		if(!imagePath.equals("clear")){
 			this.cameraData = imagePath;
 		}
 	}
 	
-	public String getVideoData(){
+	String getVideoData(){
 		if ((commentType & COMMENT_VIDEO_MASK) != 0)
 			return cameraData;
 		return null;
 	}
 	
-	public void setVideoData(String videoPath){
+	void setVideoData(String videoPath){
 		if(!videoPath.equals("clear")){
 			cameraData = videoPath;
 		}
 	}
 	
-	public String getVoiceData(){
+	String getVoiceData(){
 		if((commentType & COMMENT_VOICE_MASK) != 0)
 			return voiceData;
 		return null;
 	}
 	
-	public void setVoiceData(String voicePath){
+	void setVoiceData(String voicePath){
 		if(!voicePath.equals("clear")){
 			voiceData = voicePath;
 		}
 	}
 	
-	public int getType(){
+	int getType(){
 		return commentType;
 	}
 	
-	public void setType(Integer type){
+	void setType(Integer type){
 		commentType = type;
+	}
+
+	void setLikesCount(Integer count){
+		likesCount = count;
+	}
+
+	Integer getLikesCount(){
+		return likesCount;
+	}
+
+	void setIsLiked(Boolean isLiked){
+		this.isLiked = isLiked;
+	}
+
+	Boolean isLiked(){
+		return isLiked;
 	}
 }

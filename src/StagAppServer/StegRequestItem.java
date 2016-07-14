@@ -1,14 +1,27 @@
 package StagAppServer;
 
-public class StegRequestItem {
-	public Integer stegId;
-	public String city;
+class StegRequestItem {
+	private Integer stegId;
+	private String city;
+	private String senderName;
+
 	
-	public StegRequestItem(Integer stegId, String city){
+	StegRequestItem(Integer stegId, String city, String senderName){
 		this.stegId = stegId;
 		this.city = city;
+		this.senderName = senderName;
 	}
 
-	public StegRequestItem() {
+	Integer getStegId(){
+		return stegId;
 	}
+
+	String getCity(){
+		return city;
+	}
+
+	String getSenderName(){
+		return senderName;
+	}
+
 }

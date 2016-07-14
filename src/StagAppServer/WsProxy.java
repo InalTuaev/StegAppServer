@@ -36,6 +36,7 @@ public class WsProxy {
 	Connection dbConnection = null;
 	try{
 		dbConnection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/stegdatabase", "stegserver", "revresgets");
+		dbConnection.setAutoCommit(true);
 	} catch (SQLException e) {
 		e.printStackTrace();
 		System.out.println("not connected to DB!");
@@ -45,8 +46,7 @@ public class WsProxy {
      Server jetty = new Server(WEBSOCKET_PORT);
      jetty.setHandler(wsHandler);
      jetty.start();
-	 System.out.println("jetty threadPool size: "+jetty.getThreadPool().getThreads());
-	 System.out.println("jetty idleThreadPool size: "+jetty.getThreadPool().getIdleThreads());
+
      FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
      fileTransferHandler.start();
  }

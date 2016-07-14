@@ -3,39 +3,41 @@ package StagAppServer;
 import java.sql.Date;
 import java.sql.Time;
 
-public class StagData {
-	public static final int STEG_AREA_MASK_EVERYWHERE = 0;
-	public static final int STEG_AREA_MASK_NEAR = 1;
-	public static final int STEG_AREA_MASK_CITY = 2;
-	public static final int STEG_AREA_MASK_STATE = 4;
-	public static final int STEG_AREA_MASK = 7;
+class StagData {
+	static final int STEG_AREA_MASK_EVERYWHERE = 0;
+	static final int STEG_AREA_MASK_NEAR = 1;
+	static final int STEG_AREA_MASK_CITY = 2;
+	static final int STEG_AREA_MASK_STATE = 4;
+	static final int STEG_AREA_MASK = 7;
 	
-	public static final int STEG_SEX_MASK_ALL = 0;
-	public static final int STEG_SEX_MASK_MAN = 64;
-	public static final int STEG_SEX_MASK_WOMAN = 128;
-	public static final int STEG_SEX_MASK = 192;
+	static final int STEG_SEX_MASK_ALL = 0;
+	static final int STEG_SEX_MASK_MAN = 64;
+	static final int STEG_SEX_MASK_WOMAN = 128;
+	static final int STEG_SEX_MASK = 192;
 	
-		public Integer stegId;
-	  	public String mesType;
-	    public String mesSender;
-	    public String senderName;
-	    public String mesReciever;
-	    public Integer stagType;
-	    public Integer lifeTime;
-	    public Boolean anonym;
-	    public Integer filter;
-	    public String mesText;
-	    public String voiceDataFile;
-	    public String cameraDataFile;
-	    public Integer comments;
-	    public Integer likes;
-	    public Integer gets;
-	    public Integer saves;
-	    public Date date;
-	    public Time time;
-	    public Boolean sended;
-	    public Boolean liked;
+	public Integer stegId;
+	public String mesType;
+	public String mesSender;
+	public String senderName;
+	public String mesReciever;
+	public Integer stagType;
+	public Integer lifeTime;
+	public Boolean anonym;
+	public Integer filter;
+	public String mesText;
+	public String voiceDataFile;
+	public String cameraDataFile;
+	public Integer comments;
+	public Integer likes;
+	public Integer gets;
+	public Integer saves;
+	public Date date;
+	public Time time;
+	public Boolean sended;
+	public Boolean liked;
 	private Boolean isActive;
+	private Boolean favorite;
+	private Boolean deleted;
 
 	    public  StagData(){
 	    	stegId = -1;
@@ -55,48 +57,62 @@ public class StagData {
 	        saves = 0;
 	        sended = false;
 	        liked = false;
-
+			favorite = false;
+			deleted = false;
 	    }
-	    public void setStegId(Integer stegId){
+	public void setStegId(Integer stegId){
 	    	this.stegId = stegId;
 	    }
-	    public void setMesType(String mesType) {
+	public void setMesType(String mesType) {
 	        this.mesType = mesType;
 	    }
-	    public void setMesSender(String mesSender) {
+	public void setMesSender(String mesSender) {
 	        this.mesSender = mesSender;
 	    }
-	    public void setMesReciever(String mesReciever) {
+	public void setMesReciever(String mesReciever) {
 	        this.mesReciever = mesReciever;
 	    }
-	    public void setMesText(String mesText) {
+	public void setMesText(String mesText) {
 	        this.mesText = mesText;
 	    }
-	    public void setStagType(Integer stagType) {
+	public void setStagType(Integer stagType) {
 	        this.stagType = stagType;
 	    }
-	    public void setVoiceDataPath(String voiceDataFile) {
+	public void setVoiceDataPath(String voiceDataFile) {
 	        this.voiceDataFile = voiceDataFile;
 	    }
-	    public void setCameraDataPath (String cameraDataFile){
+	public void setCameraDataPath (String cameraDataFile){
 	    	this.cameraDataFile = cameraDataFile;
 	    }
-	    public void setLifeTime(Integer lifeTime){
+	public void setLifeTime(Integer lifeTime){
 	        this.lifeTime = lifeTime;
 	    }
-	    public void setAnonym(Boolean anonym) {
+	public void setAnonym(Boolean anonym) {
 	        this.anonym = anonym;
 	    }
-	    public void setFilter(Integer filter){
+	public void setFilter(Integer filter){
 	        this.filter = filter;
 	    }
+	public void setIsDeleted(Boolean deleted){
+		this.deleted = deleted;
+	}
 
 	void setIsActive(Boolean value){
 		isActive = value;
 	}
-
 	Boolean isActive(){
 		return isActive;
+	}
+
+	void setIsFavorite(Boolean favorite){
+		this.favorite = favorite;
+	}
+	Boolean isFavorite(){
+		return favorite;
+	}
+
+	Boolean isDeleted(){
+		return deleted;
 	}
 }
        

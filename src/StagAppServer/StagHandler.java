@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
@@ -30,7 +29,7 @@ class StagHandler implements Runnable{
 	private static final String STEGAPP_PROFILE_PHOTO_DIR = "StegApp/avatars/";
 	private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
 	
-	private static final Integer kB64 = 64*1024;
+	private static final Integer kB32 = 32*1024;
 
 	private final Socket socket;
 	private final Connection dbConnection;
@@ -93,6 +92,8 @@ class StagHandler implements Runnable{
 				case "likesFromServer":
 					likesFromServer(in, out);
 					break;
+				case "comLikesFromServer":
+					commentLikesFromServer(in, out);
 				case "newsFromServer":
 					newsFromServer(in, out);
 					break;
@@ -101,6 +102,9 @@ class StagHandler implements Runnable{
 					break;
 				case "incomePrivateFromServer":
 					incomePrivateFromServer(in, out);
+					break;
+				case "profileCorrespondenceFromServer":
+					profileCorrespondenceFromServer(in, out);
 					break;
 				case "incomePrivateItemsFromServer":
 					incomePrivateItemsFromServer(in, out);
@@ -140,6 +144,9 @@ class StagHandler implements Runnable{
 					break;
 				case "delProfile":
 					delProfile(in, out);
+					break;
+				case "favoritesFromServer":
+					favoritesFromServer(in, out);
 					break;
 			}
 			out.close();
@@ -205,19 +212,31 @@ class StagHandler implements Runnable{
 					isAddToMyWall = unpacker.unpackBoolean();
 					unpacker.close();
 					Integer newStegId = DBHandler.addSteg(stagData, dbConnection);
+					Integer listType;
 					if(isAddToMyWall){
-						DBHandler.markRecievedSteg(newStegId, dbConnection);
+						DBHandler.incStegReceived(newStegId, dbConnection);
 						DBHandler.stegToWall(newStegId, stagData.mesSender, dbConnection);
+						listType = WsHandler.STEG_LIST_TYPE_WALL_ITEM;
 					} else {
 						if(!stagData.mesReciever.equals("common")){
+							listType = WsHandler.STEG_LIST_TYPE_OUTCOME_PRIVATE_ITEM;
 							if(stagData.anonym){
 								DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, "clear", stagData.mesReciever, newStegId, dbConnection);
 							} else {
 								DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, stagData.mesSender, stagData.mesReciever, newStegId, dbConnection);
 							}
-							WsHandler.getInstance().sendNotification(WsHandler.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, stagData.mesSender);
+							String sender;
+							if (stagData.anonym){
+								sender = "anonym";
+							} else {
+								sender = stagData.mesSender;
+							}
+							WsHandler.getInstance().sendNotification(NewsData.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, sender, stagData.stegId);
+						} else {
+							listType = WsHandler.STEG_LIST_TYPE_OUTCOME_COMMON_ITEM;
 						}
 					}
+					WsHandler.getInstance().notifyToRefresh(listType, stagData.mesSender);
 					notStopped = false;
 					break;
 			}
@@ -226,10 +245,13 @@ class StagHandler implements Runnable{
 	}
 
 
-	private void stegFromServer(DataInputStream in, DataOutputStream out) throws IOException{
+	private void stegFromServer(DataInputStream in, DataOutputStream out) throws Exception{
 		int stagId = in.readInt();
 		String userId = in.readUTF();
 		StagData stagData = DBHandler.getSteg(stagId, userId, dbConnection);
+
+		if (stagData == null)
+			System.out.println("steg == null!  - " + Integer.toString(stagId) + " - " + userId);
 
 		ArrayList<StagFile> fileList = new ArrayList<>();
 
@@ -271,7 +293,7 @@ class StagHandler implements Runnable{
 
 			Integer len;
 			while (true){
-				byte[] buffer = new byte[kB64];
+				byte[] buffer = new byte[kB32];
 				len = dis.read(buffer);
 				if(len == -1) {
 					break;
@@ -307,7 +329,8 @@ class StagHandler implements Runnable{
 				.packLong(stagData.date.getTime())
 				.packLong(stagData.time.getTime())
 				.packBoolean(stagData.liked)
-				.packBoolean(stagData.isActive());
+				.packBoolean(stagData.isActive())
+				.packBoolean(stagData.isFavorite());
 		packer.close();
 		out.writeInt(baos.toByteArray().length);
 		out.flush();
@@ -348,16 +371,18 @@ class StagHandler implements Runnable{
 
 					try {
                         readFile(dos, in, fileSize);
+
+						dos.close();
+						System.out.println("photo added: " + newFile.getAbsolutePath());
+						// Write in DB
+						DBHandler.addUserPhoto(recUserId, recUserId + fileExt, dbConnection);
+
+						// Creating Thumbnail image
+						ImageIO.write(resizeImg(newFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + recUserId + fileExt));
+
 					} catch (EOFException e) {
 						dos.close();
 					}
-					dos.close();
-					System.out.println("photo added: " + newFile.getAbsolutePath());
-					// Write in DB
-					DBHandler.addUserPhoto(recUserId, recUserId + fileExt, dbConnection);
-
-					// Creating Thumbnail image
-					ImageIO.write(resizeImg(newFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + recUserId + fileExt));
 				}
 				break;
 		}
@@ -390,14 +415,16 @@ class StagHandler implements Runnable{
 
 			try{
 				readFile(fos, in, fileSize);
+
+				// Write in DB
+				DBHandler.addUserPhoto(profileId, profileId + fileExt, dbConnection);
+
+				// Creating Thumbnail image
+				ImageIO.write(resizeImg(imgFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + profileId + fileExt));
+				WsHandler.getInstance().notifyToRefresh(WsHandler.PROFILE_REFRESH, profileId);
 			} catch (EOFException e){
 				e.printStackTrace();
 			}
-			// Write in DB
-			DBHandler.addUserPhoto(profileId, profileId + fileExt, dbConnection);
-
-			// Creating Thumbnail image
-			ImageIO.write(resizeImg(imgFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + profileId + fileExt));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -461,7 +488,7 @@ class StagHandler implements Runnable{
 
 		Integer len;
 		while (true){
-			byte[] buffer = new byte[kB64];
+			byte[] buffer = new byte[kB32];
 			len = fis.read(buffer);
 			if(len == -1) {
 				break;
@@ -506,7 +533,7 @@ class StagHandler implements Runnable{
 				FileInputStream dis = new FileInputStream(STEGAPP_IMG_T_DIR + sFile.getFilePath());
 				Integer len;
 				while (true){
-					byte[] buffer = new byte[kB64];
+					byte[] buffer = new byte[kB32];
 					len = dis.read(buffer);
 					if(len == -1) {
 						break;
@@ -598,7 +625,7 @@ class StagHandler implements Runnable{
 				FileInputStream dis = new FileInputStream(STEGAPP_IMG_T_DIR + sFile.getFilePath());
 				Integer len;
 				while (true){
-					byte[] buffer = new byte[kB64];
+					byte[] buffer = new byte[kB32];
 					len = dis.read(buffer);
 					if(len == -1) {
 						break;
@@ -655,6 +682,29 @@ class StagHandler implements Runnable{
 		}
 	}
 
+	private void profileCorrespondenceFromServer(DataInputStream in, DataOutputStream out) throws IOException{
+		String profileId = in.readUTF();
+		String userId = in.readUTF();
+
+		ArrayList<StegItem> stegItems = DBHandler.getProfileCorrespondenceItems(profileId, userId, dbConnection);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		MessagePacker packer = MessagePack.newDefaultPacker(baos);
+		packer.packArrayHeader(stegItems.size());
+		for (StegItem item : stegItems){
+			packer.packInt(item.getStegId())
+					.packString(item.getMesSender())
+					.packBoolean(item.isAnonym())
+					.packInt(item.getLikes())
+					.packInt(item.getComments())
+					.packBoolean(item.isLiked())
+					.packBoolean(item.isSended());
+		}
+		packer.close();
+		out.writeInt(baos.toByteArray().length);
+		out.write(baos.toByteArray(), 0, baos.toByteArray().length);
+		out.flush();
+	}
+
 	private void incomePrivateItemsFromServer(DataInputStream in, DataOutputStream out) throws IOException{
 		String profileId = in.readUTF();
 		ArrayList<StegItem> stegItems = DBHandler.getIncomePrivateItems(profileId, dbConnection);
@@ -706,7 +756,7 @@ class StagHandler implements Runnable{
 				FileInputStream dis = new FileInputStream(STEGAPP_IMG_T_DIR + sFile.getFilePath());
 				Integer len;
 				while (true){
-					byte[] buffer = new byte[kB64];
+					byte[] buffer = new byte[kB32];
 					len = dis.read(buffer);
 					if(len == -1) {
 						break;
@@ -799,7 +849,7 @@ class StagHandler implements Runnable{
 				FileInputStream dis = new FileInputStream(STEGAPP_IMG_T_DIR + sFile.getFilePath());
 				Integer len;
 				while (true){
-					byte[] buffer = new byte[kB64];
+					byte[] buffer = new byte[kB32];
 					len = dis.read(buffer);
 					if(len == -1) {
 						break;
@@ -849,21 +899,29 @@ class StagHandler implements Runnable{
 		out.flush();
 		for(StegItem stegItem: stegItems){
 			out.writeInt(stegItem.getStegId());
+			out.flush();
 			out.writeUTF(stegItem.getMesSender());
+			out.flush();
 			out.writeBoolean(stegItem.isAnonym());
+			out.flush();
 			out.writeInt(stegItem.getLikes());
+			out.flush();
 			out.writeInt(stegItem.getComments());
+			out.flush();
 			out.writeBoolean(stegItem.isLiked());
+			out.flush();
 			Integer recievers = stegItem.getRecieverCount();
 			out.writeInt(recievers);
+			out.flush();
 			if(recievers > 4)
 				recievers = 4;
 			out.writeInt(recievers);
+			out.flush();
 			int i = 0;
 			for(Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()){
 				i++;
-				out.writeUTF(entry.getKey());
 				if(i > 4) break;
+				out.writeUTF(entry.getKey());
 			}
 			out.flush();
 		}
@@ -924,8 +982,9 @@ class StagHandler implements Runnable{
 
 	private void commentFromServer(DataInputStream in, DataOutputStream out) throws IOException{
 		int commentId = in.readInt();
+		String profileId = in.readUTF();
 
-		CommentData comment = DBHandler.getComment(commentId, dbConnection);
+		CommentData comment = DBHandler.getComment(commentId, profileId, dbConnection);
 
 		ArrayList<StagFile> fileList = new ArrayList<>();
 
@@ -967,7 +1026,7 @@ class StagHandler implements Runnable{
 
 			Integer len;
 			while (true){
-				byte[] buffer = new byte[kB64];
+				byte[] buffer = new byte[kB32];
 				len = dis.read(buffer);
 				if(len == -1) {
 					break;
@@ -989,7 +1048,9 @@ class StagHandler implements Runnable{
 				.packString(comment.profileId)
 				.packLong(comment.date.getTime())
 				.packLong(comment.time.getTime())
-				.packString(comment.getText());
+				.packString(comment.getText())
+				.packInt(comment.getLikesCount())
+				.packBoolean(comment.isLiked());
 		packer.close();
 		out.writeInt(baos.toByteArray().length);
 		out.flush();
@@ -1053,47 +1114,34 @@ class StagHandler implements Runnable{
 					break;
 			}
 		}
-        if(WsHandler.getInstance() != null) {
-            WsHandler.getInstance().chatDispatcher.sendMessage(commentData.stegId, commentData.id, commentData.profileId);
-        }
 	}
 
 	private void likesFromServer(DataInputStream in, DataOutputStream out) throws IOException{
 		Integer stegId = in.readInt();
-		ArrayList<LikeData> likes = DBHandler.getLikes(stegId, dbConnection);
-		Integer count = likes.size();
-		out.writeInt(count);
-		out.flush();
-		for(LikeData like : likes){
-			ByteArrayOutputStream likeBaos = new ByteArrayOutputStream();
-			MessagePacker likePacker = MessagePack.newDefaultPacker(likeBaos);
-			likePacker
-					.packInt(like.id)
-					.packInt(like.stegId)
-					.packString(like.profileId)
-					.packString(like.profileName)
-					.packLong(like.date.getTime())
-					.packLong(like.time.getTime());
-
-			if(!like.profileImg.equals("clear")){
-				likePacker.packString("photo");
-				File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + like.profileImg);
-				likePacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
-				byte[] photoBytes = new byte[(int) sendFile.length()];
-				FileInputStream fis = new FileInputStream(sendFile);
-				fis.read(photoBytes, 0, photoBytes.length);
-				fis.close();
-				likePacker.packBinaryHeader(photoBytes.length);
-				likePacker.writePayload(photoBytes, 0, photoBytes.length);
-			} else likePacker.packString("clear");
-			likePacker.close();
-
-			int len = likeBaos.toByteArray().length;
-			out.writeInt(len);
-			out.flush();
-			out.write(likeBaos.toByteArray(), 0, len);
-			out.flush();
+		ArrayList<String> likers = DBHandler.getLikes(stegId, dbConnection);
+		ByteArrayOutputStream likeBaos = new ByteArrayOutputStream();
+		MessagePacker likePacker = MessagePack.newDefaultPacker(likeBaos);
+		likePacker.packArrayHeader(likers.size());
+		for(String liker : likers){
+			likePacker.packString(liker);
 		}
+		likePacker.close();
+		out.writeInt(likeBaos.toByteArray().length);
+		out.write(likeBaos.toByteArray(), 0, likeBaos.toByteArray().length);
+	}
+
+	private void commentLikesFromServer(DataInputStream in, DataOutputStream out) throws IOException{
+		Integer commentId = in.readInt();
+		ArrayList<String> likers = DBHandler.getCommentLikes(commentId, dbConnection);
+		ByteArrayOutputStream likeBaos = new ByteArrayOutputStream();
+		MessagePacker likePacker = MessagePack.newDefaultPacker(likeBaos);
+		likePacker.packArrayHeader(likers.size());
+		for(String liker : likers){
+			likePacker.packString(liker);
+		}
+		likePacker.close();
+		out.writeInt(likeBaos.toByteArray().length);
+		out.write(likeBaos.toByteArray(), 0, likeBaos.toByteArray().length);
 	}
 
 	private void saversFromServer(DataInputStream in, DataOutputStream out) throws IOException{
@@ -1294,6 +1342,29 @@ class StagHandler implements Runnable{
 		}
 	}
 
+	private void favoritesFromServer(DataInputStream in, DataOutputStream out) throws IOException{
+		String profileId = in.readUTF();
+		ArrayList<FavoriteItem> favorites = DBHandler.getFavorites(profileId, dbConnection);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		MessagePacker packer = MessagePack.newDefaultPacker(baos);
+		packer.packArrayHeader(favorites.size());
+
+
+		for (FavoriteItem item : favorites){
+			packer
+					.packInt(item.getId())
+					.packInt(item.getFavId())
+					.packString(item.getType());
+		}
+		packer.close();
+
+		int len = baos.toByteArray().length;
+		out.writeInt(len);
+		out.flush();
+		out.write(baos.toByteArray(), 0, len);
+		out.flush();
+	}
+
 	private void getIsBlack(DataInputStream in, DataOutputStream out) throws IOException{
 		String myProfileId = in.readUTF();
 		String blackProfileId = in.readUTF();
@@ -1371,8 +1442,8 @@ class StagHandler implements Runnable{
         Integer len = 0;
         byte[] buffer;
         while(i < fileSize){
-            buffer = new byte[kB64];
-            len = in.read(buffer, 0, Math.min(fileSize - i, kB64));
+            buffer = new byte[kB32];
+            len = in.read(buffer, 0, Math.min(fileSize - i, kB32));
             i += len;
             dos.write(buffer, 0, len);
             dos.flush();

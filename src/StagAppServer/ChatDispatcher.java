@@ -46,8 +46,13 @@ class ChatDispatcher {
 
         ArrayList<String> notificationList = new ArrayList<>();
 
-        notificationList.add(steg.mesSender);
-        notificationList.add(steg.mesReciever);
+        if (steg.mesReciever.equals("common")){
+            notificationList = DBHandler.getStegNotifiers(steg.stegId, WsHandler.getInstance().dbConnection);
+        } else {
+            notificationList.add(steg.mesSender);
+            if (!steg.isDeleted())
+                notificationList.add(steg.mesReciever);
+        }
 
         if(chatContainer.containsKey(chatId)){
             try {
@@ -55,20 +60,53 @@ class ChatDispatcher {
                 Iterator<String> iter = chatContainer.get(chatId).keySet().iterator();
                 while (iter.hasNext()) {
                     String chatProfile = iter.next();
-                    notificationList.remove(chatProfile);  // unsubscribe profile from push notification
 
                     WsHandler.ChatWebSocket socket = chatContainer.get(chatId).get(chatProfile);
                     socket.getConnection().sendMessage(message.toByteArray(), 0, message.toByteArray().length);
+
+                    notificationList.remove(chatProfile);  // unsubscribe profile from push notification
                 }
-                for (String profileId : notificationList){
-                    if (!profileId.equals("common") && !profileId.equals(senderId)){
-                        WsHandler.getInstance().sendNotification(WsHandler.NOTIFICATION_COMMENT, profileId, senderId);
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        String commentSender = senderId;
+        if (senderId.equals(steg.mesSender) && steg.anonym)
+            commentSender = "clear";
+
+        for (String profileId : notificationList){
+            if (!profileId.equals("common") && !profileId.equals(senderId)){
+                WsHandler.getInstance().sendNotification(NewsData.NOTIFICATION_COMMENT, profileId, commentSender, chatId);
+                DBHandler.justAddCommentNews(NewsData.NOTIFICATION_TYPE_COMMENT, commentSender, profileId, steg.stegId, WsHandler.getInstance().dbConnection, false);
+            }
+        }
+    }
+
+    void sendLike(Integer chatId, Integer msgId, Boolean liked, String liker){
+        if (chatContainer.containsKey(chatId)){
+            try{
+                ByteArrayOutputStream message = createLike(chatId, msgId, liked);
+                Iterator<String> iter = chatContainer.get(chatId).keySet().iterator();
+                while (iter.hasNext()){
+                    String chatProfile = iter.next();
+                    if (!chatProfile.equals(liker)) {
+                        WsHandler.ChatWebSocket socket = chatContainer.get(chatId).get(chatProfile);
+                        socket.getConnection().sendMessage(message.toByteArray(), 0, message.toByteArray().length);
                     }
                 }
             } catch (IOException e){
                 e.printStackTrace();
             }
         }
+    }
+
+    Boolean isProfileInChat (String profileId, Integer chatId){
+        if (chatContainer.containsKey(chatId)){
+            ConcurrentHashMap<String, WsHandler.ChatWebSocket> chat = chatContainer.get(chatId);
+            return chat.containsKey(profileId);
+        } else
+            return false;
     }
 
     private ByteArrayOutputStream createMessage(Integer chatId, Integer msgId, String senderId) throws IOException{
@@ -79,6 +117,17 @@ class ChatDispatcher {
                     .packInt(msgId)
                     .packString(senderId);
             packer.close();
+        return baos;
+    }
+
+    private ByteArrayOutputStream createLike(Integer chatId, Integer msgId, Boolean liked) throws IOException{
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        MessagePacker packer = MessagePack.newDefaultPacker(baos);
+        packer.packString("chatMesLiked")
+                .packInt(chatId)
+                .packInt(msgId)
+                .packBoolean(liked);
+        packer.close();
         return baos;
     }
 
