@@ -10,6 +10,7 @@ import java.util.*;
 class DBHandler {
 
 	private static final int MAX_RECEIVED_NO_FIELD = 4;
+	private static final int MAX_REQUESTED_NUM = 9;
 
 	private static final String SQL_STEG_REQUEST = "SELECT stegs.steg_id, get_steg_sender_city(stegs.steg_id), get_sender_anonym_name(stegs.anonym, stegs.sender)  " +
 			"FROM stegs " +
@@ -17,7 +18,7 @@ class DBHandler {
 			"LEFT JOIN users ON (users.user_id = ?) " +
 			"WHERE stegs.steg_id NOT IN (SELECT receives.steg_id FROM receives WHERE receives.profile_id = ?) " +
 			"AND stegs.sender != ? " +
-			"AND stegs.recieved < " + Integer.toString(MAX_RECEIVED_NO_FIELD) + " " +
+			"AND stegs.recieved < " + Integer.toString(MAX_REQUESTED_NUM) + " " +
 			"AND stegs.reciever = 'common' " +
 			"AND deleted != true " +
 			"AND active = true " +
@@ -1990,7 +1991,7 @@ class DBHandler {
 					"FROM news LEFT OUTER JOIN users ON (news.profile_id = users.user_id) " +
 					"LEFT OUTER JOIN stegs ON (news.steg_id = stegs.steg_id) " + 
 					"WHERE news.owner_id = ? AND news.profile_id != news.owner_id " + 
-					"ORDER BY news.id DESC;";
+					"ORDER BY news.id DESC LIMIT 75;";
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement(sql);
 			statement.setString(1, owner);
@@ -2272,10 +2273,10 @@ class DBHandler {
 			PreparedStatement statement;
 			if(searchString.equals("all_search_list")){
 				if(!myCity.equals("clear")){
-					statement = dbConnection.prepareStatement("SELECT user_id FROM users WHERE user_city = ? ORDER BY random() LIMIT 70;");
+					statement = dbConnection.prepareStatement("SELECT user_id FROM users WHERE user_id != 'StegApp' AND user_city = ? ORDER BY random() LIMIT 70;");
 					statement.setString(1, myCity);
 				} else {
-					statement = dbConnection.prepareStatement("SELECT user_id FROM users ORDER BY random() LIMIT 70;");
+					statement = dbConnection.prepareStatement("SELECT user_id FROM users WHERE user_id != 'StegApp' ORDER BY random() LIMIT 70;");
 				}
 			} else {
 				if(!myCity.equals("clear")){

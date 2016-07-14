@@ -2,14 +2,12 @@ package StagAppServer;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.*;
 import java.sql.Connection;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
 import org.eclipse.jetty.websocket.WebSocket.OnTextMessage;
@@ -34,9 +32,10 @@ class WsHandler extends WebSocketHandler {
 	public static final int STEG_LIST_TYPE_INCOME_COMMON_ITEM = 5;
 	public static final int PROFILE_REFRESH = 6;
 	
-	private volatile CopyOnWriteArraySet<ChatWebSocket> clientSockets = new CopyOnWriteArraySet<>();
-    volatile ChatDispatcher chatDispatcher;
-	public Connection dbConnection;
+	private volatile CopyOnWriteArraySet<ChatWebSocket> clSockets = new CopyOnWriteArraySet<>();
+	private final ConcurrentHashSet<ChatWebSocket> clientSockets = new ConcurrentHashSet<>();
+    final ChatDispatcher chatDispatcher;
+	final Connection dbConnection;
 	private static volatile WsHandler instance;
 
     WsHandler(Connection dbConnection) {
@@ -315,9 +314,8 @@ class WsHandler extends WebSocketHandler {
         private void stegRequest(MessageUnpacker unpacker) throws IOException{
 			String profileId = unpacker.unpackString();
 			StegRequestItem srItem = DBHandler.stegRequset(profileId, dbConnection);
-			if (srItem != null) {
-				sendStegItem(srItem, this);
-			}
+			sendStegItem(srItem, this);
+
 		}
 
         private void addLike(MessageUnpacker unpacker) throws IOException{
@@ -761,7 +759,7 @@ class WsHandler extends WebSocketHandler {
 			ArrayList<StagData> stegList = DBHandler.getUnrecievedStegs(dbConnection);
 
 			for (StagData steg: stegList){
-				CopyOnWriteArraySet<ChatWebSocket> sendSockets = checkWebSockets(clientSockets, steg);
+				ConcurrentHashSet <ChatWebSocket> sendSockets = checkWebSockets(clientSockets, steg);
 				String city = DBHandler.getStegSenderCity(steg.stegId, dbConnection);
 				sendToSomeBody(sendSockets, steg, city);
 			}
@@ -771,16 +769,20 @@ class WsHandler extends WebSocketHandler {
 	private void sendStegItem(StegRequestItem srItem, ChatWebSocket webSocket) throws IOException{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		MessagePacker packer = MessagePack.newDefaultPacker(baos);
-		packer.packString("stegRequestResult");
-		packer.packInt(srItem.getStegId());
-		packer.packString(srItem.getCity() != null ? srItem.getCity() : "clear");
-		packer.packString(srItem.getSenderName());
+		if (srItem != null) {
+			packer.packString("stegRequestResult");
+			packer.packInt(srItem.getStegId());
+			packer.packString(srItem.getCity() != null ? srItem.getCity() : "clear");
+			packer.packString(srItem.getSenderName());
+		} else {
+			packer.packString("stegRequestNull");
+		}
 		packer.close();
 		
 		webSocket.connection.sendMessage(baos.toByteArray(),  0, baos.toByteArray().length);
 	}
 
-	private void sendToSomeBody(CopyOnWriteArraySet<ChatWebSocket> sendSockets, StagData steg, String city){
+	private void sendToSomeBody(ConcurrentHashSet<ChatWebSocket> sendSockets, StagData steg, String city){
 		Random rand = new Random(System.currentTimeMillis());
 		if(sendSockets.size() > 0){
 		    Integer i = rand.nextInt(sendSockets.size());
@@ -807,8 +809,8 @@ class WsHandler extends WebSocketHandler {
 		}
 	}
 	
-	private CopyOnWriteArraySet<ChatWebSocket> checkWebSockets(CopyOnWriteArraySet<ChatWebSocket> clientSockets, StagData steg){
-        CopyOnWriteArraySet<ChatWebSocket> sendSockets = new CopyOnWriteArraySet<>();
+	private ConcurrentHashSet<ChatWebSocket> checkWebSockets(ConcurrentHashSet<ChatWebSocket> clientSockets, StagData steg){
+		ConcurrentHashSet<ChatWebSocket> sendSockets = new ConcurrentHashSet<>();
 		for(ChatWebSocket con : clientSockets){
 			if(con.userId != null && !con.userId.equals(steg.mesSender) && DBHandler.checkReceiver(steg, con.userId, dbConnection)){
 				sendSockets.add(con);
