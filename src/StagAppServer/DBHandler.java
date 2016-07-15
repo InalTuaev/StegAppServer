@@ -1991,7 +1991,7 @@ class DBHandler {
 					"FROM news LEFT OUTER JOIN users ON (news.profile_id = users.user_id) " +
 					"LEFT OUTER JOIN stegs ON (news.steg_id = stegs.steg_id) " + 
 					"WHERE news.owner_id = ? AND news.profile_id != news.owner_id " + 
-					"ORDER BY news.id DESC LIMIT 75;";
+					"ORDER BY news.id DESC LIMIT 600;";
 		try {
 			PreparedStatement statement = dbConnection.prepareStatement(sql);
 			statement.setString(1, owner);
