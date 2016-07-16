@@ -2446,7 +2446,7 @@ class DBHandler {
 	static ArrayList<FavoriteItem> getFavorites(String profileId, Connection dbConnection){
 		ArrayList<FavoriteItem> favoriteList = new ArrayList<>();
 		try{
-			PreparedStatement st = dbConnection.prepareStatement("SELECT id, fav_id, type FROM favorites WHERE profile_id = ?;");
+			PreparedStatement st = dbConnection.prepareStatement("SELECT id, fav_id, type FROM favorites WHERE profile_id = ? ORDER BY id DESC;");
 			st.setString(1, profileId);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()){
