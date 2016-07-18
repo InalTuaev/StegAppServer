@@ -21,14 +21,11 @@ class ChatDispatcher {
     void addListener(Integer chatId, WsHandler.ChatWebSocket listener){
         if(chatContainer.containsKey(chatId)){
             chatContainer.get(chatId).put(listener.getUserId(), listener);
-            System.out.println("added chatId: " + chatId + " profileId: " + listener.getUserId());
         } else {
             ConcurrentHashMap<String, WsHandler.ChatWebSocket> newListenerMap = new ConcurrentHashMap<>();
             newListenerMap.put(listener.getUserId(), listener);
             chatContainer.put(chatId, newListenerMap);
-            System.out.println("new chatId: " + chatId + " profileId: " + listener.getUserId());
         }
-        iterateMap(chatContainer);
     }
 
     void removeListener(Integer chatId, WsHandler.ChatWebSocket listener){
@@ -38,7 +35,6 @@ class ChatDispatcher {
                 chatContainer.remove(chatId);
             }
         }
-        iterateMap(chatContainer);
     }
 
     void sendMessage(Integer chatId, Integer msgId, String senderId){

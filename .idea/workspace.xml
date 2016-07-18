@@ -7,9 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60c32a3c-2447-4d56-ab05-609f5867f1b0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/ChatDispatcher.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/ChatDispatcher.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/CommentData.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/CommentData.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagData.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StagData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagFile.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StagFile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" afterPath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" afterPath="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/CommentData.java" afterPath="$PROJECT_DIR$/src/StagAppServer/CommentData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/Constants.java" afterPath="$PROJECT_DIR$/src/StagAppServer/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StagData.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StagData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StagFile.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StagFile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
     </list>
     <ignored path="StegAppServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,21 +49,61 @@
       <file leaf-file-name="StagHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="249" column="25" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
+            <state relative-caret-position="17">
+              <caret line="487" column="31" selection-start-line="487" selection-start-column="24" selection-end-line="487" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/CommentData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StagFile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="776" column="16" selection-start-line="776" selection-start-column="16" selection-end-line="776" selection-end-column="16" />
+            <state relative-caret-position="2057">
+              <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
               <folding>
-                <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
                 <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+                <element signature="class#26565:26945" expanded="false" />
+                <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -56,8 +112,8 @@
       <file leaf-file-name="WsProxy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+            <state relative-caret-position="663">
+              <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -66,8 +122,8 @@
       <file leaf-file-name="DBHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="2465" column="43" selection-start-line="2465" selection-start-column="43" selection-end-line="2465" selection-end-column="43" />
+            <state relative-caret-position="27846">
+              <caret line="1643" column="23" selection-start-line="1643" selection-start-column="23" selection-end-line="1643" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -76,8 +132,8 @@
       <file leaf-file-name="StagData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state relative-caret-position="85">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -96,8 +152,8 @@
       <file leaf-file-name="ChatDispatcher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+            <state relative-caret-position="459">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,14 +173,27 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/StagAppServer/NewsData.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/StagData.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
         <option value="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/org/eclipse/jetty/util/ConcurrentHashSet.class" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/CommentData.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/StagFile.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/StagData.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/Constants.java" />
       </list>
     </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -157,6 +226,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,14 +281,16 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="stegappserver" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -488,8 +561,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -497,14 +570,14 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12846482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.120469086" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24945295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -556,7 +629,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -565,41 +638,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5287">
-          <caret line="311" column="27" selection-start-line="311" selection-start-column="27" selection-end-line="311" selection-end-column="27" />
-          <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-            <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27217">
-          <caret line="1601" column="60" selection-start-line="1601" selection-start-column="60" selection-end-line="1601" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -709,8 +747,18 @@
         <state relative-caret-position="4097">
           <caret line="260" column="46" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
           <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+            <element signature="class#26565:26945" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -760,8 +808,18 @@
         <state relative-caret-position="4097">
           <caret line="260" column="46" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
           <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+            <element signature="class#26565:26945" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -811,8 +869,18 @@
         <state relative-caret-position="1122">
           <caret line="85" column="63" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
           <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+            <element signature="class#26565:26945" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -862,8 +930,18 @@
         <state relative-caret-position="10999">
           <caret line="670" column="16" selection-start-line="670" selection-start-column="16" selection-end-line="670" selection-end-column="16" />
           <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+            <element signature="class#26565:26945" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -888,14 +966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -935,57 +1005,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/Random.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="281">
+          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
+        <state relative-caret-position="459">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/Random.java">
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-          <folding>
-            <element signature="e#4879#4880#0" expanded="false" />
-            <element signature="e#4928#4929#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="663">
+          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="249" column="25" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="456" column="19" selection-start-line="456" selection-start-column="19" selection-end-line="456" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="2465" column="43" selection-start-line="2465" selection-start-column="43" selection-end-line="2465" selection-end-column="43" />
+        <state relative-caret-position="27846">
+          <caret line="1643" column="23" selection-start-line="1643" selection-start-column="23" selection-end-line="1643" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="776" column="16" selection-start-line="776" selection-start-column="16" selection-end-line="776" selection-end-column="16" />
+        <state relative-caret-position="2057">
+          <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
           <folding>
-            <element signature="method#unpackMe#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#addComLike#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendNotification#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+            <element signature="class#26565:26945" expanded="false" />
+            <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+            <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/CommentData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="60" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="487" column="31" selection-start-line="487" selection-start-column="24" selection-end-line="487" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

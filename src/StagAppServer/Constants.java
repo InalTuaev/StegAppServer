@@ -60,7 +60,10 @@ class Constants {
                 "fuckin",
                 "fucking",
                 "putin",
-                "obama"
+                "obama",
+                "broadcast",
+                "alexfrai",
+                "fraialex"
         };
     }
 }

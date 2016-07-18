@@ -53,6 +53,9 @@ class StagHandler implements Runnable{
 				case "stegFromServer":
 					stegFromServer(in, out);
 					break;
+                case "stegRequest":
+                    stegRequest(in, out);
+                    break;
 				case "stegFromServerWithoutImg":
 //						stegFromServerWithoutImg(in, out);
 					break;
@@ -86,6 +89,9 @@ class StagHandler implements Runnable{
 				case "commentFromServer":
 					commentFromServer(in, out);
 					break;
+                case "commentRequest":
+                    commentRequset(in, out);
+                    break;
 				case "commentToServer":
 					commentToServer(in, out);
 					break;
@@ -243,6 +249,112 @@ class StagHandler implements Runnable{
 		}
 
 	}
+
+	private void stegRequest(DataInputStream in, DataOutputStream out) throws Exception {
+	    int stegId = in.readInt();
+        String userId = in.readUTF();
+        StagData steg = DBHandler.getSteg(stegId, userId, dbConnection);
+
+        if (steg == null)
+            throw new Exception("NULL Steg Exception! stegId: " + stegId + " == null!!! ");
+//        Отправляем клиенту информацию о стеге
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        MessagePacker packer = MessagePack.newDefaultPacker(baos);
+        packer
+                .packInt(steg.stegId)
+                .packString(steg.mesType)
+                .packString(steg.mesSender)
+                .packString(steg.senderName)
+                .packString(steg.mesReciever)
+                .packInt(steg.stagType);
+        if((steg.stagType & 1) != 0){
+            packer.packString(steg.mesText);
+        }
+        packer.packInt(steg.lifeTime)
+                .packBoolean(steg.anonym)
+                .packInt(steg.filter)
+                .packInt(steg.likes)
+                .packInt(steg.gets)
+                .packInt(steg.saves)
+                .packInt(steg.comments)
+                .packInt(steg.likes)
+                .packLong(steg.date.getTime())
+                .packLong(steg.time.getTime())
+                .packBoolean(steg.liked)
+                .packBoolean(steg.isActive())
+                .packBoolean(steg.isFavorite());
+        packer.close();
+        out.writeInt(baos.toByteArray().length);
+        out.flush();
+        out.write(baos.toByteArray(), 0, baos.toByteArray().length);
+        out.flush();
+
+//        Если нет файлов для отправки завершаем работу функции
+        if ((steg.stagType & StagData.STEG_MEDIA_CONTENT_MASK) == 0)
+            return;
+
+//        Отправляем клиенту файлы если он их запросит
+
+//        Ложим все файлы в список
+        ArrayList<StagFile> fileList = new ArrayList<>();
+
+        if((steg.stagType & StagData.STEG_CONTENT_IMG_MASK) != 0) {
+            fileList.add(new StagFile(steg.cameraDataFile, StagFile.STEG_FILE_TYPE_IMG));
+        }
+        if((steg.stagType & StagData.STEG_CONTENT_VIDEO_MASK) != 0) {
+            fileList.add(new StagFile(steg.cameraDataFile, StagFile.STEG_FILE_TYPE_VIDEO));
+        }
+        if((steg.stagType & StagData.STEG_CONTENT_AUDIO_MASK) != 0) {
+            fileList.add(new StagFile(steg.voiceDataFile, StagFile.STEG_FILE_TYPE_AUDIO));
+        }
+//        Отправляем клиенту количество готовых к отправке файлов
+        out.writeInt(fileList.size());
+        out.flush();
+
+        for (StagFile stegFile : fileList){
+            out.writeInt(stegFile.getType());
+            out.flush();
+            out.writeUTF(stegFile.getFilePath().substring(stegFile.getFilePath().lastIndexOf(".")));
+            out.flush();
+
+//            Отправлять ли файл
+            Boolean getFile = in.readBoolean();
+
+            if (getFile){
+                FileInputStream dis = null;
+                switch(stegFile.getType()){
+                    case StagFile.STEG_FILE_TYPE_IMG:
+                        out.writeInt((int) new File(STEGAPP_IMG_T_DIR + stegFile.getFilePath()).length());
+                        out.flush();
+                        dis = new FileInputStream(STEGAPP_IMG_T_DIR + stegFile.getFilePath());
+                        break;
+                    case StagFile.STEG_FILE_TYPE_VIDEO:
+                        out.writeInt((int) new File(STEGAPP_VIDEO_DIR + stegFile.getFilePath()).length());
+                        out.flush();
+                        dis = new FileInputStream(STEGAPP_VIDEO_DIR + stegFile.getFilePath());
+                        break;
+                    case StagFile.STEG_FILE_TYPE_AUDIO:
+                        out.writeInt((int) new File(STEGAPP_AUDIO_DIR + stegFile.getFilePath()).length());
+                        out.flush();
+                        dis = new FileInputStream(STEGAPP_AUDIO_DIR + stegFile.getFilePath());
+                        break;
+                }
+
+                Integer len;
+                while (true){
+                    byte[] buffer = new byte[kB32];
+                    len = dis.read(buffer);
+                    if(len == -1) {
+                        break;
+                    }
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                dis.close();
+            }
+        }
+    }
+
 
 
 	private void stegFromServer(DataInputStream in, DataOutputStream out) throws Exception{
@@ -417,7 +529,8 @@ class StagHandler implements Runnable{
 				readFile(fos, in, fileSize);
 
 				// Write in DB
-				DBHandler.addUserPhoto(profileId, profileId + fileExt, dbConnection);
+				if (imgFile.length() > 0)
+				    DBHandler.addUserPhoto(profileId, profileId + fileExt, dbConnection);
 
 				// Creating Thumbnail image
 				ImageIO.write(resizeImg(imgFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + profileId + fileExt));
@@ -980,6 +1093,69 @@ class StagHandler implements Runnable{
 		}
 	}
 
+	private void commentRequset(DataInputStream in, DataOutputStream out) throws IOException {
+        int commentId = in.readInt();
+        String profileId = in.readUTF();
+
+        CommentData comment = DBHandler.getComment(commentId, profileId, dbConnection);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        MessagePacker packer = MessagePack.newDefaultPacker(baos);
+        packer
+                .packInt(comment.id)
+                .packInt(comment.stegId)
+                .packInt(comment.getType())
+                .packString(comment.profileId)
+                .packLong(comment.date.getTime())
+                .packLong(comment.time.getTime())
+                .packString(comment.getText())
+                .packInt(comment.getLikesCount())
+                .packBoolean(comment.isLiked());
+        packer.close();
+        out.writeInt(baos.toByteArray().length);
+        out.flush();
+        out.write(baos.toByteArray(), 0, baos.toByteArray().length);
+        out.flush();
+
+        File file = null;
+        switch (comment.getType() & CommentData.COMMENT_MEDIA_CONTENT_MASK){
+            case CommentData.COMMENT_IMAGE_MASK:
+                file = new File(STEGAPP_IMG_T_DIR + comment.getImgData());
+                break;
+            case CommentData.COMMENT_VIDEO_MASK:
+                file = new File(STEGAPP_VIDEO_DIR + comment.getVideoData());
+                break;
+            case CommentData.COMMENT_VOICE_MASK:
+                file = new File(STEGAPP_AUDIO_DIR + comment.getVoiceData());
+                break;
+        }
+
+        if (file != null){
+            out.writeUTF(file.getName().substring(file.getName().lastIndexOf(".")));
+            out.flush();
+
+            Boolean getFile = in.readBoolean();
+
+            if (getFile){
+                out.writeInt((int) file.length());
+                out.flush();
+                FileInputStream fis = new FileInputStream(file);
+
+                Integer len;
+                while (true) {
+                    byte[] buffer = new byte[kB32];
+                    len = fis.read(buffer);
+                    if (len == -1) {
+                        break;
+                    }
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                fis.close();
+            }
+        }
+    }
+
 	private void commentFromServer(DataInputStream in, DataOutputStream out) throws IOException{
 		int commentId = in.readInt();
 		String profileId = in.readUTF();
@@ -1444,7 +1620,7 @@ class StagHandler implements Runnable{
         while(i < fileSize){
             buffer = new byte[kB32];
             len = in.read(buffer, 0, Math.min(fileSize - i, kB32));
-            i += len;
+            i = len + i;
             dos.write(buffer, 0, len);
             dos.flush();
         }

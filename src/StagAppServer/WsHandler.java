@@ -55,7 +55,6 @@ class WsHandler extends WebSocketHandler {
 
 		volatile private String userId;
         volatile private Connection connection;
-        volatile private UserProfile profile;
 		volatile private Integer chatId = null;
 			 
 		@Override
@@ -72,7 +71,7 @@ class WsHandler extends WebSocketHandler {
 			if(chatId != null){
 				chatDispatcher.removeListener(chatId, ChatWebSocket.this);
 			}
-			System.out.println("@" + (this.userId != null ? this.userId : "null") + " disconnected");
+//			System.out.println("@" + (this.userId != null ? this.userId : "null") + " disconnected");
 		}
 
 		@Override
@@ -92,7 +91,7 @@ class WsHandler extends WebSocketHandler {
 						checkConnection();
 						break;
 				case "to":
-					stagData = unpackMe(unpacker, mesType);
+					stagData = unpackSteg(unpacker, mesType);
 					if (!stagData.mesReciever.equals("common")){
 						sendNotification(NewsData.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, stagData.mesSender, stagData.stegId);
 					}
@@ -144,14 +143,13 @@ class WsHandler extends WebSocketHandler {
 					if (DBHandler.signIn(userId, paswd, dbConnection)){
 						this.userId = userId;
 						this.connection.sendMessage("enter");
-						this.profile = DBHandler.getUserProfile(userId, dbConnection);
 						clientSockets.add(this);
 					} else {
 						this.connection.sendMessage("not_registered");
 					}
 					break;
 				case "stag":
-					stagData = unpackMe(unpacker, mesType);
+					stagData = unpackSteg(unpacker, mesType);
 					DBHandler.addSteg(stagData, dbConnection);
 					break;
 				case "addStegToWall":
@@ -278,7 +276,7 @@ class WsHandler extends WebSocketHandler {
 			}
 		}
 
-        private StagData unpackMe (MessageUnpacker unpacker, String mesType) throws IOException {
+        private StagData unpackSteg(MessageUnpacker unpacker, String mesType) throws IOException {
 			StagData stagData = new StagData();
 			stagData.mesType = mesType;
 			switch (stagData.mesType) {
@@ -756,7 +754,7 @@ class WsHandler extends WebSocketHandler {
 	Runnable sendingStegsTask = new Runnable() {
 		@Override
 		public void run() {
-			ArrayList<StagData> stegList = DBHandler.getUnrecievedStegs(dbConnection);
+			ArrayList<StagData> stegList = DBHandler.getUnreceivedStegs(dbConnection);
 
 			for (StagData steg: stegList){
 				ConcurrentHashSet <ChatWebSocket> sendSockets = checkWebSockets(clientSockets, steg);

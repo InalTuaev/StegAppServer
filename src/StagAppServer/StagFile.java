@@ -1,6 +1,11 @@
 package StagAppServer;
 
 public class StagFile {
+
+    public static final int STEG_FILE_TYPE_IMG = 1;
+    public static final int STEG_FILE_TYPE_VIDEO = 2;
+    public static final int STEG_FILE_TYPE_AUDIO = 3;
+
     private String filePath;
     private Integer type;
 

@@ -8,6 +8,7 @@ class CommentData {
 	public static final int COMMENT_IMAGE_MASK = 2;
 	public static final int COMMENT_VIDEO_MASK = 4;
 	public static final int COMMENT_VOICE_MASK = 8;
+	public static final int COMMENT_MEDIA_CONTENT_MASK = 14;
 	
 	public Integer id;
 	public Integer stegId;

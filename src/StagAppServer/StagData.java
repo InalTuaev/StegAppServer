@@ -4,6 +4,12 @@ import java.sql.Date;
 import java.sql.Time;
 
 class StagData {
+	static final int STEG_MEDIA_CONTENT_MASK = 14;
+	static final int STEG_CONTENT_TEXT_MASK = 1;
+	static final int STEG_CONTENT_IMG_MASK = 2;
+	static final int STEG_CONTENT_VIDEO_MASK = 4;
+	static final int STEG_CONTENT_AUDIO_MASK = 8;
+
 	static final int STEG_AREA_MASK_EVERYWHERE = 0;
 	static final int STEG_AREA_MASK_NEAR = 1;
 	static final int STEG_AREA_MASK_CITY = 2;

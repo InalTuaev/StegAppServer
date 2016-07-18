@@ -32,6 +32,7 @@ class DBHandler {
 			"AND reciever = 'common' " +
 			"AND active = TRUE " +
 			"AND deleted != TRUE " +
+			"AND date_ > date_trunc('Day', now()) - interval '4 days' " +
 			"ORDER BY random();";
 
 	private static final String SQL_CHECK_RECEIVERS = "SELECT users.user_id FROM users " +
@@ -209,7 +210,6 @@ class DBHandler {
 
 	static Boolean checkPassword(String profileId, String passwd, Connection dbConnection){
 		Boolean res = false;
-		System.out.println("check password_ userId: " + profileId + " paswd: " + passwd);
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_id = ? AND user_paswd = ?");
 			statement.setString(1, profileId);
@@ -247,7 +247,6 @@ class DBHandler {
 
 	static Boolean signIn(String userId, String paswd, Connection dbConnection){
 		Boolean res = false;
-		System.out.println("sign in_ userId: " + userId + " paswd: " + paswd);
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement("SELECT * FROM users WHERE user_id = ? AND user_paswd = ?");
 			statement.setString(1, userId);
@@ -1012,7 +1011,7 @@ class DBHandler {
 		}
 	}
 	
-	static ArrayList<StagData> getUnrecievedStegs(Connection dbConnection){
+	static ArrayList<StagData> getUnreceivedStegs(Connection dbConnection){
 		ArrayList<StagData> stegList = new ArrayList<>();
 		try{
 			PreparedStatement statement = dbConnection.prepareStatement(SQL_GET_UNRECEIVED_STEGS);
