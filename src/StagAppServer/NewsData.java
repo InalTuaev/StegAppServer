@@ -12,6 +12,8 @@ class NewsData {
 	public static final int NOTIFICATION_PRIVATE_STEG = 5;
 	public static final int NOTIFICATION_COMMENT_LIKE = 6;
 	public static final int NOTIFICATION_FAVORITE_STEG_COMMENT = 7;
+	public static final int NOTIFICATION_APP_BROADCAST = 8;
+	public static final int NOTIFICATION_APP_BROADCAST_UPDATE = 9;
 
 
 	public static final String NOTIFICATION_TYPE_COMMENT = "comment";
@@ -22,6 +24,8 @@ class NewsData {
 	public static final String NOTIFICATION_TYPE_PRIVATE_STEG = "privateSteg";
 	public static final String NOTIFICATION_TYPE_COM_LIKE = "commentLike";
 	public static final String NOTIFICATION_TYPE_FAV_COMMENT = "favComment";
+	public static final String NOTIFICATION_TYPE_APP_BROADCAST = "appBroadcast";
+	public static final String NOTIFICATION_TYPE_APP_BROADCAST_UPDATE = "appUpdate";
 
 	Integer id;
 	String type;

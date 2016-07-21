@@ -1,5 +1,8 @@
 package StagAppServer;
 
+import StagAppServer.location.UserLocation;
+import javafx.util.Pair;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -308,6 +311,19 @@ class DBHandler {
 			e.printStackTrace();
 		}
 	}
+
+	static void setUserShowCityEnabled(String userId, Boolean showCity, Connection dbConnection){
+		try{
+			PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET show_city = ? WHERE user_id = ?;");
+			st.setBoolean(1, showCity);
+			st.setString(2, userId);
+
+			st.executeUpdate();
+			st.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 	
 	static void setUserCoordinates(String userId, String city, Double longitude, Double latitude, Connection dbConnection){
 		String query;
@@ -327,6 +343,35 @@ class DBHandler {
 			if(!city.equals("clear")){
 				st.setString(3,city);
 				st.setString(4, userId);
+			} else {
+				st.setString(3, userId);
+			}
+			st.executeUpdate();
+			st.close();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+
+	static void setUserCoordinatesWithState(String userId, String city, String state, Double longitude, Double latitude, Connection dbConnection){
+		String query;
+		if (userId.equals("StegApp"))
+			return;
+		if(!city.equals("clear") && !state.equals("clear")){
+			query = "UPDATE users SET " +
+					"longitude = ?, latitude = ?, user_city = ?, user_state = ? WHERE user_id = ?;";
+		} else {
+			query = "UPDATE users SET " +
+					"longitude = ?, latitude = ? WHERE user_id = ?;";
+		}
+		try{
+			PreparedStatement st = dbConnection.prepareStatement(query);
+			st.setDouble(1, longitude);
+			st.setDouble(2, latitude);
+			if(!city.equals("clear") && !state.equals("clear")){
+				st.setString(3,city);
+				st.setString(4, state);
+				st.setString(5, userId);
 			} else {
 				st.setString(3, userId);
 			}
@@ -2484,5 +2529,22 @@ class DBHandler {
 			e.printStackTrace();
 		}
 		return stat;
+	}
+
+	static ArrayList<UserLocation> getUserLocations(String profileId, Connection dbConnection){
+		ArrayList<UserLocation> locations = new ArrayList<>();
+		try{
+			PreparedStatement st = dbConnection.prepareStatement("SELECT user_id, longitude, latitude FROM users WHERE (longitude != 0 OR latitude != 0) AND user_id != ?;");
+			st.setString(1, profileId);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()){
+				locations.add(new UserLocation(rs.getString(1), rs.getDouble(2), rs.getDouble(3)));
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return locations;
 	}
 }

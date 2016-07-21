@@ -7,6 +7,7 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import StagAppServer.location.UserLocation;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
@@ -227,6 +228,9 @@ class WsHandler extends WebSocketHandler {
 				case "profileSearch":
 					profileSearch(unpacker);
 					break;
+                    case "getUserLocations":
+                        getUserLocations(unpacker);
+                        break;
 				case "getSubscribers":
 					getSubscribers(unpacker);
 					break;
@@ -245,6 +249,12 @@ class WsHandler extends WebSocketHandler {
 				case "setCoordinates":
 					setCoordinates(unpacker);
 					break;
+					case "setCoordinatesWithState":
+						setCoordinatesWithState(unpacker);
+						break;
+                    case "setShowCityEnabled":
+                        setUserShowCityEnabled(unpacker);
+                        break;
 				case "stegRequest":
 					stegRequest(unpacker);
 					break;
@@ -435,6 +445,15 @@ class WsHandler extends WebSocketHandler {
 										unpacker.unpackDouble(), unpacker.unpackDouble(), dbConnection);
 		}
 
+		private void setUserShowCityEnabled(MessageUnpacker unpacker) throws IOException{
+		    DBHandler.setUserShowCityEnabled(unpacker.unpackString(), unpacker.unpackBoolean(), dbConnection);
+        }
+
+		private void setCoordinatesWithState(MessageUnpacker unpacker) throws IOException{
+			DBHandler.setUserCoordinatesWithState(unpacker.unpackString(), unpacker.unpackString(), unpacker.unpackString(),
+					unpacker.unpackDouble(), unpacker.unpackDouble(), dbConnection);
+		}
+
         private void markNewsSended(MessageUnpacker unpacker) throws IOException{
 			Integer newsId = unpacker.unpackInt();
 			DBHandler.markNewsSended(newsId, dbConnection);
@@ -566,6 +585,24 @@ class WsHandler extends WebSocketHandler {
 			packer.close();
 			connection.sendMessage(searchResultBaos.toByteArray(), 0, searchResultBaos.toByteArray().length);
 		}
+
+		private void getUserLocations(MessageUnpacker unpacker) throws IOException{
+		    String profileId = unpacker.unpackString();
+            ArrayList<UserLocation> userLocations = DBHandler.getUserLocations(profileId, dbConnection);
+
+            ByteArrayOutputStream resultBaos = new ByteArrayOutputStream();
+            MessagePacker packer = MessagePack.newDefaultPacker(resultBaos);
+            Integer resultSize = userLocations.size();
+            packer.packString("userLocationsResult")
+                    .packArrayHeader(resultSize);
+            for(UserLocation item : userLocations){
+                packer.packString(item.getProfileId())
+                        .packDouble(item.getLongitude())
+                        .packDouble(item.getLatitude());
+            }
+            packer.close();
+            connection.sendMessage(resultBaos.toByteArray(), 0, resultBaos.toByteArray().length);
+        }
 
         private void getSubscribers(MessageUnpacker unpacker) throws IOException{
 			String profileId = unpacker.unpackString();

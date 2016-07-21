@@ -63,7 +63,10 @@ class Constants {
                 "obama",
                 "broadcast",
                 "alexfrai",
-                "fraialex"
+                "fraialex",
+                "inaltuaev",
+                "tuaevinal",
+                "alan"
         };
     }
 }
