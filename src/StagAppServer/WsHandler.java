@@ -17,7 +17,7 @@ import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
-class WsHandler extends WebSocketHandler {
+public class WsHandler extends WebSocketHandler {
 	private static final String STEGAPP_IMG_DIR = "StegApp/media/img/";
 	private static final String STEGAPP_IMG_T_DIR = "StegApp/media/img/thumbs/";
 	private static final String STEGAPP_VIDEO_DIR = "StegApp/media/video/";
@@ -43,12 +43,12 @@ class WsHandler extends WebSocketHandler {
 		System.out.println("wsHandler started");
         chatDispatcher = new ChatDispatcher();
 		this.dbConnection = dbConnection;
-		ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-		scheduledExecutorService.scheduleWithFixedDelay(sendingStegsTask, 0, 20, TimeUnit.SECONDS);
+//		ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+//		scheduledExecutorService.scheduleWithFixedDelay(sendingStegsTask, 0, 20, TimeUnit.SECONDS);
 		instance = this;
     }
 
-	static WsHandler getInstance(){
+	public static WsHandler getInstance(){
 			return instance;
 	}
 	
@@ -565,7 +565,7 @@ class WsHandler extends WebSocketHandler {
 
 			EmailSender emailSender = new EmailSender();
 			String pleaText;
-			pleaText = "From: " + pleaer + "\n\nSteg: " + commentId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
+			pleaText = "From: " + pleaer + "\n\nComment: " + commentId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
 			emailSender.send("PleaComment", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
 		}
 
@@ -721,7 +721,7 @@ class WsHandler extends WebSocketHandler {
         }
 	}
 
-	void sendNotification(Integer type, String toUserId, String fromUserId, Integer stegId){
+	public void sendNotification(Integer type, String toUserId, String fromUserId, Integer stegId){
 		try {
 			for(ChatWebSocket socket: clientSockets){
 				if(socket.userId != null){
@@ -769,7 +769,7 @@ class WsHandler extends WebSocketHandler {
 		}
 	}
 
-	void notifyToRefresh(Integer listType, String profileId){
+	public void notifyToRefresh(Integer listType, String profileId){
 		for (ChatWebSocket socket : clientSockets){
 			if (socket.userId.equals(profileId)){
 				try {
@@ -788,7 +788,7 @@ class WsHandler extends WebSocketHandler {
 		}
 	}
 
-	Runnable sendingStegsTask = new Runnable() {
+	private Runnable sendingStegsTask = new Runnable() {
 		@Override
 		public void run() {
 			ArrayList<StagData> stegList = DBHandler.getUnreceivedStegs(dbConnection);

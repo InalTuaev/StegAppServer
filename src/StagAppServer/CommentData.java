@@ -3,7 +3,7 @@ package StagAppServer;
 import java.sql.Date;
 import java.sql.Time;
 
-class CommentData {
+public class CommentData {
 	public static final int COMMENT_TEXT_MASK = 1;
 	public static final int COMMENT_IMAGE_MASK = 2;
 	public static final int COMMENT_VIDEO_MASK = 4;
@@ -21,8 +21,8 @@ class CommentData {
 	private String voiceData;
 	private Integer likesCount;
 	private Boolean isLiked;
-	
-	CommentData(){
+
+	public CommentData(){
 		id = -1;
 		stegId = -1;
 		profileId = "clear";
@@ -33,74 +33,74 @@ class CommentData {
 		likesCount = 0;
 		isLiked = false;
 	}
-	
-	String getText() {
+
+	public String getText() {
 		return text;
 	}
-	
-	void setText(String text){
+
+	public void setText(String text){
 		if (text != null){
 			this.text = text;
 		}
 	}
-	
-	String getImgData(){
+
+	public String getImgData(){
 		if ((commentType & COMMENT_IMAGE_MASK) != 0)
 			return cameraData;
 		return null;
 	}
-	
-	void setImgData(String imagePath){
+
+	public void setImgData(String imagePath){
 		if(!imagePath.equals("clear")){
 			this.cameraData = imagePath;
 		}
 	}
-	
-	String getVideoData(){
+
+	public String getVideoData(){
 		if ((commentType & COMMENT_VIDEO_MASK) != 0)
 			return cameraData;
 		return null;
 	}
-	
-	void setVideoData(String videoPath){
+
+	public void setVideoData(String videoPath){
 		if(!videoPath.equals("clear")){
 			cameraData = videoPath;
 		}
 	}
-	
-	String getVoiceData(){
+
+	public String getVoiceData(){
 		if((commentType & COMMENT_VOICE_MASK) != 0)
 			return voiceData;
 		return null;
 	}
-	
-	void setVoiceData(String voicePath){
+
+	public void setVoiceData(String voicePath){
 		if(!voicePath.equals("clear")){
 			voiceData = voicePath;
 		}
 	}
-	
-	int getType(){
+
+	public int getType(){
 		return commentType;
 	}
-	
-	void setType(Integer type){
+
+	public void setType(Integer type){
 		commentType = type;
 	}
 
-	void setLikesCount(Integer count){
+	public void setLikesCount(Integer count){
 		likesCount = count;
 	}
 
-	Integer getLikesCount(){
+	public Integer getLikesCount(){
 		return likesCount;
 	}
 
-	void setIsLiked(Boolean isLiked){
+	public void setIsLiked(Boolean isLiked){
 		this.isLiked = isLiked;
 	}
 
-	Boolean isLiked(){
+	public Boolean isLiked(){
 		return isLiked;
 	}
 }

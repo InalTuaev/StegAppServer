@@ -3,23 +3,23 @@ package StagAppServer;
 import java.sql.Date;
 import java.sql.Time;
 
-class StagData {
-	static final int STEG_MEDIA_CONTENT_MASK = 14;
-	static final int STEG_CONTENT_TEXT_MASK = 1;
-	static final int STEG_CONTENT_IMG_MASK = 2;
-	static final int STEG_CONTENT_VIDEO_MASK = 4;
-	static final int STEG_CONTENT_AUDIO_MASK = 8;
+public class StagData {
+	public static final int STEG_MEDIA_CONTENT_MASK = 14;
+	public static final int STEG_CONTENT_TEXT_MASK = 1;
+	public static final int STEG_CONTENT_IMG_MASK = 2;
+	public static final int STEG_CONTENT_VIDEO_MASK = 4;
+	public static final int STEG_CONTENT_AUDIO_MASK = 8;
 
-	static final int STEG_AREA_MASK_EVERYWHERE = 0;
-	static final int STEG_AREA_MASK_NEAR = 1;
-	static final int STEG_AREA_MASK_CITY = 2;
-	static final int STEG_AREA_MASK_STATE = 4;
-	static final int STEG_AREA_MASK = 7;
-	
-	static final int STEG_SEX_MASK_ALL = 0;
-	static final int STEG_SEX_MASK_MAN = 64;
-	static final int STEG_SEX_MASK_WOMAN = 128;
-	static final int STEG_SEX_MASK = 192;
+	public static final int STEG_AREA_MASK_EVERYWHERE = 0;
+	public static final int STEG_AREA_MASK_NEAR = 1;
+	public static final int STEG_AREA_MASK_CITY = 2;
+	public static final int STEG_AREA_MASK_STATE = 4;
+	public static final int STEG_AREA_MASK = 7;
+
+	public static final int STEG_SEX_MASK_ALL = 0;
+	public static final int STEG_SEX_MASK_MAN = 64;
+	public static final int STEG_SEX_MASK_WOMAN = 128;
+	public static final int STEG_SEX_MASK = 192;
 	
 	public Integer stegId;
 	public String mesType;
@@ -103,21 +103,21 @@ class StagData {
 		this.deleted = deleted;
 	}
 
-	void setIsActive(Boolean value){
+	public void setIsActive(Boolean value){
 		isActive = value;
 	}
-	Boolean isActive(){
+	public Boolean isActive(){
 		return isActive;
 	}
 
-	void setIsFavorite(Boolean favorite){
+	public void setIsFavorite(Boolean favorite){
 		this.favorite = favorite;
 	}
-	Boolean isFavorite(){
+	public Boolean isFavorite(){
 		return favorite;
 	}
 
-	Boolean isDeleted(){
+	public Boolean isDeleted(){
 		return deleted;
 	}
 }

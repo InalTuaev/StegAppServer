@@ -3,7 +3,7 @@ package StagAppServer;
 import java.sql.Date;
 import java.sql.Time;
 
-class LikeData {
+public class LikeData {
 	public Integer id;
 	public Integer stegId;
 	public String profileId;

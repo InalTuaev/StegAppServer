@@ -1,6 +1,6 @@
 package StagAppServer;
 
-class UserProfile {
+public class UserProfile {
 	private String userId;
 	private String userName;
 	private String userSex;
@@ -11,8 +11,8 @@ class UserProfile {
 	private Boolean isFriend;
 	private Double latitude;
 	private Double longitude;
-	
-	UserProfile(String userId){
+
+	public UserProfile(String userId){
 		this.userId = userId;
 		userName = "clear";
 		userSex = "clear";
@@ -25,7 +25,7 @@ class UserProfile {
 		longitude = 0.0;
 	}
 
-	UserProfile(){
+	public UserProfile(){
 		userId = "clear";
 		userName = "clear";
 		userSex = "clear";
@@ -38,66 +38,66 @@ class UserProfile {
 		longitude = 0.0;
 	}
 	
-	void setId(String userId){
+	public void setId(String userId){
 		this.userId = userId;
 	}
-	void setName(String userName){
+	public void setName(String userName){
 		this.userName = userName;
 	}
-	void setSex(String userSex){
+	public void setSex(String userSex){
 		this.userSex = userSex;
 	}
-	void setState(String userState){
+	public void setState(String userState){
 		this.userState = userState;
 	}
-	void setCity(String userCity){
+	public void setCity(String userCity){
 		this.userCity = userCity;
 	}
-	void setAge(Integer userAge){
+	public void setAge(Integer userAge){
 		this.userAge = userAge;
 	}
-	void setPhoto(String userPhoto){
+	public void setPhoto(String userPhoto){
 		this.userPhoto = userPhoto;
 	}
-	void setIsFriend(Boolean isFriend){
+	public void setIsFriend(Boolean isFriend){
 		this.isFriend = isFriend;
 	}
-	
-	String getId(){
+
+	public String getId(){
 		return userId;
 	}
-	String getName(){
+	public String getName(){
 		return userName;
 	}
-	String getSex(){
+	public String getSex(){
 		return userSex;
 	}
-	String getState(){
+	public String getState(){
 		return userState;
 	}
-	String getCity(){
+	public String getCity(){
 		return userCity;
 	}
-	Integer getAge(){
+	public Integer getAge(){
 		return userAge;
 	}
-	String getPhoto(){
+	public String getPhoto(){
 		return userPhoto;
 	}
-	Boolean getIsFriend(){
+	public Boolean getIsFriend(){
 		return isFriend;
 	}
-	
-	void setCoordinates(Double longitude, Double latitude){
+
+	public void setCoordinates(Double longitude, Double latitude){
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
-	Double getLatitude(){
+
+	public Double getLatitude(){
 		return latitude;
 	}
-	
-	Double getLongitude(){
+
+	public Double getLongitude(){
 		return longitude;
 	}
 }

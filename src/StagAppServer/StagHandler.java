@@ -1572,6 +1572,8 @@ class StagHandler implements Runnable{
 		out.flush();
 	}
 
+	//  *************************************************************
+
 	private BufferedImage resizeImg(File bigImgFile, int width, int height) throws IOException{
 		float dx, dy;
 		int genX, genY;
@@ -1598,7 +1600,6 @@ class StagHandler implements Runnable{
 		return smallImg;
 	}
 
-//  *************************************************************
     private void readImgFile(FileOutputStream dos, DataInputStream in, File file, String fileExt, Integer fileSize){
         try {
             readFile(dos, in, fileSize);
