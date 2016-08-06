@@ -1,6 +1,12 @@
 package StagAppServer;
 
 public class UserProfile {
+
+	public static final String NO_VALUE = "clear";
+	public static final String MALE = "man";
+	public static final String FEMALE = "woman";
+	public static final String ANONYM = "anonym";
+
 	private String userId;
 	private String userName;
 	private String userSex;

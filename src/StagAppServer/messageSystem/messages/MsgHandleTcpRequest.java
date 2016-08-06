@@ -7,7 +7,7 @@ import StagAppServer.tcpService.TCPService;
 
 import java.net.Socket;
 
-public class MsgHandleTcpRequest extends MsgToTcpService{
+public class MsgHandleTcpRequest extends MsgToTcpService {
     private Socket socket;
 
     public MsgHandleTcpRequest(Address to, Socket socket) {

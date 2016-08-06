@@ -8,11 +8,16 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public interface TCPService extends Abonent{
+public interface TCPService extends Abonent {
 
-/**    Requests from client that must be handled by {@code handleRequest(Socket socket)} */
+    /**
+     * Requests from client that must be handled by {@code handleRequest(Socket socket)}
+     */
 
     String STEG_TO_SERVER = "stegToServer";
+    String STEG_TO_SERVER_V2 = "stegToServerNew";
+    String BROADCAST_STEG_TO_SERVER = "broadcastToServer";
+    String STEG_TO_SERVER_WITH_LOCATION = "stegToServerLoc";
     String STEG_FROM_SERVER = "stegFromServer";
     String STEG_REQUEST = "stegRequest";
     String PROFILE_FROM_SERVER = "profileFromServer";
@@ -21,10 +26,12 @@ public interface TCPService extends Abonent{
     String PROFILE_TO_SERVER_NO_IMG_NO_GEO = "profileToSrvrNoImgNoGeo";
     String PROFILE_IMG_TO_SERVER = "profileImgToServer";
     String WALL_ITEMS_FROM_SERVER = "wallItemsFromServer";
+    String WALL_ITEMS_FROM_SERVER_FOR_PROFILE = "wallItemsFromServerForProfile";
     String COMMENT_ITEMS_FROM_SERVER = "commentItemsFromServer";
     String COMMENT_FROM_SERVER = "commentFromServer";
     String COMMENT_REQUEST = "commentRequest";
     String COMMENT_TO_SERVER = "commentToServer";
+    String COMMENT_TO_SERVER_V2 = "commentToServerNew";
     String LIKES_FROM_SERVER = "likesFromServer";
     String COMMENT_LIKES_FROM_SERVER = "comLikesFromServer";
     String NOTIFICATION_ITEMS_FROM_SERVER = "notificationItemsFromServer";
@@ -43,7 +50,9 @@ public interface TCPService extends Abonent{
     String FAVORITES_FROM_SERVER = "favoritesFromServer";
 
 
-    /**    Method that handle clients TCP requests  */
+    /**
+     * Method that handle clients TCP requests
+     */
     void handleRequest(Socket socket);
 
 ////    Stegs

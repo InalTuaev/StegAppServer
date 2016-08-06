@@ -131,10 +131,9 @@ class ChatDispatcher {
         Iterator<Integer> parentIter = set.keySet().iterator();
         while(parentIter.hasNext()){
             Integer chatIterator = parentIter.next();
-            System.out.println("* " + chatIterator + " +++++++++++++++++++++++++++");
             Iterator<String> childIter = set.get(chatIterator).keySet().iterator();
             while(childIter.hasNext()){
-                System.out.println("    *- " + childIter.next() + "+ + + + + + +");
+
             }
         }
     }

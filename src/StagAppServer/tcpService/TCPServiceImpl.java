@@ -2,6 +2,7 @@ package StagAppServer.tcpService;
 
 
 import StagAppServer.*;
+import StagAppServer.location.StegLocation;
 import StagAppServer.messageSystem.Address;
 import StagAppServer.messageSystem.MessageSystem;
 import org.msgpack.core.MessagePack;
@@ -17,7 +18,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class TCPServiceImpl implements TCPService, Runnable{
+public class TCPServiceImpl implements TCPService, Runnable {
 
     private static final String STEGAPP_IMG_DIR = "StegApp/media/img/";
     private static final String STEGAPP_IMG_T_DIR = "StegApp/media/img/thumbs/";
@@ -26,13 +27,13 @@ public class TCPServiceImpl implements TCPService, Runnable{
     private static final String STEGAPP_PROFILE_PHOTO_DIR = "StegApp/avatars/";
     private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
 
-    private static final Integer kB32 = 32*1024;
+    private static final Integer kB32 = 32 * 1024;
 
     private final Connection dbConnection;
     private final MessageSystem ms;
     private final Address address = new Address();
 
-    public TCPServiceImpl(Connection dbConnection, MessageSystem ms){
+    public TCPServiceImpl(Connection dbConnection, MessageSystem ms) {
         this.dbConnection = dbConnection;
         this.ms = ms;
         ms.addService(this);
@@ -43,21 +44,25 @@ public class TCPServiceImpl implements TCPService, Runnable{
     public void run() {
         try {
             while (true) {
-                ms.execForAbonent(this);
+                try {
+                    ms.execForAbonent(this);
+                } catch (NullPointerException npe){
+                    npe.printStackTrace();
+                }
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void handleRequest(Socket socket) {
-        try{
+        try {
             socket.setTcpNoDelay(true);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             String what = in.readUTF();
-            switch(what){
+            switch (what) {
                 case STEG_TO_SERVER:
                     stegToServer(in);
                     break;
@@ -102,6 +107,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     break;
                 case COMMENT_LIKES_FROM_SERVER:
                     commentLikesFromServer(in, out);
+                    break;
                 case NOTIFICATION_ITEMS_FROM_SERVER:
                     notificationItemsFromServer(in, out);
                     break;
@@ -145,28 +151,30 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     favoritesFromServer(in, out);
                     break;
             }
+            out.close();
+            in.close();
             socket.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    private void stegToServer(DataInputStream in) throws IOException{
+    private void stegToServer(DataInputStream in) throws IOException {
         Boolean notStopped = true;
         Boolean isAddToMyWall;
         StagData stagData = new StagData();
-        while(notStopped){
+        while (notStopped) {
             File imgFile = null;
             String imgExt = null;
             File stagFile;
             String what = in.readUTF();
-            switch(what){
+            switch (what) {
                 case "fileToServer":
                     Integer fileType = in.readInt();
                     FileOutputStream dos = null;
                     String fileExt = in.readUTF();
-                    switch(fileType){
+                    switch (fileType) {
                         case 1:
                             imgExt = fileExt;
                             imgFile = new File(STEGAPP_IMG_DIR + System.currentTimeMillis() + imgExt);
@@ -198,30 +206,28 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     stagData.mesSender = unpacker.unpackString();
                     stagData.mesReciever = unpacker.unpackString();
                     stagData.stagType = unpacker.unpackInt();
-                    if((stagData.stagType & 1) != 0){
+                    if ((stagData.stagType & 1) != 0) {
                         stagData.mesText = unpacker.unpackString();
                     }
                     stagData.lifeTime = unpacker.unpackInt();
                     stagData.anonym = unpacker.unpackBoolean();
                     stagData.filter = unpacker.unpackInt();
                     isAddToMyWall = unpacker.unpackBoolean();
-                    unpacker.close();
+
                     Integer newStegId = DBHandler.addSteg(stagData, dbConnection);
                     Integer listType;
-                    if(isAddToMyWall){
-                        DBHandler.incStegReceived(newStegId, dbConnection);
-                        DBHandler.stegToWall(newStegId, stagData.mesSender, dbConnection);
-                        listType = WsHandler.STEG_LIST_TYPE_WALL_ITEM;
+                    if (stagData.mesReciever.equals("location")) {
+                        DBHandler.addStegLocation(newStegId, unpacker.unpackDouble(), unpacker.unpackDouble(), unpacker.unpackString(), unpacker.unpackInt(), dbConnection);
                     } else {
-                        if(!stagData.mesReciever.equals("common")){
+                        if (!stagData.mesReciever.equals("common")) {
                             listType = WsHandler.STEG_LIST_TYPE_OUTCOME_PRIVATE_ITEM;
-                            if(stagData.anonym){
+                            if (stagData.anonym) {
                                 DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, "clear", stagData.mesReciever, newStegId, dbConnection);
                             } else {
                                 DBHandler.addNews(NewsData.NOTIFICATION_TYPE_PRIVATE_STEG, stagData.mesSender, stagData.mesReciever, newStegId, dbConnection);
                             }
                             String sender;
-                            if (stagData.anonym){
+                            if (stagData.anonym) {
                                 sender = "anonym";
                             } else {
                                 sender = stagData.mesSender;
@@ -230,8 +236,10 @@ public class TCPServiceImpl implements TCPService, Runnable{
                         } else {
                             listType = WsHandler.STEG_LIST_TYPE_OUTCOME_COMMON_ITEM;
                         }
+
+                        WsHandler.getInstance().notifyToRefresh(listType, stagData.mesSender);
                     }
-                    WsHandler.getInstance().notifyToRefresh(listType, stagData.mesSender);
+                    unpacker.close();
                     notStopped = false;
                     break;
             }
@@ -256,7 +264,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 .packString(steg.senderName)
                 .packString(steg.mesReciever)
                 .packInt(steg.stagType);
-        if((steg.stagType & 1) != 0){
+        if ((steg.stagType & 1) != 0) {
             packer.packString(steg.mesText);
         }
         packer.packInt(steg.lifeTime)
@@ -287,20 +295,20 @@ public class TCPServiceImpl implements TCPService, Runnable{
 //        Ложим все файлы в список
         ArrayList<StagFile> fileList = new ArrayList<>();
 
-        if((steg.stagType & StagData.STEG_CONTENT_IMG_MASK) != 0) {
+        if ((steg.stagType & StagData.STEG_CONTENT_IMG_MASK) != 0) {
             fileList.add(new StagFile(steg.cameraDataFile, StagFile.STEG_FILE_TYPE_IMG));
         }
-        if((steg.stagType & StagData.STEG_CONTENT_VIDEO_MASK) != 0) {
+        if ((steg.stagType & StagData.STEG_CONTENT_VIDEO_MASK) != 0) {
             fileList.add(new StagFile(steg.cameraDataFile, StagFile.STEG_FILE_TYPE_VIDEO));
         }
-        if((steg.stagType & StagData.STEG_CONTENT_AUDIO_MASK) != 0) {
+        if ((steg.stagType & StagData.STEG_CONTENT_AUDIO_MASK) != 0) {
             fileList.add(new StagFile(steg.voiceDataFile, StagFile.STEG_FILE_TYPE_AUDIO));
         }
 //        Отправляем клиенту количество готовых к отправке файлов
         out.writeInt(fileList.size());
         out.flush();
 
-        for (StagFile stegFile : fileList){
+        for (StagFile stegFile : fileList) {
             out.writeInt(stegFile.getType());
             out.flush();
             out.writeUTF(stegFile.getFilePath().substring(stegFile.getFilePath().lastIndexOf(".")));
@@ -309,9 +317,9 @@ public class TCPServiceImpl implements TCPService, Runnable{
 //            Отправлять ли файл
             Boolean getFile = in.readBoolean();
 
-            if (getFile){
+            if (getFile) {
                 FileInputStream dis = null;
-                switch(stegFile.getType()){
+                switch (stegFile.getType()) {
                     case StagFile.STEG_FILE_TYPE_IMG:
                         out.writeInt((int) new File(STEGAPP_IMG_T_DIR + stegFile.getFilePath()).length());
                         out.flush();
@@ -330,10 +338,10 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 }
 
                 Integer len;
-                while (true){
+                while (true) {
                     byte[] buffer = new byte[kB32];
                     len = dis.read(buffer);
-                    if(len == -1) {
+                    if (len == -1) {
                         break;
                     }
                     out.write(buffer, 0, len);
@@ -354,17 +362,17 @@ public class TCPServiceImpl implements TCPService, Runnable{
 
         ArrayList<StagFile> fileList = new ArrayList<>();
 
-        if((stagData.stagType & 2) != 0) {
+        if ((stagData.stagType & 2) != 0) {
             fileList.add(new StagFile(stagData.cameraDataFile, 1));
         }
-        if((stagData.stagType & 4) != 0) {
+        if ((stagData.stagType & 4) != 0) {
             fileList.add(new StagFile(stagData.cameraDataFile, 2));
         }
-        if((stagData.stagType & 8) != 0) {
+        if ((stagData.stagType & 8) != 0) {
             fileList.add(new StagFile(stagData.voiceDataFile, 3));
         }
 
-        for(StagFile sFile: fileList){
+        for (StagFile sFile : fileList) {
             out.writeUTF("fileFromServer");
             out.flush();
             out.writeInt(sFile.getType());
@@ -372,7 +380,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
             out.writeUTF(sFile.getFilePath().substring(sFile.getFilePath().lastIndexOf(".")));
             out.flush();
             FileInputStream dis = null;
-            switch(sFile.getType()){
+            switch (sFile.getType()) {
                 case 1:
                     out.writeInt((int) new File(STEGAPP_IMG_T_DIR + sFile.getFilePath()).length());
                     out.flush();
@@ -391,10 +399,10 @@ public class TCPServiceImpl implements TCPService, Runnable{
             }
 
             Integer len;
-            while (true){
+            while (true) {
                 byte[] buffer = new byte[kB32];
                 len = dis.read(buffer);
-                if(len == -1) {
+                if (len == -1) {
                     break;
                 }
                 out.write(buffer, 0, len);
@@ -414,7 +422,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 .packString(stagData.senderName)
                 .packString(stagData.mesReciever)
                 .packInt(stagData.stagType);
-        if((stagData.stagType & 1) != 0){
+        if ((stagData.stagType & 1) != 0) {
             packer.packString(stagData.mesText);
         }
         packer.packInt(stagData.lifeTime)
@@ -440,7 +448,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
     private void profileToServer(DataInputStream in) throws IOException {
         UserProfile recProfile = new UserProfile();
         String what = in.readUTF();
-        switch(what) {
+        switch (what) {
             case "userProfile":
                 Integer len = in.readInt();
                 byte[] profileBytes = new byte[len];
@@ -452,7 +460,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 recProfile.setState(unpacker.unpackString());
                 recProfile.setCity(unpacker.unpackString());
                 recProfile.setAge(unpacker.unpackInt());
-                if(unpacker.hasNext()){
+                if (unpacker.hasNext()) {
                     recProfile.setCoordinates(unpacker.unpackDouble(), unpacker.unpackDouble());
                 }
                 unpacker.close();
@@ -460,7 +468,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 DBHandler.addUserInfo(recProfile, dbConnection);
 
                 String isPhoto = in.readUTF();
-                if(isPhoto.equals("profilePhoto")){
+                if (isPhoto.equals("profilePhoto")) {
                     String recUserId = in.readUTF();
                     String fileExt = in.readUTF();
                     Integer fileSize = in.readInt();
@@ -510,7 +518,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         File imgFile = new File(STEGAPP_PROFILE_PHOTO_DIR + profileId + fileExt);
         FileOutputStream fos = new FileOutputStream(imgFile);
 
-        try{
+        try {
             readFile(fos, in, fileSize);
 
             // Write in DB
@@ -520,7 +528,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
             // Creating Thumbnail image
             ImageIO.write(resizeImg(imgFile, 120, 120), fileExt.substring(1), new File(STEGAPP_PROFILE_THUMBS_DIR + profileId + fileExt));
             WsHandler.getInstance().notifyToRefresh(WsHandler.PROFILE_REFRESH, profileId);
-        } catch (EOFException e){
+        } catch (EOFException e) {
             e.printStackTrace();
         }
     }
@@ -531,7 +539,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         String profileId = in.readUTF();
         UserProfile profileToSend = DBHandler.getUserProfile(userId, dbConnection);
 
-        if(!profileId.equals(userId)){
+        if (!profileId.equals(userId)) {
             profileToSend.setIsFriend(DBHandler.isFriend(profileId, userId, dbConnection));
             isBlack = DBHandler.isBlack(profileId, userId, dbConnection);
         }
@@ -551,7 +559,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 .packBoolean(isBlack);
 
 
-        if(!profileToSend.getPhoto().equals("clear")){
+        if (!profileToSend.getPhoto().equals("clear")) {
             File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + profileToSend.getPhoto());
             profilePacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
             byte[] photoBytes = new byte[(int) sendFile.length()];
@@ -582,10 +590,10 @@ public class TCPServiceImpl implements TCPService, Runnable{
         out.writeLong(imgFile.length());
 
         Integer len;
-        while (true){
+        while (true) {
             byte[] buffer = new byte[kB32];
             len = fis.read(buffer);
-            if(len == -1) {
+            if (len == -1) {
                 break;
             }
             out.write(buffer, 0, len);
@@ -631,7 +639,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = stegItems.size();
         out.writeInt(count);
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.writeUTF(stegItem.getMesSender());
             out.writeBoolean(stegItem.isAnonym());
@@ -647,7 +655,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ArrayList<StegItem> stegItems = DBHandler.getIncomeCommonItems(profileId, dbConnection);
         out.writeInt(stegItems.size());
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.writeUTF(stegItem.getMesSender());
             out.writeBoolean(stegItem.isAnonym());
@@ -664,7 +672,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ArrayList<StegItem> stegItems = DBHandler.getProfileSentItems(requestor, profileId, dbConnection);
         out.writeInt(stegItems.size());
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.writeUTF(stegItem.getMesSender());
             out.writeBoolean(stegItem.isAnonym());
@@ -681,7 +689,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = stegItems.size();
         out.writeInt(count);
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.writeUTF(stegItem.getMesSender());
             out.writeBoolean(stegItem.isAnonym());
@@ -699,7 +707,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = stegItems.size();
         out.writeInt(count);
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.flush();
             out.writeUTF(stegItem.getMesSender());
@@ -715,14 +723,14 @@ public class TCPServiceImpl implements TCPService, Runnable{
             Integer recievers = stegItem.getRecieverCount();
             out.writeInt(recievers);
             out.flush();
-            if(recievers > 4)
+            if (recievers > 4)
                 recievers = 4;
             out.writeInt(recievers);
             out.flush();
             int i = 0;
-            for(Map.Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()){
+            for (Map.Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()) {
                 i++;
-                if(i > 4) break;
+                if (i > 4) break;
                 out.writeUTF(entry.getKey());
             }
             out.flush();
@@ -737,7 +745,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         MessagePacker packer = MessagePack.newDefaultPacker(baos);
         packer.packArrayHeader(stegItems.size());
-        for (StegItem item : stegItems){
+        for (StegItem item : stegItems) {
             packer.packInt(item.getStegId())
                     .packString(item.getMesSender())
                     .packBoolean(item.isAnonym())
@@ -758,7 +766,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = stegItems.size();
         out.writeInt(count);
         out.flush();
-        for(StegItem stegItem: stegItems){
+        for (StegItem stegItem : stegItems) {
             out.writeInt(stegItem.getStegId());
             out.writeUTF(stegItem.getMesSender());
             out.writeBoolean(stegItem.isAnonym());
@@ -776,7 +784,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = items.size();
         out.writeInt(count);
         out.flush();
-        for(CommentItem comment : items){
+        for (CommentItem comment : items) {
             ByteArrayOutputStream commentBaos = new ByteArrayOutputStream();
             MessagePacker commentPacker = MessagePack.newDefaultPacker(commentBaos);
             commentPacker
@@ -822,7 +830,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         out.flush();
 
         File file = null;
-        switch (comment.getType() & CommentData.COMMENT_MEDIA_CONTENT_MASK){
+        switch (comment.getType() & CommentData.COMMENT_MEDIA_CONTENT_MASK) {
             case CommentData.COMMENT_IMAGE_MASK:
                 file = new File(STEGAPP_IMG_T_DIR + comment.getImgData());
                 break;
@@ -834,13 +842,13 @@ public class TCPServiceImpl implements TCPService, Runnable{
                 break;
         }
 
-        if (file != null){
+        if (file != null) {
             out.writeUTF(file.getName().substring(file.getName().lastIndexOf(".")));
             out.flush();
 
             Boolean getFile = in.readBoolean();
 
-            if (getFile){
+            if (getFile) {
                 out.writeInt((int) file.length());
                 out.flush();
                 FileInputStream fis = new FileInputStream(file);
@@ -868,17 +876,17 @@ public class TCPServiceImpl implements TCPService, Runnable{
 
         ArrayList<StagFile> fileList = new ArrayList<>();
 
-        if((comment.getType() & 2) != 0) {
+        if ((comment.getType() & 2) != 0) {
             fileList.add(new StagFile(comment.getImgData(), 1));
         }
-        if((comment.getType() & 4) != 0) {
+        if ((comment.getType() & 4) != 0) {
             fileList.add(new StagFile(comment.getVideoData(), 2));
         }
-        if((comment.getType() & 8) != 0) {
+        if ((comment.getType() & 8) != 0) {
             fileList.add(new StagFile(comment.getVoiceData(), 3));
         }
 
-        for(StagFile sFile: fileList){
+        for (StagFile sFile : fileList) {
             out.writeUTF("fileFromServer");
             out.flush();
             out.writeInt(sFile.getType());
@@ -886,7 +894,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
             out.writeUTF(sFile.getFilePath().substring(sFile.getFilePath().lastIndexOf(".")));
             out.flush();
             FileInputStream dis = null;
-            switch(sFile.getType()){
+            switch (sFile.getType()) {
                 case 1:
                     out.writeInt((int) new File(STEGAPP_IMG_T_DIR + sFile.getFilePath()).length());
                     out.flush();
@@ -905,10 +913,10 @@ public class TCPServiceImpl implements TCPService, Runnable{
             }
 
             Integer len;
-            while (true){
+            while (true) {
                 byte[] buffer = new byte[kB32];
                 len = dis.read(buffer);
-                if(len == -1) {
+                if (len == -1) {
                     break;
                 }
                 out.write(buffer, 0, len);
@@ -941,17 +949,17 @@ public class TCPServiceImpl implements TCPService, Runnable{
     private void commentToServer(DataInputStream in, DataOutputStream out) throws IOException {
         Boolean notStopped = true;
         CommentData commentData = new CommentData();
-        while(notStopped){
+        while (notStopped) {
             File imgFile = null;
             String imgExt = null;
             File stagFile = null;
             String what = in.readUTF();
-            switch(what){
+            switch (what) {
                 case "fileToServer":
                     Integer fileType = in.readInt();
                     FileOutputStream dos = null;
                     String fileExt = in.readUTF();
-                    switch(fileType){
+                    switch (fileType) {
                         case 1:
                             imgExt = fileExt;
                             imgFile = new File(STEGAPP_IMG_DIR + System.currentTimeMillis() + imgExt);
@@ -983,7 +991,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     commentData.setType(unpacker.unpackInt());
                     commentData.stegId = unpacker.unpackInt();
                     commentData.profileId = unpacker.unpackString();
-                    if((commentData.getType() & CommentData.COMMENT_TEXT_MASK) != 0){
+                    if ((commentData.getType() & CommentData.COMMENT_TEXT_MASK) != 0) {
                         commentData.setText(unpacker.unpackString());
                     } else {
                         commentData.setText("clear");
@@ -1002,7 +1010,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ByteArrayOutputStream likeBaos = new ByteArrayOutputStream();
         MessagePacker likePacker = MessagePack.newDefaultPacker(likeBaos);
         likePacker.packArrayHeader(likers.size());
-        for(String liker : likers){
+        for (String liker : likers) {
             likePacker.packString(liker);
         }
         likePacker.close();
@@ -1016,7 +1024,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ByteArrayOutputStream likeBaos = new ByteArrayOutputStream();
         MessagePacker likePacker = MessagePack.newDefaultPacker(likeBaos);
         likePacker.packArrayHeader(likers.size());
-        for(String liker : likers){
+        for (String liker : likers) {
             likePacker.packString(liker);
         }
         likePacker.close();
@@ -1029,7 +1037,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         ArrayList<NewsData> news = DBHandler.getNews(owner, dbConnection);
         out.writeInt(news.size());
         out.flush();
-        for(NewsData n: news){
+        for (NewsData n : news) {
             ByteArrayOutputStream newsBaos = new ByteArrayOutputStream();
             MessagePacker newsPacker = MessagePack.newDefaultPacker(newsBaos);
             newsPacker
@@ -1037,7 +1045,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     .packString(n.type)
                     .packBoolean(n.sended)
                     .packString(n.profileId);
-            if(!n.type.equals("friend"))
+            if (!n.type.equals("friend"))
                 newsPacker.packInt(n.stegId);
             newsPacker
                     .packLong(n.date.getTime())
@@ -1061,7 +1069,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         packer.packArrayHeader(favorites.size());
 
 
-        for (FavoriteItem item : favorites){
+        for (FavoriteItem item : favorites) {
             packer
                     .packInt(item.getId())
                     .packInt(item.getFavId())
@@ -1082,7 +1090,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = savers.size();
         out.writeInt(count);
         out.flush();
-        for(LikeData saver : savers){
+        for (LikeData saver : savers) {
             ByteArrayOutputStream saverBaos = new ByteArrayOutputStream();
             MessagePacker saverPacker = MessagePack.newDefaultPacker(saverBaos);
             saverPacker
@@ -1091,7 +1099,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     .packString(saver.profileId)
                     .packString(saver.profileName);
 
-            if(!saver.profileImg.equals("clear")){
+            if (!saver.profileImg.equals("clear")) {
                 saverPacker.packString("photo");
                 File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + saver.profileImg);
                 saverPacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
@@ -1118,7 +1126,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
         Integer count = geters.size();
         out.writeInt(count);
         out.flush();
-        for(LikeData geter : geters){
+        for (LikeData geter : geters) {
             ByteArrayOutputStream geterBaos = new ByteArrayOutputStream();
             MessagePacker geterPacker = MessagePack.newDefaultPacker(geterBaos);
             geterPacker
@@ -1127,7 +1135,7 @@ public class TCPServiceImpl implements TCPService, Runnable{
                     .packString(geter.profileId)
                     .packString(geter.profileName);
 
-            if(!geter.profileImg.equals("clear")){
+            if (!geter.profileImg.equals("clear")) {
                 geterPacker.packString("photo");
                 File sendFile = new File(STEGAPP_PROFILE_THUMBS_DIR + geter.profileImg);
                 geterPacker.packString(sendFile.getName().substring(sendFile.getName().lastIndexOf(".")));
@@ -1155,18 +1163,18 @@ public class TCPServiceImpl implements TCPService, Runnable{
         int genX, genY;
 
         BufferedImage bigImg = ImageIO.read(bigImgFile);
-        dx = ((float) width)/bigImg.getWidth();
-        dy = ((float) height)/bigImg.getHeight();
+        dx = ((float) width) / bigImg.getWidth();
+        dy = ((float) height) / bigImg.getHeight();
 
-        if(bigImg.getWidth()<=width && bigImg.getHeight()<=height){
+        if (bigImg.getWidth() <= width && bigImg.getHeight() <= height) {
             genX = bigImg.getWidth();
             genY = bigImg.getHeight();
         } else {
-            if(dx <= dy){
+            if (dx <= dy) {
                 genX = width;
-                genY = (int) (dx*bigImg.getHeight());
+                genY = (int) (dx * bigImg.getHeight());
             } else {
-                genX = (int) (dy*bigImg.getWidth());
+                genX = (int) (dy * bigImg.getWidth());
                 genY = height;
             }
         }
@@ -1176,12 +1184,12 @@ public class TCPServiceImpl implements TCPService, Runnable{
         return smallImg;
     }
 
-    private void readImgFile(FileOutputStream dos, DataInputStream in, File file, String fileExt, Integer fileSize){
+    private void readImgFile(FileOutputStream dos, DataInputStream in, File file, String fileExt, Integer fileSize) {
         try {
             readFile(dos, in, fileSize);
 
             // Creating Thumbnail image
-            if(file != null){
+            if (file != null) {
                 ImageIO.write(resizeImg(file, 960, 960), fileExt.substring(1), new File(STEGAPP_IMG_T_DIR + file.getName()));
             }
 
@@ -1190,11 +1198,11 @@ public class TCPServiceImpl implements TCPService, Runnable{
         }
     }
 
-    private void readFile(FileOutputStream dos, DataInputStream in, Integer fileSize) throws IOException{
+    private void readFile(FileOutputStream dos, DataInputStream in, Integer fileSize) throws IOException {
         int i = 0;
         Integer len = 0;
         byte[] buffer;
-        while(i < fileSize){
+        while (i < fileSize) {
             buffer = new byte[kB32];
             len = in.read(buffer, 0, Math.min(fileSize - i, kB32));
             i = len + i;

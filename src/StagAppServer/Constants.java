@@ -66,7 +66,8 @@ class Constants {
                 "fraialex",
                 "inaltuaev",
                 "tuaevinal",
-                "alan"
+                "alan",
+                "location"
         };
     }
 }

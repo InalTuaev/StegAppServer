@@ -4,6 +4,11 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class StagData {
+	public static final String NO_VALUE = "clear";
+	public static final String COMMON_STEG = "common";
+	public static final String LOCATION_STEG = "location";
+	public static final String BROADCAST_STEG = "broadcast";
+
 	public static final int STEG_MEDIA_CONTENT_MASK = 14;
 	public static final int STEG_CONTENT_TEXT_MASK = 1;
 	public static final int STEG_CONTENT_IMG_MASK = 2;
