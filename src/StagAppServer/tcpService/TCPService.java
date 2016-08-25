@@ -15,11 +15,14 @@ public interface TCPService extends Abonent {
      */
 
     String STEG_TO_SERVER = "stegToServer";
-    String STEG_TO_SERVER_V2 = "stegToServerNew";
+    String STEG_TO_SERVER_NEW = "stegToServerNew";
+    String STEG_TO_SERVER_V2 = "stegToServerV2";
     String BROADCAST_STEG_TO_SERVER = "broadcastToServer";
     String STEG_TO_SERVER_WITH_LOCATION = "stegToServerLoc";
     String STEG_FROM_SERVER = "stegFromServer";
     String STEG_REQUEST = "stegRequest";
+    String STEG_REQUEST_V2 = "stegRequestV2";
+    String POLL_FROM_SERVER = "pollFromServer";
     String PROFILE_FROM_SERVER = "profileFromServer";
     String PROFILE_IMG_FROM_SERVER = "profileImgFromServer";
     String PROFILE_TO_SERVER = "profileToServer";

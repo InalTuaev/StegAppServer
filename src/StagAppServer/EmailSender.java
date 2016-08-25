@@ -19,7 +19,7 @@ public class EmailSender {
 			@Override
 			public void run() {
 				Properties props;
-				String userName = "stegapp999@gmail.com";
+				String userName = "stegapp777@gmail.com";
 				String password = "vpered1973";
 				
 				props = new Properties();

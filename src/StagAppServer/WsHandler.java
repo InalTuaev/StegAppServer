@@ -8,6 +8,9 @@ import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import StagAppServer.dataClasses.*;
+import StagAppServer.fcm.FcmConnection;
+import StagAppServer.fcm.FcmConsts;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
 import org.eclipse.jetty.util.ConcurrentHashSet;
@@ -262,6 +265,9 @@ public class WsHandler extends WebSocketHandler {
                     case "getCurrentStegLocation":
                         getCurrentStegLocation(unpacker);
                         break;
+                    case "fcmToken":
+                        setFcmToken(unpacker);
+                        break;
                     case "getSubscribers":
                         getSubscribers(unpacker);
                         break;
@@ -289,6 +295,9 @@ public class WsHandler extends WebSocketHandler {
                     case "stegRequest":
                         stegRequest(unpacker);
                         break;
+                    case "stegRequestV2":
+                        stegRequestV2(unpacker);
+                        break;
                     case "addChatListener":
                         addListenerToChat(unpacker);
                         break;
@@ -301,11 +310,20 @@ public class WsHandler extends WebSocketHandler {
                     case "getReceivers":
                         getReceivers(unpacker);
                         break;
+                    case "getVoters":
+                        getVoters(unpacker);
+                        break;
                     case "addStegToFav":
                         addStegToFavorites(unpacker);
                         break;
                     case "removeStegFromFav":
                         removeStegFromFavorites(unpacker);
+                        break;
+                    case "addVote":
+                        addVote(unpacker);
+                        break;
+                    case "removeVote":
+                        removeVote(unpacker);
                         break;
                     case "getStatistic":
                         getStatistic(unpacker);
@@ -352,9 +370,14 @@ public class WsHandler extends WebSocketHandler {
 
         private void stegRequest(MessageUnpacker unpacker) throws IOException {
             String profileId = unpacker.unpackString();
-            StegRequestItem srItem = DBHandler.stegRequset(profileId, dbConnection);
+            StegRequestItem srItem = DBHandler.stegRequest(profileId, dbConnection);
             sendStegItem(srItem, this);
+        }
 
+        private void stegRequestV2(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            StegRequestItem srItem = DBHandler.stegRequestV2(profileId, dbConnection);
+            sendStegItem(srItem, this);
         }
 
         private void addLike(MessageUnpacker unpacker) throws IOException {
@@ -364,6 +387,7 @@ public class WsHandler extends WebSocketHandler {
                 String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
                 if (!toUserId.equals(profileId)) {
                     DBHandler.decStegReceived(stegId, dbConnection);
+                    StegSender.getInstance().addStegToQueueLast(stegId);
                     sendNotification(NewsData.NOTIFICATION_LIKE, toUserId, profileId, stegId);
                 }
             }
@@ -434,6 +458,7 @@ public class WsHandler extends WebSocketHandler {
             String profileId = unpacker.unpackString();
             DBHandler.addGeter(stegId, profileId, dbConnection);
             DBHandler.decStegReceived(stegId, dbConnection);
+            StegSender.getInstance().addStegToQueueLast(stegId);
             String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
             sendNotification(NewsData.NOTIFICATION_GET, toUserId, profileId, stegId);
         }
@@ -503,6 +528,8 @@ public class WsHandler extends WebSocketHandler {
 
         private void rejectCommonSteg(MessageUnpacker unpacker) throws IOException {
             Integer stegId = unpacker.unpackInt();
+//            StegSender.getInstance().addStegToQueueFirst(stegId);
+//            System.out.println("rejected: " + stegId);
 //			DBHandler.decStegReceived(stegId, dbConnection);
         }
 
@@ -573,7 +600,7 @@ public class WsHandler extends WebSocketHandler {
             EmailSender emailSender = new EmailSender();
             String pleaText;
             pleaText = "From: " + pleaer + "\n\nSteg: " + stegId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
-            emailSender.send("PleaSteg", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
+            emailSender.send("PleaSteg", pleaText, "stegapp777@gmail.com", "stegapp777@gmail.com");
         }
 
         private void commentPlea(MessageUnpacker unpacker) throws IOException {
@@ -597,7 +624,7 @@ public class WsHandler extends WebSocketHandler {
             EmailSender emailSender = new EmailSender();
             String pleaText;
             pleaText = "From: " + pleaer + "\n\nComment: " + commentId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
-            emailSender.send("PleaComment", pleaText, "stegapp999@gmail.com", "stegapp999@gmail.com");
+            emailSender.send("PleaComment", pleaText, "stegapp777@gmail.com", "stegapp777@gmail.com");
         }
 
         private void profileSearch(MessageUnpacker unpacker) throws IOException {
@@ -656,6 +683,13 @@ public class WsHandler extends WebSocketHandler {
             }
             packer.close();
             connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
+        private void setFcmToken(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            String token = unpacker.unpackString();
+
+            DBHandler.setFcmToken(profileId, token, dbConnection);
         }
 
         private void getStegLocationsForProfile(MessageUnpacker unpacker) throws IOException {
@@ -753,6 +787,23 @@ public class WsHandler extends WebSocketHandler {
             connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
         }
 
+        private void getVoters(MessageUnpacker unpacker) throws IOException {
+            Integer pollItemId = unpacker.unpackInt();
+            ArrayList<String> voters = DBHandler.getVotersList(pollItemId, dbConnection);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            MessagePacker packer = MessagePack.newDefaultPacker(baos);
+            Integer resultSize = voters.size();
+            packer.packString("votersResult");
+            packer.packInt(pollItemId);
+            packer.packArrayHeader(resultSize);
+            for (String item : voters) {
+                packer.packString(item);
+            }
+            packer.close();
+            connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
         private void addListenerToChat(MessageUnpacker unpacker) throws IOException {
             Integer chatId = unpacker.unpackInt();
             chatDispatcher.addListener(chatId, ChatWebSocket.this);
@@ -781,6 +832,18 @@ public class WsHandler extends WebSocketHandler {
             Integer stegId = unpacker.unpackInt();
             String profileId = unpacker.unpackString();
             DBHandler.removeStegFromFavorite(stegId, profileId, dbConnection);
+        }
+
+        private void addVote(MessageUnpacker unpacker) throws IOException{
+            Integer pollItemId = unpacker.unpackInt();
+            String profileId = unpacker.unpackString();
+            DBHandler.addVote(pollItemId, profileId, dbConnection);
+        }
+
+        private void removeVote(MessageUnpacker unpacker) throws IOException{
+            Integer stegId = unpacker.unpackInt();
+            String profileId = unpacker.unpackString();
+            DBHandler.removeVote(stegId, profileId, dbConnection);
         }
 
         private void getStatistic(MessageUnpacker unpacker) throws IOException {
@@ -823,26 +886,39 @@ public class WsHandler extends WebSocketHandler {
     }
 
     public void sendNotification(Integer type, String toUserId, String fromUserId, Integer stegId) {
-        try {
-            for (ChatWebSocket socket : clientSockets) {
-                if (socket.userId != null) {
-                    if (socket.userId.equals(toUserId)) {
-                        ByteArrayOutputStream profileNameBaos = new ByteArrayOutputStream();
-                        MessagePacker packer = MessagePack.newDefaultPacker(profileNameBaos);
-                        packer
-                                .packString("newsFromServer")
-                                .packInt(type)
-                                .packString(fromUserId);
-                        if (stegId != null)
-                            packer.packInt(stegId);
-                        packer.close();
-                        socket.connection.sendMessage(profileNameBaos.toByteArray(), 0, profileNameBaos.toByteArray().length);
-                        break;
+        if (stegId == null)
+            stegId = -1;
+        String toToken = DBHandler.getProfileToken(toUserId, dbConnection);
+        if (toToken != null){
+//            send notification via FCM
+            Map<String, String> data = new HashMap<>();
+            data.put(FcmConsts.NOTIFICATION_TYPE, type.toString());
+            data.put(FcmConsts.FORM_USER, fromUserId);
+            data.put(FcmConsts.STEG_ID, stegId.toString());
+            FcmConnection.getInstance().sendNotification(toToken, data);
+        } else {
+//            try to send notification via webSocket connection
+            try {
+                for (ChatWebSocket socket : clientSockets) {
+                    if (socket.userId != null) {
+                        if (socket.userId.equals(toUserId)) {
+                            ByteArrayOutputStream profileNameBaos = new ByteArrayOutputStream();
+                            MessagePacker packer = MessagePack.newDefaultPacker(profileNameBaos);
+                            packer
+                                    .packString("newsFromServer")
+                                    .packInt(type)
+                                    .packString(fromUserId);
+                            if (stegId != null)
+                                packer.packInt(stegId);
+                            packer.close();
+                            socket.connection.sendMessage(profileNameBaos.toByteArray(), 0, profileNameBaos.toByteArray().length);
+                            break;
+                        }
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -929,6 +1005,7 @@ public class WsHandler extends WebSocketHandler {
             packer.packInt(srItem.getStegId());
             packer.packString(srItem.getCity() != null ? srItem.getCity() : "clear");
             packer.packString(srItem.getSenderName());
+            packer.packInt(srItem.getStegMode());
         } else {
             packer.packString("stegRequestNull");
         }

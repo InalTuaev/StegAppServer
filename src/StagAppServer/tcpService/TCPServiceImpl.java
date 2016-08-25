@@ -2,7 +2,7 @@ package StagAppServer.tcpService;
 
 
 import StagAppServer.*;
-import StagAppServer.location.StegLocation;
+import StagAppServer.dataClasses.*;
 import StagAppServer.messageSystem.Address;
 import StagAppServer.messageSystem.MessageSystem;
 import org.msgpack.core.MessagePack;

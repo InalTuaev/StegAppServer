@@ -28,6 +28,7 @@ class FileTransferHandler extends Thread {
 	FileTransferHandler (Connection dbConnection){
 		executorService = Executors.newCachedThreadPool();
 		this.dbConnection = dbConnection;
+		executorService.submit(StegSender.getInstance());
 //		messageSystem = new MessageSystem();
 //		tcpServicesThreadPool = new ArrayList<>();
 
@@ -37,13 +38,6 @@ class FileTransferHandler extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-//		for (int i = 0; i < TCP_SERVICES_THREAD_POOL_NUMBER; i++){
-//			Thread tcpThread = new Thread(new TCPServiceImpl(dbConnection, messageSystem));
-//			tcpThread.setName("TcpService: " + Integer.toString(i));
-//			tcpServicesThreadPool.add(tcpThread);
-//		}
-//		 tcpServicesThreadPool.forEach((thread -> thread.start()));
 	}
 	
 	public void run() {

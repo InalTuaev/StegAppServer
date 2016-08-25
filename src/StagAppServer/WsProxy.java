@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import StagAppServer.fcm.FcmConnection;
 import StagAppServer.messageSystem.MessageSystem;
 import StagAppServer.tcpService.TCPServiceImpl;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 
 public class WsProxy {
@@ -20,6 +22,7 @@ public class WsProxy {
 	private static final String STEGAPP_PROFILE_THUMBS_DIR = "StegApp/thumbs/";
 
     public static void main(String[] args) throws Exception {
+    	FcmConnection fcmConnection = FcmConnection.getInstance();
 	    File path = new File(STEGAPP_IMG_DIR);
 	    if (!path.exists()) {
 		    path.mkdirs();
@@ -46,10 +49,11 @@ public class WsProxy {
 
         WsHandler wsHandler = new WsHandler(dbConnection);
         Server jetty = new Server(WEBSOCKET_PORT);
+
         jetty.setHandler(wsHandler);
         jetty.start();
 
         FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
         fileTransferHandler.start();
-    }
+	}
 }
