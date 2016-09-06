@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import StagAppServer.dataClasses.*;
 import StagAppServer.dataClasses.polls.Poll;
 import StagAppServer.dataClasses.polls.PollItem;
+import StagAppServer.fcm.FcmConnection;
 import StagAppServer.tcpService.TCPService;
 import org.msgpack.core.MessagePack;
 import org.msgpack.core.MessagePacker;
@@ -91,6 +92,15 @@ class StagHandler implements Runnable {
                 case TCPService.WALL_ITEMS_FROM_SERVER:
                     wallItemsFromServer(in, out);
                     break;
+                case TCPService.WALL_ITEMS_FROM_SERVER_FOR_PROFILE:
+                    wallItemsFromServerForProfile(in, out);
+                    break;
+                case TCPService.WALL_ITEMS_FROM_SERVER_V2:
+                    wallItemsFromServerV2(in, out);
+                    break;
+                case TCPService.WALL_ITEMS_FROM_SERVER_FOR_PROFILE_V2:
+                    wallItemsFromServerForProfileV2(in, out);
+                    break;
                 case TCPService.COMMENT_ITEMS_FROM_SERVER:
                     commentItemsFromServer(in, out);
                     break;
@@ -130,8 +140,8 @@ class StagHandler implements Runnable {
                 case TCPService.INCOME_COMMON_ITEMS_FROM_SERVER:
                     incomeCommonItemsFromServer(in, out);
                     break;
-                case TCPService.WALL_ITEMS_FROM_SERVER_FOR_PROFILE:
-                    wallItemsFromServerForProfile(in, out);
+                case TCPService.INCOME_COMMON_ITEMS_FROM_SERVER_V2:
+                    incomeCommonItemsFromServerV2(in, out);
                     break;
                 case TCPService.PROFILE_SENT_ITEMS:
                     profileSentItems(in, out);
@@ -315,7 +325,7 @@ class StagHandler implements Runnable {
                             } else {
                                 sender = stagData.mesSender;
                             }
-                            WsHandler.getInstance().sendNotification(NewsData.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, sender, stagData.stegId);
+                            WsHandler.getInstance().sendNotification(NewsData.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, sender, newStegId);
                         } else {
                             listType = WsHandler.STEG_LIST_TYPE_OUTCOME_COMMON_ITEM;
                             StegSender.getInstance().addStegToQueueFirst(newStegId, DBHandler.MAX_RECEIVED_NO_FIELD);
@@ -620,7 +630,7 @@ class StagHandler implements Runnable {
         MessagePacker packer = MessagePack.newDefaultPacker(baos);
         packer.packInt(stegId)
                 .packArrayHeader(poll.getPollItems().size());
-        for (PollItem item : poll.getPollItems()){
+        for (PollItem item : poll.getPollItems()) {
             packer.packInt(item.getId())
                     .packString(item.getText())
                     .packInt(item.getCount())
@@ -950,6 +960,67 @@ class StagHandler implements Runnable {
         }
     }
 
+    private void wallItemsFromServerV2(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        ArrayList<StegItem> stegItems = DBHandler.getWallItemsV2(profileId, dbConnection);
+        Integer count = stegItems.size();
+        out.writeInt(count);
+        out.flush();
+        for (StegItem stegItem : stegItems) {
+            out.writeInt(stegItem.getStegId());
+            out.writeUTF(stegItem.getMesSender());
+            out.writeBoolean(stegItem.isAnonym());
+            out.writeInt(stegItem.getLikes());
+            out.writeInt(stegItem.getComments());
+            out.writeBoolean(stegItem.isLiked());
+            Integer recievers = stegItem.getRecieverCount();
+            out.writeInt(recievers);
+            out.flush();
+            if (recievers > 4)
+                recievers = 4;
+            out.writeInt(recievers);
+            out.flush();
+            int i = 0;
+            for (Map.Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()) {
+                i++;
+                if (i > 4) break;
+                out.writeUTF(entry.getKey());
+                out.flush();
+            }
+        }
+    }
+
+    private void wallItemsFromServerForProfileV2(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        String myProfileId = in.readUTF();
+        ArrayList<StegItem> stegItems = DBHandler.getWallItemsForProfileV2(profileId, myProfileId, dbConnection);
+        Integer count = stegItems.size();
+        out.writeInt(count);
+        out.flush();
+        for (StegItem stegItem : stegItems) {
+            out.writeInt(stegItem.getStegId());
+            out.writeUTF(stegItem.getMesSender());
+            out.writeBoolean(stegItem.isAnonym());
+            out.writeInt(stegItem.getLikes());
+            out.writeInt(stegItem.getComments());
+            out.writeBoolean(stegItem.isLiked());
+            Integer recievers = stegItem.getRecieverCount();
+            out.writeInt(recievers);
+            out.flush();
+            if (recievers > 4)
+                recievers = 4;
+            out.writeInt(recievers);
+            out.flush();
+            int i = 0;
+            for (Map.Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()) {
+                i++;
+                if (i > 4) break;
+                out.writeUTF(entry.getKey());
+                out.flush();
+            }
+        }
+    }
+
     private void incomeCommonItemsFromServer(DataInputStream in, DataOutputStream out) throws IOException {
         String profileId = in.readUTF();
         ArrayList<StegItem> stegItems = DBHandler.getIncomeCommonItems(profileId, dbConnection);
@@ -963,6 +1034,36 @@ class StagHandler implements Runnable {
             out.writeInt(stegItem.getComments());
             out.writeBoolean(stegItem.isLiked());
             out.flush();
+        }
+    }
+
+    private void incomeCommonItemsFromServerV2(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        ArrayList<StegItem> stegItems = DBHandler.getIncomeCommonItemsV2(profileId, dbConnection);
+        out.writeInt(stegItems.size());
+        out.flush();
+        for (StegItem stegItem : stegItems) {
+            out.writeInt(stegItem.getStegId());
+            out.writeUTF(stegItem.getMesSender());
+            out.writeBoolean(stegItem.isAnonym());
+            out.writeInt(stegItem.getLikes());
+            out.writeInt(stegItem.getComments());
+            out.writeBoolean(stegItem.isLiked());
+            out.flush();
+            Integer recievers = stegItem.getRecieverCount();
+            out.writeInt(recievers);
+            out.flush();
+            if (recievers > 4)
+                recievers = 4;
+            out.writeInt(recievers);
+            out.flush();
+            int i = 0;
+            for (Map.Entry<String, UserProfile> entry : stegItem.recieverIds.entrySet()) {
+                i++;
+                if (i > 4) break;
+                out.writeUTF(entry.getKey());
+                out.flush();
+            }
         }
     }
 
@@ -1032,8 +1133,8 @@ class StagHandler implements Runnable {
                 i++;
                 if (i > 4) break;
                 out.writeUTF(entry.getKey());
+                out.flush();
             }
-            out.flush();
         }
     }
 
@@ -1298,6 +1399,13 @@ class StagHandler implements Runnable {
                     }
                     unpacker.close();
                     DBHandler.addComment(commentData, dbConnection);
+                    String stegOwner = DBHandler.getStegOwner(commentData.stegId, dbConnection);
+                    if (!commentData.profileId.equals(stegOwner)) {
+                        if (DBHandler.getCommentsCountForSteg(commentData.profileId, commentData.stegId, dbConnection) < 2) {
+                            DBHandler.incAccount(stegOwner, DBHandler.BONUS_FOR_COMMENT, dbConnection);
+                            FcmConnection.getInstance().sendAccountDelta(stegOwner, (float) DBHandler.BONUS_FOR_COMMENT, DBHandler.getProfileAccount(stegOwner, dbConnection));
+                        }
+                    }
                     notStopped = false;
                     break;
             }
@@ -1356,6 +1464,13 @@ class StagHandler implements Runnable {
                     }
                     unpacker.close();
                     DBHandler.addComment(commentData, dbConnection);
+                    String stegOwner = DBHandler.getStegOwner(commentData.stegId, dbConnection);
+                    if (!commentData.profileId.equals(stegOwner)) {
+                        if (DBHandler.getCommentsCountForSteg(commentData.profileId, commentData.stegId, dbConnection) < 2) {
+                            DBHandler.incAccount(stegOwner, DBHandler.BONUS_FOR_COMMENT, dbConnection);
+                            FcmConnection.getInstance().sendAccountDelta(stegOwner, (float) DBHandler.BONUS_FOR_COMMENT, DBHandler.getProfileAccount(stegOwner, dbConnection));
+                        }
+                    }
                     notStopped = false;
                     break;
             }

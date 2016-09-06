@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import StagAppServer.dataClasses.*;
 import StagAppServer.fcm.FcmConnection;
 import StagAppServer.fcm.FcmConsts;
+import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
+import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
+import com.sun.xml.internal.ws.handler.MessageUpdatableContext;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
@@ -41,7 +44,7 @@ public class WsHandler extends WebSocketHandler {
     private volatile CopyOnWriteArraySet<ChatWebSocket> clSockets = new CopyOnWriteArraySet<>();
     private final ConcurrentHashSet<ChatWebSocket> clientSockets = new ConcurrentHashSet<>();
     final ChatDispatcher chatDispatcher;
-    final Connection dbConnection;
+    public final Connection dbConnection;
     private static volatile WsHandler instance;
 
     WsHandler(Connection dbConnection) {
@@ -98,12 +101,6 @@ public class WsHandler extends WebSocketHandler {
                 switch (mesType) {
                     case "check":
                         checkConnection();
-                        break;
-                    case "to":
-                        stagData = unpackSteg(unpacker, mesType);
-                        if (!stagData.mesReciever.equals("common")) {
-                            sendNotification(NewsData.NOTIFICATION_PRIVATE_STEG, stagData.mesReciever, stagData.mesSender, stagData.stegId);
-                        }
                         break;
                     case "registration":
                         String newUserId = unpacker.unpackString();
@@ -256,6 +253,15 @@ public class WsHandler extends WebSocketHandler {
                     case "getUserLocations":
                         getUserLocations(unpacker);
                         break;
+                    case "getPrizeLocations":
+                        getPrizeLocations();
+                        break;
+                    case "addPrizeWinner":
+                        addPrizeWinner(unpacker);
+                        break;
+                    case "addPrizeWinnerContacts":
+                        addPrizeWinnerContacts(unpacker);
+                        break;
                     case "getStegLocationsAll":
                         getStegLocationsAll(unpacker);
                         break;
@@ -292,7 +298,7 @@ public class WsHandler extends WebSocketHandler {
                     case "setShowCityEnabled":
                         setUserShowCityEnabled(unpacker);
                         break;
-                    case "stegRequest":
+                    case "stegRequestFirst":
                         stegRequest(unpacker);
                         break;
                     case "stegRequestV2":
@@ -327,6 +333,12 @@ public class WsHandler extends WebSocketHandler {
                         break;
                     case "getStatistic":
                         getStatistic(unpacker);
+                        break;
+                    case "getAccount":
+                        getAccount(unpacker);
+                        break;
+                    case "incMyAccount":
+                        incMyAccount(unpacker);
                         break;
                 }
                 unpacker.close();
@@ -387,8 +399,10 @@ public class WsHandler extends WebSocketHandler {
                 String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
                 if (!toUserId.equals(profileId)) {
                     DBHandler.decStegReceived(stegId, dbConnection);
+                    DBHandler.incAccount(toUserId, DBHandler.BONUS_FOR_LIKE, dbConnection);
                     StegSender.getInstance().addStegToQueueLast(stegId);
                     sendNotification(NewsData.NOTIFICATION_LIKE, toUserId, profileId, stegId);
+                    FcmConnection.getInstance().sendAccountDelta(toUserId, DBHandler.BONUS_FOR_LIKE, DBHandler.getProfileAccount(toUserId, dbConnection));
                 }
             }
         }
@@ -414,10 +428,9 @@ public class WsHandler extends WebSocketHandler {
             String text = unpacker.unpackString();
             Integer msgId = DBHandler.addComment(stegId, profileId, text, dbConnection);
             String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
+
             if (!toUserId.equals(profileId)) {
                 sendNotification(NewsData.NOTIFICATION_COMMENT, toUserId, profileId, stegId);
-            } else {
-
             }
             chatDispatcher.sendMessage(stegId, msgId, profileId);
         }
@@ -456,11 +469,11 @@ public class WsHandler extends WebSocketHandler {
         private void addGeter(MessageUnpacker unpacker) throws IOException {
             Integer stegId = unpacker.unpackInt();
             String profileId = unpacker.unpackString();
-            DBHandler.addGeter(stegId, profileId, dbConnection);
-            DBHandler.decStegReceived(stegId, dbConnection);
-            StegSender.getInstance().addStegToQueueLast(stegId);
-            String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
-            sendNotification(NewsData.NOTIFICATION_GET, toUserId, profileId, stegId);
+            if (DBHandler.addGeter(stegId, profileId, dbConnection)) {
+                DBHandler.decStegReceived(stegId, dbConnection);
+                String toUserId = DBHandler.getStegSenderId(stegId, dbConnection);
+                sendNotification(NewsData.NOTIFICATION_GET, toUserId, profileId, stegId);
+            }
         }
 
         private void addReceiver(MessageUnpacker unpacker) throws IOException {
@@ -567,6 +580,8 @@ public class WsHandler extends WebSocketHandler {
             DBHandler.removeLike(stegId, profileId, dbConnection);
             String stegOwner = DBHandler.getStegOwner(stegId, dbConnection);
             if (!stegOwner.equals(profileId)) {
+                DBHandler.decAccount(stegOwner, DBHandler.BONUS_FOR_LIKE, dbConnection);
+                FcmConnection.getInstance().sendAccountNotification(stegOwner, DBHandler.getProfileAccount(stegOwner, dbConnection));
                 DBHandler.incStegReceived(stegId, dbConnection);
             }
 
@@ -576,6 +591,7 @@ public class WsHandler extends WebSocketHandler {
             Integer commentId = unpacker.unpackInt();
             String profileId = unpacker.unpackString();
             DBHandler.removeCommentLike(commentId, profileId, dbConnection);
+
             chatDispatcher.sendLike(chatId, commentId, false, profileId);
         }
 
@@ -662,9 +678,59 @@ public class WsHandler extends WebSocketHandler {
             connection.sendMessage(resultBaos.toByteArray(), 0, resultBaos.toByteArray().length);
         }
 
+        private void addPrizeWinner(MessageUnpacker unpacker) throws IOException {
+            String winnerId= unpacker.unpackString();
+            Integer prizeId = unpacker.unpackInt();
+
+            Boolean success = DBHandler.addPrizeWinner(winnerId, prizeId, dbConnection);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            MessagePacker packer = MessagePack.newDefaultPacker(baos);
+            packer.packString("prizeWinnerAdded")
+                    .packBoolean(success)
+                    .close();
+            connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
+        private void addPrizeWinnerContacts(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            String contacts = unpacker.unpackString();
+            Integer prizeId = unpacker.unpackInt();
+
+            Boolean success = DBHandler.addPrizeWinnerContacts(profileId, contacts, prizeId, dbConnection);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            MessagePacker packer = MessagePack.newDefaultPacker(baos);
+            packer.packString("prizeContactsAdded")
+                    .packBoolean(success)
+                    .close();
+            connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
+        private void getPrizeLocations() throws IOException {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ArrayList<PrizeLocation> prizes = DBHandler.getPrizeLocations(dbConnection);
+            MessagePacker packer = MessagePack.newDefaultPacker(baos);
+
+            packer.packString("prizeLocations")
+                    .packArrayHeader(prizes.size());
+            for (PrizeLocation prize : prizes){
+                packer.packInt(prize.getId())
+                        .packInt(prize.getStegId())
+                        .packDouble(prize.getLatitude())
+                        .packDouble(prize.getLongitude())
+                        .packString(prize.getTitle())
+                        .packInt(prize.getValue())
+                        .packBoolean(prize.isWon());
+                if (prize.isWon())
+                    packer.packString(prize.getWinnerId());
+            }
+            packer.close();
+            connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
         private void getStegLocationsAll(MessageUnpacker unpacker) throws IOException {
             String profileId = unpacker.unpackString();
-            unpacker.close();
             ArrayList<StegLocation> stegLocations = DBHandler.getStegLocationsAll(profileId, dbConnection);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -860,6 +926,20 @@ public class WsHandler extends WebSocketHandler {
             }
             packer.close();
             connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
+        private void getAccount(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            float account = DBHandler.getProfileAccount(profileId, dbConnection);
+
+            FcmConnection.getInstance().sendAccountNotification(profileId, account);
+        }
+
+        private void incMyAccount(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            float value = unpacker.unpackFloat();
+
+            DBHandler.incAccount(profileId, value, dbConnection);
         }
 
         private void checkConnection() {

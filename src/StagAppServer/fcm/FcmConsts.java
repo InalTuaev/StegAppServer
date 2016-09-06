@@ -7,6 +7,10 @@ public class FcmConsts {
     public static final String NOTIFICATION_TYPE = "notificationType";
     public static final String NOTIFICATION_TYPE_STEG_COME_IN = "stegComeIn";
     public static final String NOTIFICATION_TYPE_UPDATE_APP = "update";
+    public static final String NOTIFICATION_TYPE_ACCOUNT = "account";
+    public static final String NOTIFICATION_TYPE_ACCOUNT_DELTA = "accountDelta";
+    public static final String ACCOUNT = "account";
+    public static final String ACCOUNT_DELTA = "accountDelta";
     public static final String FORM_USER = "fromUser";
     public static final String STEG_ID = "stegId";
     public static final String UPDATE_TEXT = "updateText";

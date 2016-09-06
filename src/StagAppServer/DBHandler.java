@@ -4,6 +4,7 @@ import StagAppServer.dataClasses.*;
 import StagAppServer.dataClasses.polls.Poll;
 import StagAppServer.dataClasses.polls.PollItem;
 import StagAppServer.fcm.FcmConsts;
+import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
 
@@ -13,11 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.*;
+import java.util.function.BooleanSupplier;
 
 public class DBHandler {
 
     public static final int MAX_RECEIVED_NO_FIELD = 4;
     private static final int MAX_REQUESTED_NUM = 7;
+
+    public static final float BONUS_FOR_LIKE = 1f;
+    public static final float BONUS_FOR_COMMENT = 1f;
+    public static final float BONUS_FOR_COMMENT_LIKE = 1f;
 
     private static final String SQL_GET_RECEIVER_FOR_STEG = "SELECT users.fcm_token, get_steg_sender_city(stegs.steg_id), get_sender_anonym_name(stegs.anonym, stegs.sender), stegs.mode  " +
             "FROM users, stegs " +
@@ -74,7 +80,7 @@ public class DBHandler {
             "AND reciever = 'common' " +
             "AND active = TRUE " +
             "AND deleted != TRUE " +
-            "AND date_ > date_trunc('Day', now()) - interval '1 days' " +
+//            "AND date_ > date_trunc('Day', now()) - interval '1 days' " +
             "ORDER BY date_ DESC, time_ DESC;";
 
     private static final String SQL_CHECK_RECEIVERS = "SELECT users.user_id FROM users " +
@@ -150,13 +156,66 @@ public class DBHandler {
                 rs.close();
                 return res;
             }
-            statement.close();
             rs.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
         return null;
+    }
+
+    public static Float getProfileAccount(String userId, Connection dbConnection){
+        float res = 0f;
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT account FROM users WHERE user_id = ?;");
+            st.setString(1, userId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                res = rs.getFloat(1);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public static float incAccount(String profileId, float delta, Connection dbConnection){
+        float res = 0f;
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET account = account + ? WHERE user_id = ? RETURNING account;");
+            st.setFloat(1, delta);
+            st.setString(2, profileId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                res = rs.getFloat(1);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public static float decAccount(String profileId, float delta, Connection dbConnection){
+        float res = 0f;
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET account = account - ? WHERE user_id = ? RETURNING account;");
+            st.setFloat(1, delta);
+            st.setString(2, profileId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                res = rs.getFloat(1);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
     }
 
     public static UserProfile getUserProfile(String userId, Connection dbConnection) {
@@ -215,6 +274,41 @@ public class DBHandler {
             e.printStackTrace();
         }
         return id;
+    }
+
+    static int getCommentsCountForSteg(String profileId, Integer stegId, Connection dbConnection){
+        int res = 0;
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT COUNT(profile_id) FROM comments WHERE profile_id = ? AND steg_id = ?;");
+            st.setString(1, profileId);
+            st.setInt(2, stegId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next())
+                res = rs.getInt(1);
+
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    static String getCommentOwner(Integer commentId, Connection dbConnection){
+        String res = UserProfile.NO_VALUE;
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT stegs.sender FROM stegs WHERE steg_id = (SELECT steg_id FROM comments WHERE id = ?);");
+            st.setInt(1, commentId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next())
+                res = rs.getString(1);
+
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
     }
 
     static String getUserNameFromId(String userId, Connection dbConnection) {
@@ -975,6 +1069,66 @@ public class DBHandler {
         return stegItems;
     }
 
+    public static ArrayList<StegItem> getIncomeCommonItemsV2(String profileId, Connection dbConnection) {
+        ArrayList<StegItem> stegItems = new ArrayList<>();
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.anonym"
+                    + " FROM stegs JOIN gets ON stegs.steg_id = gets.steg_id"
+                    + " WHERE stegs.reciever = ? AND gets.profile_id = ? ORDER BY gets.id DESC;");
+            statement.setString(1, "common");
+            statement.setString(2, profileId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Integer stegId = rs.getInt(1);
+                String mesSender = rs.getString(2);
+                Boolean anonym = rs.getBoolean(3);
+
+                StegItem stegItem = new StegItem(stegId, mesSender, anonym);
+
+                PreparedStatement likeStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM likes WHERE steg_id = ?;");
+                likeStatement.setInt(1, stegId);
+                ResultSet likeRs = likeStatement.executeQuery();
+                while (likeRs.next()) {
+                    stegItem.setLikes(likeRs.getInt(1));
+                }
+                likeRs.close();
+                likeStatement.close();
+
+                PreparedStatement likedStatement = dbConnection.prepareStatement("SELECT steg_id FROM likes WHERE steg_id = ? AND profile_id = ?;");
+                likedStatement.setInt(1, stegId);
+                likedStatement.setString(2, profileId);
+                ResultSet likedRs = likedStatement.executeQuery();
+                while (likedRs.next()) {
+                    stegItem.setLiked(true);
+                }
+                likedRs.close();
+                likedStatement.close();
+
+                PreparedStatement commentStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM comments WHERE steg_id = ?;");
+                commentStatement.setInt(1, stegId);
+                ResultSet commentRs = commentStatement.executeQuery();
+                while (commentRs.next()) {
+                    stegItem.setComments(commentRs.getInt(1));
+                }
+                commentRs.close();
+                commentStatement.close();
+
+                ArrayList<LikeData> receivers = DBHandler.getReceivers(stegItem.getStegId(), dbConnection);
+                stegItem.setRecieverCount(receivers.size());
+                for (LikeData receiversItem : receivers) {
+                    stegItem.recieverIds.put(receiversItem.profileId, null);
+                }
+
+                stegItems.add(stegItem);
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stegItems;
+    }
+
     public static ArrayList<StegItem> getProfileCorrespondenceItems(String profileId, String userId, Connection dbConnection) {
         ArrayList<StegItem> stegItems = new ArrayList<>();
         try {
@@ -1616,6 +1770,13 @@ public class DBHandler {
             statement.setInt(1, commentId);
             statement.executeUpdate();
             statement.close();
+
+            String profileId = DBHandler.getCommentOwner(commentId, dbConnection);
+            Integer stegId = DBHandler.getCommentedSteg(commentId, dbConnection);
+            String stegOwner = DBHandler.getStegOwner(stegId, dbConnection);
+            if (!profileId.equals(stegOwner) && DBHandler.getCommentsCountForSteg(profileId, stegId, dbConnection) < 1){
+                DBHandler.decAccount(stegOwner, BONUS_FOR_COMMENT, dbConnection);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -1624,7 +1785,7 @@ public class DBHandler {
     static void decStegReceived(Integer stegId, Connection dbConnection) {
         try {
             System.out.println("dec: " + stegId);
-            PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = recieved - 1 WHERE steg_id = ?;");
+            PreparedStatement statement = dbConnection.prepareStatement("UPDATE stegs SET recieved = recieved - 1 WHERE steg_id = ? AND date_ + time_ > date_trunc('Day', now()) - interval '1 day';");
             statement.setInt(1, stegId);
             statement.executeUpdate();
             statement.close();
@@ -1717,13 +1878,14 @@ public class DBHandler {
     static StegRequestItem stegRequest(String reqProfileId, Connection dbConnection) {
         StegRequestItem srItem = null;
         try {
-            PreparedStatement statement = dbConnection.prepareStatement(SQL_STEG_REQUEST);
+            PreparedStatement statement = dbConnection.prepareStatement(SQL_STEG_REQUEST_V2);
             statement.setString(1, reqProfileId);
             statement.setString(2, reqProfileId);
             statement.setString(3, reqProfileId);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 srItem = new StegRequestItem(rs.getInt(1), rs.getString(2), rs.getString(3));
+                srItem.setStegMode(rs.getInt(4));
             }
             rs.close();
             statement.close();
@@ -1749,6 +1911,10 @@ public class DBHandler {
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if (srItem != null){
+            decAccount(reqProfileId, 1f, dbConnection);
         }
         return srItem;
     }
@@ -1934,6 +2100,126 @@ public class DBHandler {
                 }
                 commentRs.close();
                 commentStatement.close();
+
+                stegItems.add(stegItem);
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stegItems;
+    }
+
+    public static ArrayList<StegItem> getWallItemsForProfileV2(String profileId, String myProfileId, Connection dbConnection){
+        ArrayList<StegItem> stegItems = new ArrayList<>();
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
+                    + " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
+                    + " WHERE wall.owner = ?"
+                    + "AND ((stegs.filter & " + Integer.toString(StagData.STEG_SEX_MASK) + " = 0) OR "
+                    + "(stegs.filter & get_sex_filter_mask_by_user_id(?) != 0)) "
+                    + " ORDER BY stegs.steg_id DESC;");
+            statement.setString(1, profileId);
+            statement.setString(2, myProfileId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Integer stegId = rs.getInt(1);
+                String mesSender = rs.getString(2);
+                Boolean anonym = rs.getBoolean(3);
+                StegItem stegItem = new StegItem(stegId, mesSender, anonym);
+
+                PreparedStatement likeStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM likes WHERE steg_id = ?;");
+                likeStatement.setInt(1, stegId);
+                ResultSet likeRs = likeStatement.executeQuery();
+                while (likeRs.next()) {
+                    stegItem.setLikes(likeRs.getInt(1));
+                }
+                likeRs.close();
+                likeStatement.close();
+
+                PreparedStatement likedStatement = dbConnection.prepareStatement("SELECT steg_id FROM likes WHERE steg_id = ? AND profile_id = ?;");
+                likedStatement.setInt(1, stegId);
+                likedStatement.setString(2, myProfileId);
+                ResultSet likedRs = likedStatement.executeQuery();
+                while (likedRs.next()) {
+                    stegItem.setLiked(true);
+                }
+                likedRs.close();
+                likedStatement.close();
+
+                PreparedStatement commentStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM comments WHERE steg_id = ?;");
+                commentStatement.setInt(1, stegId);
+                ResultSet commentRs = commentStatement.executeQuery();
+                while (commentRs.next()) {
+                    stegItem.setComments(commentRs.getInt(1));
+                }
+                commentRs.close();
+                commentStatement.close();
+
+                ArrayList<LikeData> receivers = DBHandler.getReceivers(stegItem.getStegId(), dbConnection);
+                stegItem.setRecieverCount(receivers.size());
+                for (LikeData receiversItem : receivers) {
+                    stegItem.recieverIds.put(receiversItem.profileId, null);
+                }
+
+                stegItems.add(stegItem);
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stegItems;
+    }
+
+    public static ArrayList<StegItem> getWallItemsV2(String userId, Connection dbConnection) {
+        ArrayList<StegItem> stegItems = new ArrayList<>();
+        try {
+            PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
+                    + " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
+                    + " WHERE wall.owner = ? ORDER BY stegs.steg_id DESC;");
+            statement.setString(1, userId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Integer stegId = rs.getInt(1);
+                String mesSender = rs.getString(2);
+                Boolean anonym = rs.getBoolean(3);
+                StegItem stegItem = new StegItem(stegId, mesSender, anonym);
+
+                PreparedStatement likeStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM likes WHERE steg_id = ?;");
+                likeStatement.setInt(1, stegId);
+                ResultSet likeRs = likeStatement.executeQuery();
+                while (likeRs.next()) {
+                    stegItem.setLikes(likeRs.getInt(1));
+                }
+                likeRs.close();
+                likeStatement.close();
+
+                PreparedStatement likedStatement = dbConnection.prepareStatement("SELECT steg_id FROM likes WHERE steg_id = ? AND profile_id = ?;");
+                likedStatement.setInt(1, stegId);
+                likedStatement.setString(2, userId);
+                ResultSet likedRs = likedStatement.executeQuery();
+                while (likedRs.next()) {
+                    stegItem.setLiked(true);
+                }
+                likedRs.close();
+                likedStatement.close();
+
+                PreparedStatement commentStatement = dbConnection.prepareStatement("SELECT COUNT(steg_id) FROM comments WHERE steg_id = ?;");
+                commentStatement.setInt(1, stegId);
+                ResultSet commentRs = commentStatement.executeQuery();
+                while (commentRs.next()) {
+                    stegItem.setComments(commentRs.getInt(1));
+                }
+                commentRs.close();
+                commentStatement.close();
+
+                ArrayList<LikeData> receivers = DBHandler.getReceivers(stegItem.getStegId(), dbConnection);
+                stegItem.setRecieverCount(receivers.size());
+                for (LikeData receiversItem : receivers) {
+                    stegItem.recieverIds.put(receiversItem.profileId, null);
+                }
 
                 stegItems.add(stegItem);
             }
@@ -2133,7 +2419,7 @@ public class DBHandler {
         }
     }
 
-    static void addGeter(Integer stegId, String profileId, Connection dbConnection) {
+    static boolean addGeter(Integer stegId, String profileId, Connection dbConnection) {
         try {
             Boolean check = true;
             PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT profile_id FROM gets WHERE steg_id = ? AND profile_id = ?");
@@ -2144,6 +2430,7 @@ public class DBHandler {
                 check = false;
             }
             rs.close();
+            checkStatement.close();
             if (check) {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO gets " +
                         "(steg_id, profile_id) " +
@@ -2157,10 +2444,12 @@ public class DBHandler {
                 String ownerId = getStegSenderId(stegId, dbConnection);
                 addNews(NewsData.NOTIFICATION_TYPE_SAVE, profileId, ownerId, stegId, dbConnection);
             }
+            return check;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     static ArrayList<CommentData> getComments(Integer stegId, Connection dbConnection) {
@@ -3112,7 +3401,7 @@ public class DBHandler {
 
     static void setFcmToken(String profileId, String token, Connection dbConnection){
         try{
-            PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET fcm_token = NULL WHERE fcm_token = ? AND profileId != ?;");
+            PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET fcm_token = NULL WHERE fcm_token = ? AND user_id != ?;");
             st.setString(1, token);
             st.setString(2, profileId);
             st.executeUpdate();
@@ -3128,7 +3417,7 @@ public class DBHandler {
         }
     }
 
-    static String getProfileToken(String profileId, Connection dbConnection){
+    public static String getProfileToken(String profileId, Connection dbConnection){
         try{
             PreparedStatement st = dbConnection.prepareStatement("SELECT fcm_token FROM users WHERE user_id = ?;");
             st.setString(1, profileId);
@@ -3184,6 +3473,92 @@ public class DBHandler {
             e.printStackTrace();
         }
         return locations;
+    }
+
+    static ArrayList<PrizeLocation> getPrizeLocations(Connection dbConnection){
+        ArrayList<PrizeLocation> prizes = new ArrayList<>();
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT id, steg_id, latitude, longitude, title, value, won, winner_id FROM prize_locations;");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Integer id = rs.getInt(1);
+                Integer stegId = rs.getInt(2);
+                Double latitude = rs.getDouble(3);
+                Double longitude = rs.getDouble(4);
+                String title = rs.getString(5);
+                Integer value = rs.getInt(6);
+                Boolean won = rs.getBoolean(7);
+                String winnerId = rs.getString(8);
+
+                if (won){
+                    prizes.add(new PrizeLocation(id, stegId, winnerId, latitude, longitude, title, value));
+                } else {
+                    prizes.add(new PrizeLocation(id, stegId, latitude, longitude, title, value));
+                }
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return prizes;
+    }
+
+    static boolean addPrizeWinner(String profileId, Integer prizeId, Connection dbConnection){
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT won, winner_id FROM prize_locations WHERE id = ?;");
+            st.setInt(1, prizeId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                if (rs.getBoolean(1)){
+                    String winnerId = rs.getString(2);
+                    if (winnerId != null && !winnerId.equals(profileId)){
+                        rs.close();
+                        st.close();
+                        return false;
+                    }
+                }
+            }
+            st = dbConnection.prepareStatement("UPDATE prize_locations SET won = true, winner_id = ? WHERE id = ?;");
+            st.setString(1, profileId);
+            st.setInt(2, prizeId);
+            st.executeUpdate();
+            st.close();
+            return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    static boolean addPrizeWinnerContacts(String profileId, String contacts, Integer prizeId, Connection dbConnection){
+
+        try{
+            PreparedStatement st = dbConnection.prepareStatement("SELECT winner_id FROM prize_locations WHERE id = ?;");
+            st.setInt(1, prizeId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()){
+                String winnerId = rs.getString(1);
+                if (winnerId != null && !winnerId.equals(profileId)) {
+                    rs.close();
+                    st.close();
+                    return false;
+                }
+            }
+            rs.close();
+            st.close();
+            st = dbConnection.prepareStatement("UPDATE prize_locations SET winner_id = ?, winner_contact = ? WHERE id = ?;");
+            st.setString(1, profileId);
+            st.setString(2, contacts);
+            st.setInt(3, prizeId);
+            int updates = st.executeUpdate();
+            st.close();
+
+            return (updates > 0);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     static ArrayList<StegLocation> getStegLocationsAll(String profileId, Connection dbConnection) {

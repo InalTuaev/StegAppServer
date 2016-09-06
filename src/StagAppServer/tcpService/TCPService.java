@@ -30,6 +30,8 @@ public interface TCPService extends Abonent {
     String PROFILE_IMG_TO_SERVER = "profileImgToServer";
     String WALL_ITEMS_FROM_SERVER = "wallItemsFromServer";
     String WALL_ITEMS_FROM_SERVER_FOR_PROFILE = "wallItemsFromServerForProfile";
+    String WALL_ITEMS_FROM_SERVER_V2 = "wallItemsFromServerV2";
+    String WALL_ITEMS_FROM_SERVER_FOR_PROFILE_V2 = "wallItemsFromServerForProfileV2";
     String COMMENT_ITEMS_FROM_SERVER = "commentItemsFromServer";
     String COMMENT_FROM_SERVER = "commentFromServer";
     String COMMENT_REQUEST = "commentRequest";
@@ -43,6 +45,7 @@ public interface TCPService extends Abonent {
     String OUTCOME_PRIVATE_ITEMS_FROM_SERVER = "outcomePrivateItemsFromServer";
     String OUTCOME_COMMON_ITEMS_FROM_SERVER = "outcomeCommonItemsFromServer";
     String INCOME_COMMON_ITEMS_FROM_SERVER = "incomeCommonItemsFromServer";
+    String INCOME_COMMON_ITEMS_FROM_SERVER_V2 = "incomeCommonItemsFromServerV2";
     String PROFILE_SENT_ITEMS = "profileSentItems";
     String SAVERS_FROM_SERVER = "saversFromServer";
     String GETERS_FROM_SERVER = "getersFromServer";

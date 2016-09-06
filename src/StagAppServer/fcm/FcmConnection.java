@@ -1,6 +1,8 @@
 package StagAppServer.fcm;
 
 
+import StagAppServer.DBHandler;
+import StagAppServer.WsHandler;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Notification;
 import com.google.android.gcm.server.Result;
@@ -59,7 +61,7 @@ public class FcmConnection {
 
         try {
             Result res = sender.send(msg, toToken, 5);
-            System.out.println("Result: " + res.toString());
+            System.out.println("Result: " + res.toString() + "to: " + toToken);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -80,6 +82,41 @@ public class FcmConnection {
         Message msg = builder.build();
         try {
             sender.send(msg, toToken, 1);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendAccountNotification(String profileId, float account){
+        String token = DBHandler.getProfileToken(profileId, WsHandler.getInstance().dbConnection);
+
+        Message.Builder builder = new Message.Builder();
+        builder.addData(FcmConsts.NOTIFICATION_TYPE, FcmConsts.NOTIFICATION_TYPE_ACCOUNT);
+        builder.addData(FcmConsts.ACCOUNT, Float.toString(account));
+
+        builder.priority(Message.Priority.NORMAL);
+        builder.timeToLive(FcmConsts.ONE_MINUTE);
+        Message msg = builder.build();
+        try{
+            sender.send(msg, token, 1);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendAccountDelta(String profileId, float delta, float account){
+        String token = DBHandler.getProfileToken(profileId, WsHandler.getInstance().dbConnection);
+
+        Message.Builder builder = new Message.Builder();
+        builder.addData(FcmConsts.NOTIFICATION_TYPE, FcmConsts.NOTIFICATION_TYPE_ACCOUNT_DELTA);
+        builder.addData(FcmConsts.ACCOUNT, Float.toString(account));
+        builder.addData(FcmConsts.ACCOUNT_DELTA, Float.toString(delta));
+
+        builder.priority(Message.Priority.NORMAL);
+        builder.timeToLive(FcmConsts.ONE_MINUTE);
+        Message msg = builder.build();
+        try{
+            sender.send(msg, token, 1);
         } catch (IOException e){
             e.printStackTrace();
         }
