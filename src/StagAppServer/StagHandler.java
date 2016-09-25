@@ -1,19 +1,13 @@
 package StagAppServer;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -51,7 +45,6 @@ class StagHandler implements Runnable {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             String what = in.readUTF();
-            System.out.println("what: " + what);
             switch (what) {
                 case TCPService.STEG_TO_SERVER:
                     stegToServer(in);
@@ -88,6 +81,18 @@ class StagHandler implements Runnable {
                     break;
                 case TCPService.PROFILE_IMG_TO_SERVER:
                     profileImgToServer(in);
+                    break;
+                case "emailValidation":
+                    emailValidate(in, out);
+                    break;
+                case "notValidEmail":
+                    notValidEmailFromServer(in, out);
+                    break;
+                case "changePassword":
+                    changePassword(in, out);
+                    break;
+                case "forgotPassword":
+                    forgotPassword(in, out);
                     break;
                 case TCPService.WALL_ITEMS_FROM_SERVER:
                     wallItemsFromServer(in, out);
@@ -167,6 +172,9 @@ class StagHandler implements Runnable {
                 case TCPService.FAVORITES_FROM_SERVER:
                     favoritesFromServer(in, out);
                     break;
+                case TCPService.ACCOUNT_FROM_SERVER:
+                    accountFromServer(in, out);
+                    break;
             }
             out.close();
             in.close();
@@ -241,7 +249,6 @@ class StagHandler implements Runnable {
     }
 
     private void stegToServerV2(DataInputStream in, DataOutputStream out) throws IOException {
-        System.out.println("stegToServerV2");
         Boolean notStopped = true;
         StagData stagData = new StagData();
         while (notStopped) {
@@ -461,7 +468,7 @@ class StagHandler implements Runnable {
                     }
                     int fileSize = in.readInt();
 
-                    readImgFile(dos, in, imgFile, imgExt, fileSize, true);
+                    readImgFile(dos, in, imgFile, imgExt, fileSize, false);
                     dos.close();
                     break;
                 case "stagData":
@@ -825,6 +832,54 @@ class StagHandler implements Runnable {
         }
     }
 
+    private void forgotPassword(DataInputStream in, DataOutputStream out) throws IOException {
+        String loginOrEmail = in.readUTF();
+
+        Map<String, String> data = DBHandler.forgotPassword(loginOrEmail, dbConnection);
+        out.writeBoolean(data != null);
+        out.flush();
+        if (data != null){
+            String userId = data.get("userId");
+            String email = data.get("email");
+            String paswd = data.get("paswd");
+            EmailSender.getInstance().sendForgotenPassword(userId, email, paswd);
+        }
+    }
+
+    private void changePassword(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        String oldPassword = in.readUTF();
+        String newPassword = in.readUTF();
+
+        out.writeBoolean(DBHandler.changePassword(profileId, oldPassword, newPassword, dbConnection));
+        out.flush();
+    }
+
+    private void emailValidate(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        String email = in.readUTF();
+        String pattern = "qwertyuiopasdfghjklzxcvbnm1234567890QAZXSWEDCVFRTGBNHYUJMKILOP";
+        Random random = new Random(System.currentTimeMillis());
+        String validCode = "";
+        for (int i=0; i < 20; i++){
+            validCode = validCode.concat(String.valueOf(pattern.charAt(random.nextInt(pattern.length()))));
+        }
+        if (DBHandler.setNewUserEmail(profileId, email, validCode, dbConnection)){
+            EmailSender.getInstance().sendValidationEmail(profileId, email, validCode);
+            out.writeBoolean(true);
+        } else {
+            out.writeBoolean(false);
+        }
+        out.flush();
+    }
+
+    private void notValidEmailFromServer(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        String notValidEmail = DBHandler.getNotValidEmail(profileId, dbConnection);
+        out.writeUTF(notValidEmail);
+        out.flush();
+    }
+
     private void profileFromServer(DataInputStream in, DataOutputStream out) throws IOException {
         Boolean isBlack = false;
         String userId = in.readUTF();
@@ -862,6 +917,9 @@ class StagHandler implements Runnable {
             profilePacker.writePayload(photoBytes, 0, photoBytes.length);
         } else {
             profilePacker.packString("clear");
+        }
+        if (profileId.equals(userId)){
+            profilePacker.packString(profileToSend.getEmail());
         }
         profilePacker.close();
         out.writeInt(profileBaos.toByteArray().length);
@@ -1428,7 +1486,7 @@ class StagHandler implements Runnable {
                     switch (fileType) {
                         case 1:
                             imgExt = fileExt;
-                            imgFile = new File(STEGAPP_IMG_DIR + System.currentTimeMillis() + imgExt);
+                            imgFile = new File(STEGAPP_IMG_T_DIR + System.currentTimeMillis() + imgExt);
                             commentData.setImgData(imgFile.getName());
                             dos = new FileOutputStream(imgFile);
                             break;
@@ -1445,7 +1503,7 @@ class StagHandler implements Runnable {
                     }
                     int fileSize = in.readInt();
 
-                    readImgFile(dos, in, imgFile, imgExt, fileSize, true);
+                    readImgFile(dos, in, imgFile, imgExt, fileSize, false);
 
                     dos.close();
                     break;
@@ -1554,6 +1612,13 @@ class StagHandler implements Runnable {
         out.writeInt(len);
         out.flush();
         out.write(baos.toByteArray(), 0, len);
+        out.flush();
+    }
+
+    private void accountFromServer(DataInputStream in, DataOutputStream out) throws IOException {
+        String profileId = in.readUTF();
+        Float profileAccount = DBHandler.getProfileAccount(profileId, dbConnection);
+        out.writeFloat(profileAccount);
         out.flush();
     }
 

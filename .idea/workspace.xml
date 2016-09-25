@@ -7,22 +7,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60c32a3c-2447-4d56-ab05-609f5867f1b0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StagAppServer/location/PrizeLocation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jetty.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StagAppServer/jsp/emailValidation.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StagAppServer/servlets/MyHttpServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/StagAppServer/stegsFileManager/StegFileManager.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/DBHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/EmailSender$1$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/EmailSender$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/EmailSender$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/EmailSender$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/EmailSender.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/EmailSender.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/FileTransferHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/FileTransferHandler.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StagHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StegSender$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StegSender$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/StegSender.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/StegSender.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler$ChatWebSocket.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/fcm/FcmConnection.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/fcm/FcmConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/fcm/FcmConsts.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/fcm/FcmConsts.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/WsProxy.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/WsProxy.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/dataClasses/UserProfile.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/dataClasses/UserProfile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/StagAppServer/tcpService/TCPService.class" afterPath="$PROJECT_DIR$/bin/StagAppServer/tcpService/TCPService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" afterPath="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/StagAppServer_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/StagAppServer_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StagAppServer.iml" afterPath="$PROJECT_DIR$/StagAppServer.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/EmailSender.java" afterPath="$PROJECT_DIR$/src/StagAppServer/EmailSender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/StegSender.java" afterPath="$PROJECT_DIR$/src/StagAppServer/StegSender.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" afterPath="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConnection.java" afterPath="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConsts.java" afterPath="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConsts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" afterPath="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/dataClasses/UserProfile.java" afterPath="$PROJECT_DIR$/src/StagAppServer/dataClasses/UserProfile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java" afterPath="$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java" />
     </list>
     <ignored path="StegAppServer.iws" />
@@ -43,155 +59,209 @@
     <favorites_list name="StegAppServer" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.43496802">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="711" column="64" selection-start-line="711" selection-start-column="64" selection-end-line="711" selection-end-column="64" />
-                  <folding>
-                    <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#sendBroadcastNotification#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
-                    <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="StagHandler.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="519">
-                  <caret line="1065" column="13" selection-start-line="1065" selection-start-column="13" selection-end-line="1065" selection-end-column="13" />
-                  <folding>
-                    <element signature="method#broadcastToServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#stegToServerV2#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#stegToServerNew#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#stegToServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#stegRequest#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#pollFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#stegFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileToServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileToServerNoImg#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileImgToServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileImgFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#getIsBlack#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#isMeInBlackList#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#checkPassword#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#delProfile#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileSentItems#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#outcomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#profileCorrespondenceFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#commentItemsFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#commentRequest#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#commentFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#likesFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#commentLikesFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#notificationItemsFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#favoritesFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#saversFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#getersFromServer#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#resizeImg#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#readImgFile#0;class#StagHandler#0" expanded="false" />
-                    <element signature="method#readFile#0;class#StagHandler#0" expanded="false" />
-                    <element signature="e#74022#74115#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TCPService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="519">
-                  <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="StegLocation.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/location/StegLocation.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PrizeLocation.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/location/PrizeLocation.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="193">
-                  <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="DBHandler.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="961">
-                  <caret line="1120" column="0" selection-start-line="1120" selection-start-column="0" selection-end-line="1120" selection-end-column="0" />
-                  <folding>
-                    <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#createBroadcastSteg#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#addPoll#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#addVote#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#removeVote#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getStegV2#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getProfileSentItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getProfileCorrespondenceItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getStegSenderCity#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getUnrecievedStegIds#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getUnreceivedStegs#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#checkReceiver#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#setStegActive#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getLocationStegSender#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
-                    <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="DBHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="264" column="44" selection-start-line="264" selection-start-column="44" selection-end-line="264" selection-end-column="44" />
+              <folding>
+                <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#createBroadcastSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addPoll#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addVote#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeVote#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getProfileSentItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getProfileCorrespondenceItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getIncomePrivateItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomePrivateStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomePrivateItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomeCommonStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegSenderCity#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUnreceivedStegs#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#checkReceiver#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#setStegActive#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getRecievedCount#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteIncomeSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#deleteComment#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#decStegReceived#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#incStegReceived#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getLocationStegSender#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#stegRequest#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#stegRequestV2#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWallItemsForProfile#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWallItemsForProfileV2#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getWallItemsV2#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addCommentLike#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeCommentLike#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+                <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addReceiver#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getCommentLikes#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getReceiversList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getVotersList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getReceivers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#justAddCommentNews#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegNotifiers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getCommentedSteg#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addToBlackListByStegId#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#isFavorite#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addStegToFavorite#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#removeStegFromFavorite#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFollowers#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getFavorites#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getUserLocations#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addStegLocation#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getCurrentStegLocation#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#setFcmToken#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getProfileToken#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getAllTokens#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getLocationStegForProfile#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getPrizeLocations#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addPrizeWinner#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#addPrizeWinnerContacts#0;class#DBHandler#0" expanded="false" />
+                <element signature="method#getStegLocationsAll#0;class#DBHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyHttpServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/servlets/MyHttpServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="29" column="86" selection-start-line="29" selection-start-column="86" selection-end-line="29" selection-end-column="86" />
+              <folding>
+                <element signature="e#342#343#0" expanded="false" />
+                <element signature="e#384#385#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmailSender.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/EmailSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
+              <folding>
+                <element signature="e#4668#6113#0" expanded="true" />
+                <element signature="e#6112#6113#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WsHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="539" column="21" selection-start-line="539" selection-start-column="21" selection-end-line="539" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#sendBroadcastNotification#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#notifyStegFollowers#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#notifyToRefresh#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#sendStegItem#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#sendToSomeBody#0;class#WsHandler#0" expanded="false" />
+                <element signature="method#checkWebSockets#0;class#WsHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WsProxy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="884">
+              <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StagHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="834" column="17" selection-start-line="834" selection-start-column="17" selection-end-line="834" selection-end-column="17" />
+              <folding>
+                <element signature="method#stegToServerNew#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#pollFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#profileToServerNoImg#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#profileImgToServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#profileImgFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#getIsBlack#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#isMeInBlackList#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#checkPassword#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#delProfile#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#profileSentItems#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#outcomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#profileCorrespondenceFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#incomePrivateItemsFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentItemsFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentRequest#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentToServerNew#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentToServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#likesFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#commentLikesFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#notificationItemsFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#saversFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#getersFromServer#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#resizeImg#0;class#StagHandler#0" expanded="false" />
+                <element signature="method#readFile#0;class#StagHandler#0" expanded="false" />
+                <element signature="e#76724#76817#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
         <option value="package-info" />
+        <option value="Singleton" />
         <option value="Class" />
       </list>
     </option>
@@ -230,17 +300,26 @@
         <option value="$PROJECT_DIR$/src/StagAppServer/dataClasses/StegRequestItem.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/dataClasses/polls/PollItem.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/dataClasses/polls/Poll.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/EmailSender.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/StegSender.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConsts.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/fcm/FcmConnection.java" />
-        <option value="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/location/PrizeLocation.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/StegSender.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/stegsFileManager/StegFileManager.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/dataClasses/UserProfile.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/web.xml" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/jsp/emailValidation.jsp" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/servlets/EmailValidationServlet.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/servlets/MyHttpHandler.java" />
+        <option value="$PROJECT_DIR$/.classpath" />
+        <option value="$PROJECT_DIR$/StagAppServer.iml" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/WsProxy.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/WsHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/servlets/MyHttpServlet.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/DBHandler.java" />
+        <option value="$PROJECT_DIR$/src/StagAppServer/EmailSender.java" />
         <option value="$PROJECT_DIR$/src/StagAppServer/StagHandler.java" />
       </list>
     </option>
@@ -272,7 +351,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -285,12 +364,68 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StagAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StegAppServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.118390806" />
+    <property name="project.structure.side.proportion" value="0.2764706" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
@@ -298,8 +433,14 @@
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../serverLibs/jetty-servlet-8.2.0.v20160908.jar!/" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\1\Desktop\dev\projects\StegAppServer\lib\jetty" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.Unnamed">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -442,6 +583,9 @@
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <envs />
       <method />
     </configuration>
@@ -550,6 +694,18 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="false" name="Unnamed" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/StagAppServer_jar/StagAppServer.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\1\Desktop\dev\projects\StegAppServer" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JAR Application.Unnamed" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -567,23 +723,32 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21181718" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25083613" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13043478" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10033445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23851204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15191898" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24253732" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -592,7 +757,9 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15050167" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -637,7 +804,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -646,155 +813,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/org/eclipse/jetty/util/ConcurrentHashSet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ideaLibSources/jetty-util-8.1.17.v20150415-sources.jar!/org/eclipse/jetty/util/ConcurrentHashSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/messages/MessageSystem.java" />
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/location/UserLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/function/Consumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/concurrent/LinkedBlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="458" column="14" selection-start-line="458" selection-start-column="14" selection-end-line="458" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="105" column="13" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/sql/PreparedStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/package-info.java" />
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/CommentData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/CommentItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/FavoriteItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/FileList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/LikeData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/StagData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/StagFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/StegItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/messages/MessageQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/messages/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/messages/MsgHandleTcpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/messages/MsgToTcpService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -813,13 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -844,24 +855,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/EmailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/net/URL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="970" column="25" selection-start-line="970" selection-start-column="25" selection-end-line="970" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/MessageSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -893,44 +890,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StegSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/UserProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/NewsData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -946,39 +905,215 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/fcm/FcmConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="106" column="27" selection-start-line="106" selection-start-column="27" selection-end-line="106" selection-end-column="27" />
-          <folding>
-            <element signature="method#initServer#0;class#FcmConnection#0" expanded="false" />
-            <element signature="method#sendNotification#0;class#FcmConnection#0" expanded="false" />
-            <element signature="method#sendNewStegNotification#0;class#FcmConnection#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/location/StegLocation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/location/PrizeLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
+        <state relative-caret-position="192">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/messageSystem/MessageSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/fcm/FcmConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="63" column="30" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="30" />
+          <folding>
+            <element signature="method#sendNewStegNotification#0;class#FcmConnection#0" expanded="false" />
+            <element signature="method#sendAccountNotification#0;class#FcmConnection#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/ChatDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="33" column="40" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/StagData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/FileTransferHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="34" column="77" selection-start-line="34" selection-start-column="77" selection-end-line="34" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/qwe.java" />
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/web.xml" />
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/jsp/emailValidation.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar!/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="30" column="58" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/StegSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="55" column="66" selection-start-line="55" selection-start-column="66" selection-end-line="55" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/stegsFileManager/StegFileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="48" column="85" selection-start-line="48" selection-start-column="85" selection-end-line="48" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/dataClasses/UserProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/jetty-servlet-8.1.17.v20150415-sources.jar!/org/eclipse/jetty/servlet/ServletHandler.java" />
+    <entry file="file://$PROJECT_DIR$/StegApp/media/img/1441133821506.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StegApp/media/img/thumbs/1441133821506.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StegApp/media/img/1441133781790.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StegApp/media/img/thumbs/1441133781790.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/jetty-server-8.1.17.v20150415.jar!/org/eclipse/jetty/server/ResourceCache.class" />
+    <entry file="jar://$PROJECT_DIR$/lib/jetty-servlet-8.1.17.v20150415-sources.jar!/org/eclipse/jetty/servlet/DefaultServlet.java" />
+    <entry file="file://$PROJECT_DIR$/.project" />
+    <entry file="file://$PROJECT_DIR$/.classpath" />
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StagAppServer.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StagAppServer.eml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar!/javax/servlet/http/HttpServletRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar!/javax/servlet/annotation/WebServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/servlets/MyHttpServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="86" selection-start-line="29" selection-start-column="86" selection-end-line="29" selection-end-column="86" />
+          <folding>
+            <element signature="e#342#343#0" expanded="false" />
+            <element signature="e#384#385#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/WsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="711" column="64" selection-start-line="711" selection-start-column="64" selection-end-line="711" selection-end-column="64" />
+        <state relative-caret-position="17">
+          <caret line="539" column="21" selection-start-line="539" selection-start-column="21" selection-end-line="539" selection-end-column="21" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#unpackSteg#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addStegToWall#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
             <element signature="method#addTextComment#0;class#ChatWebSocket#0;class#WsHandler#0" expanded="false" />
@@ -992,18 +1127,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StagAppServer/tcpService/TCPService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="961">
-          <caret line="1120" column="0" selection-start-line="1120" selection-start-column="0" selection-end-line="1120" selection-end-column="0" />
+        <state relative-caret-position="281">
+          <caret line="264" column="44" selection-start-line="264" selection-start-column="44" selection-end-line="264" selection-end-column="44" />
           <folding>
             <element signature="method#setUserValid#0;class#DBHandler#0" expanded="false" />
             <element signature="method#createBroadcastSteg#0;class#DBHandler#0" expanded="false" />
@@ -1012,7 +1139,6 @@
             <element signature="method#addVote#0;class#DBHandler#0" expanded="false" />
             <element signature="method#removeVote#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getSteg#0;class#DBHandler#0" expanded="false" />
-            <element signature="method#getStegV2#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getIncomePrivateStegs#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getProfileSentItems#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getIncomeCommonItems#0;class#DBHandler#0" expanded="false" />
@@ -1024,35 +1150,101 @@
             <element signature="method#getOutcomeCommonItems#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getUnrecievedSteg#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getStegSenderCity#0;class#DBHandler#0" expanded="false" />
-            <element signature="method#getUnrecievedStegIds#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getUnreceivedStegs#0;class#DBHandler#0" expanded="false" />
             <element signature="method#checkReceiver#0;class#DBHandler#0" expanded="false" />
             <element signature="method#setStegUnrecieved#0;class#DBHandler#0" expanded="false" />
             <element signature="method#setStegActive#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getRecievedCount#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteIncomeSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#deleteComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#decStegReceived#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#incStegReceived#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markPrivetStegSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegOwner#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getLocationStegSender#0;class#DBHandler#0" expanded="false" />
             <element signature="method#stegToWall#0;class#DBHandler#0" expanded="false" />
-            <element signature="method#removeStegFromWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegRequest#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#stegRequestV2#0;class#DBHandler#0" expanded="false" />
             <element signature="method#getWall#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItemsForProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItemsForProfileV2#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getWallItemsV2#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addCommentLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeCommentLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addComment#1;class#DBHandler#0" expanded="false" />
+            <element signature="method#addLike#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addReceiver#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addGeter#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComments#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getComment#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentsItems#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getLikes#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentLikes#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSavers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getReceiversList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getVotersList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getReceivers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getGeters#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#justAddCommentNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegNotifiers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCommentedSteg#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getNews#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markNewsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#markAllStegNotificationsSended#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addToBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addToBlackListByStegId#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeFromBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isFriend#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isBlack#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isMeInBlackList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriends#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getSubscribers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFriendsList#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#isFavorite#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addStegToFavorite#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#removeStegFromFavorite#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFollowers#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getFavorites#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getUserLocations#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addStegLocation#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getCurrentStegLocation#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#setFcmToken#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getProfileToken#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getAllTokens#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getLocationStegForProfile#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getPrizeLocations#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addPrizeWinner#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#addPrizeWinnerContacts#0;class#DBHandler#0" expanded="false" />
+            <element signature="method#getStegLocationsAll#0;class#DBHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StagAppServer/EmailSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
+          <folding>
+            <element signature="e#4668#6113#0" expanded="true" />
+            <element signature="e#6112#6113#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StagAppServer/StagHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="1065" column="13" selection-start-line="1065" selection-start-column="13" selection-end-line="1065" selection-end-column="13" />
+        <state relative-caret-position="281">
+          <caret line="834" column="17" selection-start-line="834" selection-start-column="17" selection-end-line="834" selection-end-column="17" />
           <folding>
-            <element signature="method#broadcastToServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#stegToServerV2#0;class#StagHandler#0" expanded="false" />
             <element signature="method#stegToServerNew#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#stegToServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#stegRequest#0;class#StagHandler#0" expanded="false" />
             <element signature="method#pollFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#stegFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#profileToServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#profileToServerNoImg#0;class#StagHandler#0" expanded="false" />
             <element signature="method#profileImgToServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#profileFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#profileImgFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#getIsBlack#0;class#StagHandler#0" expanded="false" />
             <element signature="method#isMeInBlackList#0;class#StagHandler#0" expanded="false" />
@@ -1065,16 +1257,16 @@
             <element signature="method#commentItemsFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#commentRequest#0;class#StagHandler#0" expanded="false" />
             <element signature="method#commentFromServer#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#commentToServerNew#0;class#StagHandler#0" expanded="false" />
+            <element signature="method#commentToServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#likesFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#commentLikesFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#notificationItemsFromServer#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#favoritesFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#saversFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#getersFromServer#0;class#StagHandler#0" expanded="false" />
             <element signature="method#resizeImg#0;class#StagHandler#0" expanded="false" />
-            <element signature="method#readImgFile#0;class#StagHandler#0" expanded="false" />
             <element signature="method#readFile#0;class#StagHandler#0" expanded="false" />
-            <element signature="e#74022#74115#0" expanded="false" />
+            <element signature="e#76724#76817#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1089,7 +1281,8 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.118390806" />
+                <option value="0.2764706" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1101,7 +1294,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2764706" />
               </list>
             </option>
           </splitter-proportions>
@@ -1112,7 +1305,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.118390806" />
+                <option value="0.2764706" />
               </list>
             </option>
           </splitter-proportions>
@@ -1124,7 +1317,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.118390806" />
+                <option value="0.2764706" />
               </list>
             </option>
           </splitter-proportions>
@@ -1136,8 +1329,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.118390806" />
-                <option value="0.6" />
+                <option value="0.2764706" />
               </list>
             </option>
           </splitter-proportions>
@@ -1157,11 +1349,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>com.google.gcm:gcm-server:1.0.0</last-edited>
+          <last-edited>jetty</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2764706" />
               </list>
             </option>
           </splitter-proportions>

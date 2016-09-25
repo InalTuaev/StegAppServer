@@ -68,7 +68,6 @@ public class StegSender implements Runnable {
                 } else {
 //                    notSendedStegs.add(stegId);
                 }
-                System.out.println("queue: " + stegsQueue.size());
             }
 //            Collections.reverse(notSendedStegs);
 //            stegsQueue.addAll(notSendedStegs);

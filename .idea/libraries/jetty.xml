@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="jetty">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-security-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-servlet-8.2.0.v20160908.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-servlet-8.1.17.v20150415-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../serverLibs/jetty-servlet-8.1.17.v20150415-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

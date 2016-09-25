@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 class FileTransferHandler extends Thread {
 	private static final int TCP_SOCKET_PORT = 8088;
@@ -29,6 +31,8 @@ class FileTransferHandler extends Thread {
 		executorService = Executors.newCachedThreadPool();
 		this.dbConnection = dbConnection;
 		executorService.submit(StegSender.getInstance());
+		ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+		scheduledExecutorService.scheduleAtFixedRate(DBHandler.privateStegDeleteTask, 0, 1, TimeUnit.HOURS);
 //		messageSystem = new MessageSystem();
 //		tcpServicesThreadPool = new ArrayList<>();
 

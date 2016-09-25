@@ -14,8 +14,6 @@ import StagAppServer.fcm.FcmConsts;
 import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
-import com.sun.xml.internal.fastinfoset.algorithm.BooleanEncodingAlgorithm;
-import com.sun.xml.internal.ws.handler.MessageUpdatableContext;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
@@ -613,7 +611,7 @@ public class WsHandler extends WebSocketHandler {
                 eMail = "no e-mail";
             }
 
-            EmailSender emailSender = new EmailSender();
+            EmailSender emailSender = EmailSender.getInstance();
             String pleaText;
             pleaText = "From: " + pleaer + "\n\nSteg: " + stegId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
             emailSender.send("PleaSteg", pleaText, "stegapp777@gmail.com", "stegapp777@gmail.com");
@@ -637,7 +635,7 @@ public class WsHandler extends WebSocketHandler {
                 eMail = "no e-mail";
             }
 
-            EmailSender emailSender = new EmailSender();
+            EmailSender emailSender = EmailSender.getInstance();
             String pleaText;
             pleaText = "From: " + pleaer + "\n\nComment: " + commentId.toString() + "\n\nEmail: " + eMail + "\n\nText: " + text;
             emailSender.send("PleaComment", pleaText, "stegapp777@gmail.com", "stegapp777@gmail.com");

@@ -15,6 +15,7 @@ public class UserProfile {
 	private Integer userAge;
 	private String userPhoto;
 	private Boolean isFriend;
+	private String email;
 	private Double latitude;
 	private Double longitude;
 
@@ -29,6 +30,7 @@ public class UserProfile {
 		isFriend = false;
 		latitude = 0.0;
 		longitude = 0.0;
+		email = "clear";
 	}
 
 	public UserProfile(){
@@ -42,6 +44,7 @@ public class UserProfile {
 		isFriend = false;
 		latitude = 0.0;
 		longitude = 0.0;
+		email = "clear";
 	}
 	
 	public void setId(String userId){
@@ -68,6 +71,9 @@ public class UserProfile {
 	public void setIsFriend(Boolean isFriend){
 		this.isFriend = isFriend;
 	}
+	public void setEmail(String email){
+		this.email = email;
+	}
 
 	public String getId(){
 		return userId;
@@ -92,6 +98,9 @@ public class UserProfile {
 	}
 	public Boolean getIsFriend(){
 		return isFriend;
+	}
+	public String getEmail(){
+		return email;
 	}
 
 	public void setCoordinates(Double longitude, Double latitude){

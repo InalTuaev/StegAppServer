@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import StagAppServer.fcm.FcmConnection;
-import StagAppServer.messageSystem.MessageSystem;
-import StagAppServer.tcpService.TCPServiceImpl;
+import StagAppServer.servlets.MyHttpServlet;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.eclipse.jetty.servlet.ServletHandler;
 
 
 public class WsProxy {
 	private static final int WEBSOCKET_PORT = 8087;
+	private static final int HTTP_PORT = 8080;
 
 	private static final String STEGAPP_IMG_DIR = "StegApp/media/img/";
 	private static final String STEGAPP_IMG_T_DIR = "StegApp/media/img/thumbs/";
@@ -48,12 +48,18 @@ public class WsProxy {
 	    }
 
         WsHandler wsHandler = new WsHandler(dbConnection);
-        Server jetty = new Server(WEBSOCKET_PORT);
+        Server wsServer = new Server(WEBSOCKET_PORT);
+        wsServer.setHandler(wsHandler);
+        wsServer.start();
 
-        jetty.setHandler(wsHandler);
-        jetty.start();
+		FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
+		fileTransferHandler.start();
 
-        FileTransferHandler fileTransferHandler = new FileTransferHandler(dbConnection);
-        fileTransferHandler.start();
+		Server httpServer = new Server(HTTP_PORT);
+
+		ServletHandler httpServletHandler = new ServletHandler();
+		httpServletHandler.addServletWithMapping(MyHttpServlet.class, "/emailValidation");
+		httpServer.setHandler(httpServletHandler);
+		httpServer.start();
 	}
 }

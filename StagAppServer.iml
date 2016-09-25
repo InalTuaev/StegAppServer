@@ -12,6 +12,7 @@
     <libelement value="jar://$MODULE_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/../serverLibs/jetty-servlet-8.2.0.v20160908.jar!/" />
     <libelement value="jar://$MODULE_DIR$/../serverLibs/javax.mail.jar!/" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
@@ -24,15 +25,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module-library" exported="">
-      <library name="servlet-api-3.0.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/servlet-api-3.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" exported="">
       <library name="json-simple-1.1.1.jar">
         <CLASSES>
@@ -64,62 +56,6 @@
       <library name="postgresql-9.4-1201.jdbc4.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../serverLibs/postgresql-9.4-1201.jdbc4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-continuation-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-http-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-io-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-server-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-util-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.ideaLibSources/jetty-util-8.1.17.v20150415-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library name="jetty-websocket-8.1.17.v20150415.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -180,5 +116,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="jetty" level="project" />
   </component>
 </module>

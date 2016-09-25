@@ -28,6 +28,7 @@ public interface TCPService extends Abonent {
     String PROFILE_TO_SERVER = "profileToServer";
     String PROFILE_TO_SERVER_NO_IMG_NO_GEO = "profileToSrvrNoImgNoGeo";
     String PROFILE_IMG_TO_SERVER = "profileImgToServer";
+    String PROFILE_EMAIL_TO_SERVER = "profileEmailToServer";
     String WALL_ITEMS_FROM_SERVER = "wallItemsFromServer";
     String WALL_ITEMS_FROM_SERVER_FOR_PROFILE = "wallItemsFromServerForProfile";
     String WALL_ITEMS_FROM_SERVER_V2 = "wallItemsFromServerV2";
@@ -54,6 +55,7 @@ public interface TCPService extends Abonent {
     String CHECK_PASSWORD = "checkPassword";
     String DEL_PROFILE = "delProfile";
     String FAVORITES_FROM_SERVER = "favoritesFromServer";
+    String ACCOUNT_FROM_SERVER = "accountFromServer";
 
 
     /**
