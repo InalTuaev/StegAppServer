@@ -2532,6 +2532,7 @@ public class DBHandler {
             }
             rs.close();
             checkStatement.close();
+            System.out.println("addReciever: " + profileId + " stegId: " + stegId + " check: " + check);
             if (check) {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO receives " +
                         "(steg_id, profile_id) " +
@@ -3493,7 +3494,7 @@ public class DBHandler {
 
     public static void addStegLocation(Integer stegId, Double latitude, Double longitude, String title, Integer type, Connection dbConnection) {
         try {
-            PreparedStatement st = dbConnection.prepareStatement("INSERT INTO steg_locations (steg_id, latitude, longitude, title, type) VALUES (?, ?, ?, ?, ?);");
+            PreparedStatement st = dbConnection.prepareStatement("INSERT INTO steg_locations (steg_id, latitude, longitude, title, type, point) VALUES (?, ?, ?, ?, ?, ST_GeographyFromText('SRID=4326;POINT(" + latitude.toString() + " " + longitude.toString() + ")'));");
             st.setInt(1, stegId);
             st.setDouble(2, latitude);
             st.setDouble(3, longitude);

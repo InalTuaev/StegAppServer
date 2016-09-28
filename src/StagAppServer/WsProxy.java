@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import StagAppServer.fcm.FcmConnection;
 import StagAppServer.servlets.MyHttpServlet;
+import StagAppServer.waveChats.WaveChatsDispatcher;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 
@@ -61,5 +62,7 @@ public class WsProxy {
 		httpServletHandler.addServletWithMapping(MyHttpServlet.class, "/emailValidation");
 		httpServer.setHandler(httpServletHandler);
 		httpServer.start();
+
+		WaveChatsDispatcher.getInstance().addWaveChat("Splash");
 	}
 }

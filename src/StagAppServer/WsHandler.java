@@ -14,6 +14,7 @@ import StagAppServer.fcm.FcmConsts;
 import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
+import StagAppServer.waveChats.WaveChatsDispatcher;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
@@ -58,7 +59,7 @@ public class WsHandler extends WebSocketHandler {
         return instance;
     }
 
-    class ChatWebSocket implements OnBinaryMessage, OnTextMessage {
+    public class ChatWebSocket implements OnBinaryMessage, OnTextMessage {
 
         volatile private String userId;
         volatile private Connection connection;
@@ -337,6 +338,15 @@ public class WsHandler extends WebSocketHandler {
                         break;
                     case "incMyAccount":
                         incMyAccount(unpacker);
+                        break;
+                    case "waveChat":
+                        sendMessageToWaveChat(unpacker);
+                        break;
+                    case "connectWChat":
+                        connectToWaveChat(unpacker);
+                        break;
+                    case "disconFromWChat":
+                        disconnectFromWaveChat(unpacker);
                         break;
                 }
                 unpacker.close();
@@ -940,6 +950,32 @@ public class WsHandler extends WebSocketHandler {
             DBHandler.incAccount(profileId, value, dbConnection);
         }
 
+        private void sendMessageToWaveChat(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            String chatName = unpacker.unpackString();
+            String mes = unpacker.unpackString();
+
+            System.out.println("Send message to wave chat: " + chatName + " : " + profileId);
+
+            WaveChatsDispatcher.getInstance().sendTextMessage(chatName, profileId, mes);
+        }
+
+        private void connectToWaveChat(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            if (userId == null)
+                userId = profileId;
+            String chatName = unpacker.unpackString();
+            String password = unpacker.unpackString();
+            System.out.println("connect to wave chat: " + chatName + " user: " + userId);
+            WaveChatsDispatcher.getInstance().addUserToChat(chatName, this, password);
+        }
+
+        private void disconnectFromWaveChat(MessageUnpacker unpacker) throws IOException {
+            String chatName = unpacker.unpackString();
+
+            WaveChatsDispatcher.getInstance().removeUserFromWaveChat(chatName, this);
+        }
+
         private void checkConnection() {
             try {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -954,11 +990,11 @@ public class WsHandler extends WebSocketHandler {
             }
         }
 
-        String getUserId() {
+        public String getUserId() {
             return this.userId;
         }
 
-        Connection getConnection() {
+        public Connection getConnection() {
             return this.connection;
         }
     }
