@@ -73,7 +73,6 @@ public class EmailSender {
                 } catch (MessagingException e) {
                     e.printStackTrace();
                 }
-                System.out.println("plea oops");
 
             }
 

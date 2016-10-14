@@ -148,6 +148,9 @@ class StagHandler implements Runnable {
                 case TCPService.INCOME_COMMON_ITEMS_FROM_SERVER_V2:
                     incomeCommonItemsFromServerV2(in, out);
                     break;
+                case "getReceivers":
+                    getReceivers(in, out);
+                    break;
                 case TCPService.PROFILE_SENT_ITEMS:
                     profileSentItems(in, out);
                     break;
@@ -174,6 +177,9 @@ class StagHandler implements Runnable {
                     break;
                 case TCPService.ACCOUNT_FROM_SERVER:
                     accountFromServer(in, out);
+                    break;
+                case "addReceiver":
+                    addReceiver(in);
                     break;
             }
             out.close();
@@ -336,9 +342,7 @@ class StagHandler implements Runnable {
                         } else {
                             listType = WsHandler.STEG_LIST_TYPE_OUTCOME_COMMON_ITEM;
                             StegSender.getInstance().addStegToQueueFirst(newStegId, DBHandler.MAX_RECEIVED_NO_FIELD);
-
                         }
-
                         WsHandler.getInstance().notifyToRefresh(listType, stagData.mesSender);
                     }
                     unpacker.close();
@@ -656,9 +660,6 @@ class StagHandler implements Runnable {
         String userId = in.readUTF();
         StagData stagData = DBHandler.getSteg(stagId, userId, dbConnection);
 
-        if (stagData == null)
-            System.out.println("steg == null!  - " + Integer.toString(stagId) + " - " + userId);
-
         ArrayList<StagFile> fileList = new ArrayList<>();
 
         if ((stagData.stagType & 2) != 0) {
@@ -778,7 +779,6 @@ class StagHandler implements Runnable {
                         readFile(dos, in, fileSize);
 
                         dos.close();
-                        System.out.println("photo added: " + newFile.getAbsolutePath());
                         // Write in DB
                         DBHandler.addUserPhoto(recUserId, recUserId + fileExt, dbConnection);
 
@@ -921,6 +921,7 @@ class StagHandler implements Runnable {
         if (profileId.equals(userId)){
             profilePacker.packString(profileToSend.getEmail());
         }
+        profilePacker.packString(profileToSend.getStatus());
         profilePacker.close();
         out.writeInt(profileBaos.toByteArray().length);
         out.flush();
@@ -1122,6 +1123,18 @@ class StagHandler implements Runnable {
                 out.writeUTF(entry.getKey());
                 out.flush();
             }
+        }
+    }
+
+    private void getReceivers(DataInputStream in, DataOutputStream out) throws IOException {
+        Integer stegId = in.readInt();
+        ArrayList<String> receivers = DBHandler.getReceiversList(stegId, dbConnection);
+
+        out.writeInt(receivers.size());
+        out.flush();
+        for (String receiver : receivers){
+            out.writeUTF(receiver);
+            out.flush();
         }
     }
 
@@ -1620,6 +1633,12 @@ class StagHandler implements Runnable {
         Float profileAccount = DBHandler.getProfileAccount(profileId, dbConnection);
         out.writeFloat(profileAccount);
         out.flush();
+    }
+
+    private void addReceiver(DataInputStream in) throws IOException {
+        Integer stegId = in.readInt();
+        String profileId = in.readUTF();
+        DBHandler.addReceiver(stegId, profileId, dbConnection);
     }
 
     private void saversFromServer(DataInputStream in, DataOutputStream out) throws IOException {

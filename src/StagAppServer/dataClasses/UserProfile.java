@@ -18,6 +18,7 @@ public class UserProfile {
 	private String email;
 	private Double latitude;
 	private Double longitude;
+	private String status = "";
 
 	public UserProfile(String userId){
 		this.userId = userId;
@@ -74,6 +75,9 @@ public class UserProfile {
 	public void setEmail(String email){
 		this.email = email;
 	}
+	public void setStatus(String status){
+		this.status = status;
+	}
 
 	public String getId(){
 		return userId;
@@ -101,6 +105,9 @@ public class UserProfile {
 	}
 	public String getEmail(){
 		return email;
+	}
+	public String getStatus(){
+		return status;
 	}
 
 	public void setCoordinates(Double longitude, Double latitude){

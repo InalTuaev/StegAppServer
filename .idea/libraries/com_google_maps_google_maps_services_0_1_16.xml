@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="com.google.maps:google-maps-services:0.1.16" type="repository">
+    <properties maven-id="com.google.maps:google-maps-services:0.1.16" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/google-maps-services-0.1.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okhttp-2.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okio-1.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joda-time-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/google-maps-services-0.1.16-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/google-maps-services-0.1.16-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

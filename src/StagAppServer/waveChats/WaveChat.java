@@ -28,14 +28,35 @@ public class WaveChat {
     }
 
     public boolean addUser(WsHandler.ChatWebSocket user, String password) {
-            userSet.add(user);
-            System.out.println("Added USer To WaveChat: " + chatName + " : " + user.getUserId());
-            return true;
+        userSet.add(user);
+        sendUsersCount(userSet.size(), user.getUserId(), true);
+        return true;
     }
 
-    public void removeUser(WsHandler.ChatWebSocket user) {
-        userSet.remove(user);
-        System.out.println("Removed USer From WaveChat: " + chatName + " : " + user.getUserId());
+    public boolean removeUser(WsHandler.ChatWebSocket user) {
+        if (userSet.remove(user)) {
+            sendUsersCount(userSet.size(), user.getUserId(), false);
+            return true;
+        }
+        return false;
+    }
+
+    public void sendUsersCount(Integer count, String who, Boolean add) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        MessagePacker packer = MessagePack.newDefaultPacker(baos);
+        try {
+            packer.packString("waveChatCount")
+                    .packString(chatName)
+                    .packInt(count)
+                    .packBoolean(add)
+                    .packString(who)
+                    .close();
+            for (WsHandler.ChatWebSocket userSocket : userSet) {
+                userSocket.getConnection().sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendTextMessage(String mes, String sender) {
@@ -49,7 +70,6 @@ public class WaveChat {
                     .close();
             for (WsHandler.ChatWebSocket userSocket : userSet) {
                 userSocket.getConnection().sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
-                System.out.println("MEssage sended To : " + chatName + " : " + userSocket.getUserId() + " from: " + sender);
             }
         } catch (IOException e) {
             e.printStackTrace();

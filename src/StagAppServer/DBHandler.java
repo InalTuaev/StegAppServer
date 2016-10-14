@@ -5,17 +5,15 @@ import StagAppServer.dataClasses.polls.Poll;
 import StagAppServer.dataClasses.polls.PollItem;
 import StagAppServer.fcm.FcmConnection;
 import StagAppServer.fcm.FcmConsts;
+import StagAppServer.localities.Locality;
 import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
 import StagAppServer.stegsFileManager.StegFileManager;
+import com.sun.corba.se.impl.orb.PrefixParserAction;
 import jdk.internal.util.xml.impl.Pair;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 import java.util.*;
 import java.util.function.BooleanSupplier;
 
@@ -222,14 +220,14 @@ public class DBHandler {
         return res;
     }
 
-//    returning true if newEmail is already used by other user
-    public static Boolean setNewUserEmail(String profileId, String email, String validation_code, Connection dbConnection){
-        try{
+    //    returning true if newEmail is already used by other user
+    public static Boolean setNewUserEmail(String profileId, String email, String validation_code, Connection dbConnection) {
+        try {
             String oldUserId = "clear";
             PreparedStatement st = dbConnection.prepareStatement("SELECT user_id FROM users WHERE user_email = ?;");
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 oldUserId = rs.getString(1);
             }
             rs.close();
@@ -255,21 +253,21 @@ public class DBHandler {
             st.setString(7, profileId);
             st.executeUpdate();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public static Map<String, String> forgotPassword(String loginOrEmail, Connection dbConnection){
+    public static Map<String, String> forgotPassword(String loginOrEmail, Connection dbConnection) {
         Map<String, String> res = null;
         try {
             PreparedStatement st = dbConnection.prepareStatement("SELECT user_id, user_email, user_paswd FROM users WHERE user_email != 'clear' AND (user_id = ? OR user_email = ?);");
             st.setString(1, loginOrEmail);
             st.setString(2, loginOrEmail.toLowerCase());
             ResultSet rs = st.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 res = new HashMap<>();
                 res.put("userId", rs.getString(1));
                 res.put("email", rs.getString(2));
@@ -277,15 +275,15 @@ public class DBHandler {
             }
             rs.close();
             st.close();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
         return res;
     }
 
-    public static boolean changePassword(String profileId, String oldPassword, String newPassword, Connection dbConnection){
-        try{
+    public static boolean changePassword(String profileId, String oldPassword, String newPassword, Connection dbConnection) {
+        try {
             PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET user_paswd = ? WHERE user_id = ? AND user_paswd = ?;");
             st.setString(1, newPassword);
             st.setString(2, profileId);
@@ -294,14 +292,14 @@ public class DBHandler {
             st.close();
             if (count < 1)
                 return false;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public static String getNotValidEmail(String profile_id, Connection dbConnection){
+    public static String getNotValidEmail(String profile_id, Connection dbConnection) {
         String res = "clear";
         try {
             PreparedStatement st = dbConnection.prepareStatement("SELECT email FROM email_validation WHERE user_id = ?;");
@@ -311,7 +309,7 @@ public class DBHandler {
                 res = rs.getString(1);
             rs.close();
             st.close();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
@@ -321,7 +319,7 @@ public class DBHandler {
         UserProfile user = new UserProfile();
         try {
             PreparedStatement statement = dbConnection.prepareStatement("SELECT user_id, user_name, user_sex, " +
-                    "user_state, user_city, user_age, latitude, longitude, user_photo, user_email FROM users " +
+                    "user_state, user_city, user_age, latitude, longitude, user_photo, user_email, status FROM users " +
                     "WHERE user_id = ?;");
             statement.setString(1, userId);
             ResultSet resultSet = statement.executeQuery();
@@ -344,8 +342,12 @@ public class DBHandler {
                     user.setCoordinates(longitude, latitude);
                 }
                 String photo = resultSet.getString("user_photo");
-                if (photo != null) user.setPhoto(photo);
+                if (photo != null)
+                    user.setPhoto(photo);
                 user.setEmail(resultSet.getString("user_email"));
+                String status = resultSet.getString("status");
+                if (status != null)
+                    user.setStatus(status);
             }
 
             statement.close();
@@ -509,6 +511,18 @@ public class DBHandler {
         return res;
     }
 
+    public static void setUserStatus(String profileId, String status, Connection dbConnection) {
+        try {
+            PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET status = ? WHERE user_id = ?;");
+            st.setString(1, status);
+            st.setString(2, profileId);
+            st.execute();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Boolean addUserInfo(UserProfile user, Connection dbConnection) {
         if (user.getId().equals("StegApp"))
             return false;
@@ -568,21 +582,21 @@ public class DBHandler {
         }
     }
 
-    static void setUserCoordinates(String userId, String city, Double longitude, Double latitude, Connection dbConnection) {
+    static void setUserCoordinates(String userId, String city, Double latitude, Double longitude, Connection dbConnection) {
         String query;
         if (userId.equals("StegApp"))
             return;
         if (!city.equals("clear")) {
             query = "UPDATE users SET " +
-                    "longitude = ?, latitude = ?, user_city = ? WHERE user_id = ?;";
+                    "latitude = ?, longitude = ?, user_city = ? WHERE user_id = ?;";
         } else {
             query = "UPDATE users SET " +
-                    "longitude = ?, latitude = ? WHERE user_id = ?;";
+                    "latitude = ?, longitude = ? WHERE user_id = ?;";
         }
         try {
             PreparedStatement st = dbConnection.prepareStatement(query);
-            st.setDouble(1, longitude);
-            st.setDouble(2, latitude);
+            st.setDouble(1, latitude);
+            st.setDouble(2, longitude);
             if (!city.equals("clear")) {
                 st.setString(3, city);
                 st.setString(4, userId);
@@ -596,21 +610,22 @@ public class DBHandler {
         }
     }
 
-    static void setUserCoordinatesWithState(String userId, String city, String state, Double longitude, Double latitude, Connection dbConnection) {
+    static void setUserCoordinatesWithState(String userId, String city, String state, Double latitude, Double longitude, Connection dbConnection) {
+        System.out.println("set User Coordinates");
         String query;
         if (userId.equals("StegApp"))
             return;
         if (!city.equals("clear") && !state.equals("clear")) {
             query = "UPDATE users SET " +
-                    "longitude = ?, latitude = ?, user_city = ?, user_state = ? WHERE user_id = ?;";
+                    "latitude = ?, longitude = ?, user_city = ?, user_state = ? WHERE user_id = ?;";
         } else {
             query = "UPDATE users SET " +
-                    "longitude = ?, latitude = ? WHERE user_id = ?;";
+                    "latitude = ?, longitude = ? WHERE user_id = ?;";
         }
         try {
             PreparedStatement st = dbConnection.prepareStatement(query);
-            st.setDouble(1, longitude);
-            st.setDouble(2, latitude);
+            st.setDouble(1, latitude);
+            st.setDouble(2, longitude);
             if (!city.equals("clear") && !state.equals("clear")) {
                 st.setString(3, city);
                 st.setString(4, state);
@@ -1125,9 +1140,10 @@ public class DBHandler {
         try {
             PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.anonym"
                     + " FROM stegs JOIN gets ON stegs.steg_id = gets.steg_id"
-                    + " WHERE stegs.reciever = ? AND gets.profile_id = ? ORDER BY gets.id DESC;");
-            statement.setString(1, "common");
-            statement.setString(2, profileId);
+                    + " WHERE (stegs.reciever = ? OR stegs.reciever = ?) AND gets.profile_id = ? ORDER BY gets.id DESC;");
+            statement.setString(1, StagData.COMMON_STEG);
+            statement.setString(2, StagData.LOCATION_STEG);
+            statement.setString(3, profileId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Integer stegId = rs.getInt(1);
@@ -1178,9 +1194,10 @@ public class DBHandler {
         try {
             PreparedStatement statement = dbConnection.prepareStatement("SELECT stegs.steg_id, stegs.sender, stegs.anonym"
                     + " FROM stegs JOIN gets ON stegs.steg_id = gets.steg_id"
-                    + " WHERE stegs.reciever = ? AND gets.profile_id = ? ORDER BY gets.id DESC;");
-            statement.setString(1, "common");
-            statement.setString(2, profileId);
+                    + " WHERE (stegs.reciever = ? OR stegs.reciever = ?) AND gets.profile_id = ? ORDER BY gets.id DESC;");
+            statement.setString(1, StagData.COMMON_STEG);
+            statement.setString(2, StagData.LOCATION_STEG);
+            statement.setString(3, profileId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Integer stegId = rs.getInt(1);
@@ -2067,7 +2084,7 @@ public class DBHandler {
                     + " stegs.filter, stegs.text, stegs.voice_path, stegs.camera_path,"
                     + " stegs.anonym, stegs.date_, stegs.time_"
                     + " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
-                    + " WHERE wall.owner = ? ORDER BY wall.steg_id DESC;");
+                    + " WHERE wall.owner = ? ORDER BY wall.id DESC;");
             statement.setString(1, userId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -2140,7 +2157,7 @@ public class DBHandler {
                     + " WHERE wall.owner = ?"
                     + "AND ((stegs.filter & " + Integer.toString(StagData.STEG_SEX_MASK) + " = 0) OR "
                     + "(stegs.filter & get_sex_filter_mask_by_user_id(?) != 0)) "
-                    + " ORDER BY stegs.steg_id DESC;");
+                    + " ORDER BY wall.id DESC;");
             statement.setString(1, profileId);
             statement.setString(2, myProfileId);
             ResultSet rs = statement.executeQuery();
@@ -2193,7 +2210,7 @@ public class DBHandler {
         try {
             PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
                     + " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
-                    + " WHERE wall.owner = ? ORDER BY stegs.steg_id DESC;");
+                    + " WHERE wall.owner = ? ORDER BY wall.id DESC;");
             statement.setString(1, userId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -2248,7 +2265,7 @@ public class DBHandler {
                     + " WHERE wall.owner = ?"
                     + "AND ((stegs.filter & " + Integer.toString(StagData.STEG_SEX_MASK) + " = 0) OR "
                     + "(stegs.filter & get_sex_filter_mask_by_user_id(?) != 0)) "
-                    + " ORDER BY stegs.steg_id DESC;");
+                    + " ORDER BY wall.id DESC;");
             statement.setString(1, profileId);
             statement.setString(2, myProfileId);
             ResultSet rs = statement.executeQuery();
@@ -2307,7 +2324,7 @@ public class DBHandler {
         try {
             PreparedStatement statement = dbConnection.prepareStatement("SELECT wall.steg_id, stegs.sender, stegs.anonym"
                     + " FROM wall JOIN stegs ON wall.steg_id = stegs.steg_id"
-                    + " WHERE wall.owner = ? ORDER BY stegs.steg_id DESC;");
+                    + " WHERE wall.owner = ? ORDER BY wall.id DESC;");
             statement.setString(1, userId);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -2523,23 +2540,23 @@ public class DBHandler {
     static void addReceiver(Integer stegId, String profileId, Connection dbConnection) {
         try {
             Boolean check = true;
-            PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT profile_id FROM receives WHERE steg_id = ? AND profile_id = ?");
+            PreparedStatement checkStatement = dbConnection.prepareStatement("SELECT profile_id FROM receives WHERE steg_id = ? AND profile_id = ?;");
             checkStatement.setInt(1, stegId);
             checkStatement.setString(2, profileId);
             ResultSet rs = checkStatement.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 check = false;
             }
             rs.close();
             checkStatement.close();
-            System.out.println("addReciever: " + profileId + " stegId: " + stegId + " check: " + check);
+
             if (check) {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO receives " +
                         "(steg_id, profile_id) " +
-                        "VALUES (?, ?)");
+                        "VALUES (?, ?);");
                 statement.setInt(1, stegId);
                 statement.setString(2, profileId);
-                statement.executeUpdate();
+                statement.execute();
                 statement.close();
                 incStegReceived(stegId, dbConnection);
             }
@@ -3532,6 +3549,29 @@ public class DBHandler {
         return locations;
     }
 
+    static ArrayList<StegLocation> getCatchedStegLocations(String profileId, Connection dbConnection) {
+        ArrayList<StegLocation> locations = new ArrayList<>();
+        try {
+            PreparedStatement st = dbConnection.prepareStatement("SELECT id, steg_id, latitude, longitude, title, type FROM steg_locations WHERE steg_id IN (SELECT steg_id FROM gets WHERE profile_id = ?);");
+            st.setString(1, profileId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                StegLocation location = new StegLocation(rs.getInt(1), rs.getInt(2), rs.getDouble(3), rs.getDouble(4));
+                String title = rs.getString(5);
+                if (!title.equals(StegLocation.NO_TITLE))
+                    location.setTitle(title);
+                location.setType(rs.getInt(6));
+                location.setProfileId(DBHandler.getLocationStegSender(location.getStegId(), dbConnection));
+                locations.add(location);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return locations;
+    }
+
     static void setFcmToken(String profileId, String token, Connection dbConnection) {
         try {
             PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET fcm_token = NULL WHERE fcm_token = ? AND user_id != ?;");
@@ -3766,7 +3806,7 @@ public class DBHandler {
         }
     }
 
-    public static void addEmailToValidTable(String profileId, String email, String validCode, Connection dbConnection){
+    public static void addEmailToValidTable(String profileId, String email, String validCode, Connection dbConnection) {
         try {
             PreparedStatement st = dbConnection.prepareStatement("INSERT INTO email_validation (user_id, email, validation_code) " +
                     " VALUES (?, ?, ?);");
@@ -3774,15 +3814,15 @@ public class DBHandler {
             st.setString(2, email);
             st.setString(3, validCode);
             st.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static Boolean validateEmail(String validationCode){
+    public static Boolean validateEmail(String validationCode) {
         Connection dbConnection = WsHandler.getInstance().dbConnection;
         Boolean res = false;
-        try{
+        try {
             PreparedStatement st = dbConnection.prepareStatement("UPDATE users SET user_email = (SELECT email FROM email_validation WHERE validation_code = ?) " +
                     "WHERE user_id = (SELECT user_id FROM email_validation WHERE validation_code = ?);");
             st.setString(1, validationCode);
@@ -3790,16 +3830,54 @@ public class DBHandler {
             if (st.executeUpdate() > 0)
                 res = true;
             st.close();
-            if (res){
+            if (res) {
                 st = dbConnection.prepareStatement("DELETE FROM email_validation WHERE validation_code = ?;");
                 st.setString(1, validationCode);
                 st.executeUpdate();
                 st.close();
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public static boolean checkDiscoverer(Locality locality, Connection dbConnection) {
+        System.out.println("check Discoverer");
+        boolean res = true;
+        try {
+            PreparedStatement st = dbConnection.prepareStatement("SELECT discoverer_id FROM discoverers WHERE country_hash = ? AND area_hash = ? AND city_hash = ?;");
+            st.setInt(1, locality.getCountryHash());
+            st.setInt(2, locality.getAreaHash());
+            st.setInt(3, locality.getCityHash());
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                res = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            res = false;
+        }
+        return res;
+    }
+
+    public static void addDiscoverer(Locality locality, String profileId, Connection dbConnection) {
+        System.out.println("add Discoverer");
+        try {
+            PreparedStatement st = dbConnection.prepareStatement("INSERT INTO discoverers (country, country_hash, area, area_hash, city, city_hash, discoverer_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            st.setString(1, locality.getCountry());
+            st.setInt(2, locality.getCountryHash());
+            st.setString(3, locality.getArea());
+            st.setInt(4, locality.getAreaHash());
+            st.setString(5, locality.getCity());
+            st.setInt(6, locality.getCityHash());
+            st.setString(7, profileId);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     static final Runnable privateStegDeleteTask = () -> {

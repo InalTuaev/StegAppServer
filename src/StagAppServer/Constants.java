@@ -67,7 +67,12 @@ class Constants {
                 "inaltuaev",
                 "tuaevinal",
                 "alan",
-                "location"
+                "location",
+                "splash",
+                "splashapp",
+                "splashnet",
+                "splash",
+                "splesh"
         };
     }
 }

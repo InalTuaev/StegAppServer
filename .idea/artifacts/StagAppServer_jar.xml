@@ -3,18 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/StagAppServer_jar</output-path>
     <root id="archive" name="StagAppServer.jar">
       <element id="module-output" name="StagAppServer" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/postgresql-9.4-1201.jdbc4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/msgpack-core-0.7.0-p9.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/json-simple-1.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/javax.mail.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jackson-dataformat-msgpack-0.7.0-p9.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/firebase-server-sdk-3.0.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/google-api-client-gson-1.21.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/google-api-client-1.21.0.jar" path-in-jar="/" />
@@ -31,12 +19,29 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/google-http-client-gson-1.21.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.6.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-20160212.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jackson-dataformat-msgpack-0.7.0-p9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/postgresql-9.4-1201.jdbc4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/google-maps-services-0.1.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/okhttp-2.7.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/okio-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/joda-time-2.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/gcm-server-1.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-simple-1.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/junit-4.10.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/hamcrest-core-1.1.jar" path-in-jar="/" />
-      <element id="artifact" artifact-name="jetty" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-continuation-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-http-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-io-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-security-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-server-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-util-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-websocket-8.1.17.v20150415.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/servlet-api-3.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/jetty-servlet-8.2.0.v20160908.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/javax.mail.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/msgpack-core-0.7.0-p9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../serverLibs/json-simple-1.1.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -54,14 +54,13 @@ public class FcmConnection {
         for (String key : data.keySet()){
             builder.addData(key, data.get(key));
         }
-        builder.priority(Message.Priority.NORMAL);
+        builder.priority(Message.Priority.HIGH);
         builder.collapseKey(FcmConsts.COLLAPSE_KEY_NOTIFICATION);
         builder.timeToLive(FcmConsts.ONE_DAY * 2);
         Message msg = builder.build();
 
         try {
             Result res = sender.send(msg, toToken, 5);
-            System.out.println("Result: " + res.toString() + "to: " + toToken);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -75,8 +74,8 @@ public class FcmConnection {
         builder.addData(FcmConsts.STEG_SENDER_CITY, senderCity);
         builder.addData(FcmConsts.STEG_MODE, stegMode.toString());
 
-        builder.priority(Message.Priority.NORMAL);
-        builder.collapseKey(FcmConsts.COLLAPSE_KEY_NOTIFICATION);
+        builder.priority(Message.Priority.HIGH);
+        builder.collapseKey(FcmConsts.COLLAPSE_KEY_STEG);
         builder.timeToLive(FcmConsts.ONE_MINUTE * 10);
 
         Message msg = builder.build();

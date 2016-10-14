@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import StagAppServer.dataClasses.*;
 import StagAppServer.fcm.FcmConnection;
 import StagAppServer.fcm.FcmConsts;
+import StagAppServer.localities.Locality;
+import StagAppServer.localities.LocalityEncoder;
 import StagAppServer.location.PrizeLocation;
 import StagAppServer.location.StegLocation;
 import StagAppServer.location.UserLocation;
 import StagAppServer.waveChats.WaveChatsDispatcher;
+import com.google.maps.model.LatLng;
 import org.eclipse.jetty.util.ConcurrentHashSet;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocket.OnBinaryMessage;
@@ -79,10 +82,11 @@ public class WsHandler extends WebSocketHandler {
             if (chatId != null) {
                 chatDispatcher.removeListener(chatId, ChatWebSocket.this);
             }
-            if(userId != null){
+            if (userId != null) {
                 DBHandler.setUserOnline(userId, false, dbConnection);
             }
-			System.out.println("@" + (this.userId != null ? this.userId : "null") + " disconnected-----");
+            WaveChatsDispatcher.getInstance().removeUserFromWaveChat(this);
+            WaveChatsDispatcher.getInstance().removeCandidate(this);
         }
 
         @Override
@@ -109,7 +113,6 @@ public class WsHandler extends WebSocketHandler {
                             this.userId = newUserId;
                             this.connection.sendMessage("registration_ok");
                             clientSockets.add(this);
-                            System.out.println("@" + (this.userId != null ? this.userId : "null") + " registered+++++");
                         } else {
                             this.connection.sendMessage("same_name");
                         }
@@ -150,12 +153,11 @@ public class WsHandler extends WebSocketHandler {
                             this.userId = userId;
                             this.connection.sendMessage("enter");
                             clientSockets.add(this);
-                            System.out.println("@" + (this.userId != null ? this.userId : "null") + " connected+++++ : " + connection.getProtocol());
                         } else {
                             this.connection.sendMessage("not_registered");
                         }
                         break;
-                    case"signInV2":
+                    case "signInV2":
                         String userIdv2 = unpacker.unpackString();
                         String paswdv2 = unpacker.unpackString();
                         unpacker.close();
@@ -165,7 +167,6 @@ public class WsHandler extends WebSocketHandler {
                             this.connection.setMaxIdleTime(2 * 60 * 1000);
                             DBHandler.setUserOnline(userIdv2, true, dbConnection);
                             clientSockets.add(this);
-                            System.out.println("@" + (this.userId != null ? this.userId : "null") + " connected!!!!! : " + connection.getProtocol());
                         } else {
                             this.connection.sendMessage("not_registered");
                         }
@@ -270,6 +271,9 @@ public class WsHandler extends WebSocketHandler {
                     case "getCurrentStegLocation":
                         getCurrentStegLocation(unpacker);
                         break;
+                    case "getCatchedStegLocations":
+                        getCatchedStegLocations(unpacker);
+                        break;
                     case "fcmToken":
                         setFcmToken(unpacker);
                         break;
@@ -287,6 +291,9 @@ public class WsHandler extends WebSocketHandler {
                         break;
                     case "removeFromBL":
                         removeFromBlackList(unpacker);
+                        break;
+                    case "setStatus":
+                        setStatus(unpacker);
                         break;
                     case "setCoordinates":
                         setCoordinates(unpacker);
@@ -347,6 +354,12 @@ public class WsHandler extends WebSocketHandler {
                         break;
                     case "disconFromWChat":
                         disconnectFromWaveChat(unpacker);
+                        break;
+                    case "regToWaveChatNotes":
+                        addWaveChatCandidate();
+                        break;
+                    case "unregFromWaveChatNotes":
+                        removeWaveChatCandidate();
                         break;
                 }
                 unpacker.close();
@@ -517,9 +530,21 @@ public class WsHandler extends WebSocketHandler {
             DBHandler.removeFromBlackList(userId, blackProfileId, dbConnection);
         }
 
+        private void setStatus(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            String status = unpacker.unpackString();
+
+            DBHandler.setUserStatus(profileId, status, dbConnection);
+        }
+
         private void setCoordinates(MessageUnpacker unpacker) throws IOException {
-            DBHandler.setUserCoordinates(unpacker.unpackString(), unpacker.unpackString(),
-                    unpacker.unpackDouble(), unpacker.unpackDouble(), dbConnection);
+            String profileId = unpacker.unpackString();
+            String city = unpacker.unpackString();
+            Double latitude = unpacker.unpackDouble();
+            Double longitude = unpacker.unpackDouble();
+
+            DBHandler.setUserCoordinates(profileId, city, latitude, longitude, dbConnection);
+            LocalityEncoder.getInstance().startEncodeLatLngTask(profileId, new LatLng(latitude, longitude), dbConnection);
         }
 
         private void setUserShowCityEnabled(MessageUnpacker unpacker) throws IOException {
@@ -527,8 +552,14 @@ public class WsHandler extends WebSocketHandler {
         }
 
         private void setCoordinatesWithState(MessageUnpacker unpacker) throws IOException {
-            DBHandler.setUserCoordinatesWithState(unpacker.unpackString(), unpacker.unpackString(), unpacker.unpackString(),
-                    unpacker.unpackDouble(), unpacker.unpackDouble(), dbConnection);
+            String profileId = unpacker.unpackString();
+            String city = unpacker.unpackString();
+            String state = unpacker.unpackString();
+            Double latitude = unpacker.unpackDouble();
+            Double longitude = unpacker.unpackDouble();
+
+            DBHandler.setUserCoordinatesWithState(profileId, city, state, latitude, longitude, dbConnection);
+            LocalityEncoder.getInstance().startEncodeLatLngTask(profileId, new LatLng(latitude, longitude), dbConnection);
         }
 
         private void markNewsSended(MessageUnpacker unpacker) throws IOException {
@@ -687,7 +718,7 @@ public class WsHandler extends WebSocketHandler {
         }
 
         private void addPrizeWinner(MessageUnpacker unpacker) throws IOException {
-            String winnerId= unpacker.unpackString();
+            String winnerId = unpacker.unpackString();
             Integer prizeId = unpacker.unpackInt();
 
             Boolean success = DBHandler.addPrizeWinner(winnerId, prizeId, dbConnection);
@@ -722,7 +753,7 @@ public class WsHandler extends WebSocketHandler {
 
             packer.packString("prizeLocations")
                     .packArrayHeader(prizes.size());
-            for (PrizeLocation prize : prizes){
+            for (PrizeLocation prize : prizes) {
                 packer.packInt(prize.getId())
                         .packInt(prize.getStegId())
                         .packDouble(prize.getLatitude())
@@ -768,7 +799,6 @@ public class WsHandler extends WebSocketHandler {
 
         private void getStegLocationsForProfile(MessageUnpacker unpacker) throws IOException {
             String profileId = unpacker.unpackString();
-            unpacker.close();
             ArrayList<StegLocation> stegLocations = DBHandler.getLocationStegForProfile(profileId, dbConnection);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -791,13 +821,34 @@ public class WsHandler extends WebSocketHandler {
 
         private void getCurrentStegLocation(MessageUnpacker unpacker) throws IOException {
             Integer stegId = unpacker.unpackInt();
-            unpacker.close();
             ArrayList<StegLocation> stegLocations = DBHandler.getCurrentStegLocation(stegId, dbConnection);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             MessagePacker packer = MessagePack.newDefaultPacker(baos);
             Integer len = stegLocations.size();
             packer.packString("currentStegLocation")
+                    .packArrayHeader(len);
+            for (StegLocation stegLocation : stegLocations) {
+                packer.packInt(stegLocation.getId())
+                        .packInt(stegLocation.getStegId())
+                        .packDouble(stegLocation.getLatitude())
+                        .packDouble(stegLocation.getLongitude())
+                        .packString(stegLocation.getTitle())
+                        .packInt(stegLocation.getType())
+                        .packString(stegLocation.getProfileId());
+            }
+            packer.close();
+            connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+        }
+
+        private void getCatchedStegLocations(MessageUnpacker unpacker) throws IOException {
+            String profileId = unpacker.unpackString();
+            ArrayList<StegLocation> stegLocations = DBHandler.getCatchedStegLocations(profileId, dbConnection);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            MessagePacker packer = MessagePack.newDefaultPacker(baos);
+            Integer len = stegLocations.size();
+            packer.packString("catchedStegLocations")
                     .packArrayHeader(len);
             for (StegLocation stegLocation : stegLocations) {
                 packer.packInt(stegLocation.getId())
@@ -908,13 +959,13 @@ public class WsHandler extends WebSocketHandler {
             DBHandler.removeStegFromFavorite(stegId, profileId, dbConnection);
         }
 
-        private void addVote(MessageUnpacker unpacker) throws IOException{
+        private void addVote(MessageUnpacker unpacker) throws IOException {
             Integer pollItemId = unpacker.unpackInt();
             String profileId = unpacker.unpackString();
             DBHandler.addVote(pollItemId, profileId, dbConnection);
         }
 
-        private void removeVote(MessageUnpacker unpacker) throws IOException{
+        private void removeVote(MessageUnpacker unpacker) throws IOException {
             Integer stegId = unpacker.unpackInt();
             String profileId = unpacker.unpackString();
             DBHandler.removeVote(stegId, profileId, dbConnection);
@@ -955,8 +1006,6 @@ public class WsHandler extends WebSocketHandler {
             String chatName = unpacker.unpackString();
             String mes = unpacker.unpackString();
 
-            System.out.println("Send message to wave chat: " + chatName + " : " + profileId);
-
             WaveChatsDispatcher.getInstance().sendTextMessage(chatName, profileId, mes);
         }
 
@@ -966,7 +1015,6 @@ public class WsHandler extends WebSocketHandler {
                 userId = profileId;
             String chatName = unpacker.unpackString();
             String password = unpacker.unpackString();
-            System.out.println("connect to wave chat: " + chatName + " user: " + userId);
             WaveChatsDispatcher.getInstance().addUserToChat(chatName, this, password);
         }
 
@@ -974,6 +1022,14 @@ public class WsHandler extends WebSocketHandler {
             String chatName = unpacker.unpackString();
 
             WaveChatsDispatcher.getInstance().removeUserFromWaveChat(chatName, this);
+        }
+
+        private void addWaveChatCandidate() {
+            WaveChatsDispatcher.getInstance().addCandidate(this);
+        }
+
+        private void removeWaveChatCandidate() {
+            WaveChatsDispatcher.getInstance().removeCandidate(this);
         }
 
         private void checkConnection() {
@@ -1003,7 +1059,7 @@ public class WsHandler extends WebSocketHandler {
         if (stegId == null)
             stegId = -1;
         String toToken = DBHandler.getProfileToken(toUserId, dbConnection);
-        if (toToken != null){
+        if (toToken != null) {
 //            send notification via FCM
             Map<String, String> data = new HashMap<>();
             data.put(FcmConsts.NOTIFICATION_TYPE, type.toString());
@@ -1032,6 +1088,26 @@ public class WsHandler extends WebSocketHandler {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void sendDiscovererNotification(String profileId, Locality locality){
+        for (ChatWebSocket socket : clientSockets){
+            if (socket.userId.equals(profileId)){
+                try {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    MessagePacker packer = MessagePack.newDefaultPacker(baos);
+                    packer.packString("youAreDiscoverer")
+                            .packString(locality.getCountry())
+                            .packString(locality.getArea())
+                            .packString(locality.getCity())
+                            .close();
+                    socket.connection.sendMessage(baos.toByteArray(), 0, baos.toByteArray().length);
+                    break;
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
